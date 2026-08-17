@@ -32,7 +32,8 @@ If you find this list useful, please cite the tutorial it accompanies:
 - [Semantic ID Construction \& Tokenization](#semantic-id-construction--tokenization)
 - [Generative Recommendation with Semantic IDs](#generative-recommendation-with-semantic-ids)
 - [Semantic IDs in Discriminative Ranking \& Retrieval](#semantic-ids-in-discriminative-ranking--retrieval)
-- [Multimodality \& Collaborative Signals in Semantic ID Construction](#multimodality--collaborative-signals-in-semantic-id-construction)
+- [Multimodality in Semantic ID Construction](#multimodality-in-semantic-id-construction)
+- [Collaborative Signals in Semantic ID Construction](#collaborative-signals-in-semantic-id-construction)
 - [Cold-Start Recommendation with Semantic IDs](#cold-start-recommendation-with-semantic-ids)
 - [Cross-Domain Transfer with Semantic IDs](#cross-domain-transfer-with-semantic-ids)
 - [Cross-Task Unification \& Semantic Planning](#cross-task-unification--semantic-planning)
@@ -52,7 +53,7 @@ For two decades, item identity in industrial recommenders was anchored in arbitr
 
 ## Semantic ID Construction & Tokenization
 
-How to *build* semantic IDs — quantization/tokenization architectures that turn item content (and behavior) into discrete token sequences.
+How to *build* semantic IDs — quantization/tokenization architectures that turn item content into discrete token sequences.
 
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
@@ -60,10 +61,7 @@ How to *build* semantic IDs — quantization/tokenization architectures that tur
 | *GenRet* | [Learning to Tokenize for Generative Retrieval](https://proceedings.neurips.cc/paper_files/paper/2023/hash/91228b942a4528cdae031c1b68b127e8-Abstract-Conference.html) | NeurIPS'23 | [![Github](https://img.shields.io/github/stars/sunnweiwei/GenRet.svg?style=social&label=Github)](https://github.com/sunnweiwei/GenRet) |
 | *SEATER* | [Generative Retrieval with Semantic Tree-Structured Item Identifiers via Contrastive Learning](https://arxiv.org/abs/2309.13375) | arXiv'23 | [![Github](https://img.shields.io/github/stars/Ethan00Si/SEATER_Generative_Retrieval.svg?style=social&label=Github)](https://github.com/Ethan00Si/SEATER_Generative_Retrieval) |
 | *LMIndexer* | [Language Models as Semantic Indexers](https://arxiv.org/abs/2310.07815) | ICML'24 | [![Github](https://img.shields.io/github/stars/PeterGriffinJin/LMIndexer.svg?style=social&label=Github)](https://github.com/PeterGriffinJin/LMIndexer) |
-| *LETTER* | [Learnable Item Tokenization for Generative Recommendation](https://doi.org/10.1145/3627673.3679569) | CIKM'24 | [![Github](https://img.shields.io/github/stars/HonghuiBao2000/LETTER.svg?style=social&label=Github)](https://github.com/HonghuiBao2000/LETTER) |
-| *CoST* | [CoST: Contrastive Quantization based Semantic Tokenization for Generative Recommendation](https://doi.org/10.1145/3640457.3688178) | RecSys'24 | / |
 | *ActionPiece* | [ActionPiece: Contextually Tokenizing Action Sequences for Generative Recommendation](https://arxiv.org/abs/2502.13581) | ICML'25 | [![Github](https://img.shields.io/github/stars/google-deepmind/action_piece.svg?style=social&label=Github)](https://github.com/google-deepmind/action_piece) |
-| *ETEGRec* | [Generative Recommender with End-to-End Learnable Item Tokenization](https://doi.org/10.1145/3726302.3729989) | SIGIR'25 | [![Github](https://img.shields.io/github/stars/RUCAIBox/ETEGRec.svg?style=social&label=Github)](https://github.com/RUCAIBox/ETEGRec) |
 | *TokenRec* | [TokenRec: Learning to Tokenize ID for LLM-based Generative Recommendation](https://arxiv.org/abs/2406.10450) | TKDE'25 | [![Github](https://img.shields.io/github/stars/Quhaoh233/TokenRec.svg?style=social&label=Github)](https://github.com/Quhaoh233/TokenRec) |
 | *UTGRec* | [Universal Item Tokenization for Transferable Generative Recommendation](https://arxiv.org/abs/2504.04405) | arXiv'25 | [![Github](https://img.shields.io/github/stars/RUCAIBox/UTGRec.svg?style=social&label=Github)](https://github.com/RUCAIBox/UTGRec) |
 | *HiD-VAE* | [HiD-VAE: Interpretable Generative Recommendation via Hierarchical and Disentangled Semantic IDs](https://arxiv.org/abs/2508.04618) | arXiv'25 | / |
@@ -79,9 +77,9 @@ How to *build* semantic IDs — quantization/tokenization architectures that tur
 | *R3-VAE* | [R3-VAE: Reference Vector-Guided Rating Residual Quantization VAE for Generative Recommendation](https://arxiv.org/abs/2604.11440) | arXiv'26 | / |
 | *PrefixMem* | [LLMs Need Encoders for Semantic IDs Too](https://arxiv.org/abs/2606.00324) | arXiv'26 | / |
 | *Rethinking Tokenizer* | [Rethinking Generative Recommender Tokenizer: RecSys-Native Encoding and Semantic Quantization Beyond LLMs](https://arxiv.org/abs/2602.02338) | arXiv'26 | / |
-| *SID Staleness* | [Mitigating Collaborative Semantic ID Staleness in Generative Retrieval](https://arxiv.org/abs/2604.13273) | arXiv'26 | / |
 | *UniSID* | [End-to-End Semantic ID Generation for Generative Advertisement Recommendation](https://arxiv.org/abs/2602.10445) | arXiv'26 | / |
 | *TAAC-SID* | [Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation](https://arxiv.org/abs/2604.04976) | arXiv'26 | [![Github](https://img.shields.io/github/stars/TencentAdvertisingAlgorithmCompetition/baseline_2025.svg?style=social&label=Github)](https://github.com/TencentAdvertisingAlgorithmCompetition/baseline_2025) |
+| *DIGER* | [Differentiable Semantic ID for Generative Recommendation](https://doi.org/10.1145/3805712.3809641) | SIGIR'26 | [![Github](https://img.shields.io/github/stars/junchen-fu/DIGER.svg?style=social&label=Github)](https://github.com/junchen-fu/DIGER) |
 
 ## Generative Recommendation with Semantic IDs
 
@@ -143,25 +141,42 @@ Semantic IDs used as **structured input features** in traditional discriminative
 | *Snapchat SIDs* | [Semantic IDs for Recommender Systems at Snapchat: Use Cases, Technical Challenges, and Design Choices](https://doi.org/10.1145/3805712.3808405) | SIGIR'26 | / |
 | *STORE* | [STORE: Semantic Tokenization, Orthogonal Rotation and Efficient Attention for Scaling Up Ranking Models](https://arxiv.org/abs/2511.18805) | arXiv'25 | / |
 
-## Multimodality & Collaborative Signals in Semantic ID Construction
+## Multimodality in Semantic ID Construction
 
-Papers centered on **fusing multiple modalities** (text/image/audio/video) or **injecting collaborative-filtering signals** into semantic ID construction — the tension between IDs that are semantically meaningful vs. recommendation-aware.
+Papers centered on fusing multiple content modalities (text/image/audio/video) into semantic ID construction.
 
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
-| *CCFRec* | [Bridging Textual-Collaborative Gap through Semantic Codes for Sequential Recommendation](https://doi.org/10.1145/3711896.3736869) | KDD'25 | [![Github](https://img.shields.io/github/stars/RUCAIBox/CCFRec.svg?style=social&label=Github)](https://github.com/RUCAIBox/CCFRec) |
 | *MMQ* | [MMQ: Multimodal Mixture-of-Quantization Tokenization for Semantic ID Generation and User Behavioral Adaptation](https://arxiv.org/abs/2508.15281) | WSDM'26 | / |
+| *Q-BERT4Rec* | [Q-BERT4Rec: Quantized Semantic-ID Representation Learning for Multimodal Recommendation](https://arxiv.org/abs/2512.02474) | arXiv'25 | / |
+| *QARM V2* | [QARM V2: Quantitative Alignment Multi-Modal Recommendation for Reasoning User Sequence Modeling](https://arxiv.org/abs/2602.08559) | arXiv'26 | / |
+| *DMESR* | [DMESR: Dual-view MLLM-based Enhancing Framework for Multimodal Sequential Recommendation](https://arxiv.org/abs/2602.13715) | arXiv'26 | / |
+| *AdaSID* | [Beyond Static Collision Handling: Adaptive Semantic ID Learning for Multimodal Recommendation at Industrial Scale](https://arxiv.org/abs/2604.23522) | arXiv'26 | / |
+
+## Collaborative Signals in Semantic ID Construction
+
+Papers specifically about injecting/aligning collaborative-filtering or behavioral signals into semantic ID construction — the tension between IDs that are semantically meaningful (from content) vs. recommendation-aware (from interactions). Includes joint/end-to-end tokenizer-recommender training, contrastive alignment to CF embeddings, semantic-collaborative disentanglement, and collision/staleness handling driven by interaction skew.
+
+| Method | Paper Title | Published At | Code |
+|:---:|:---|:---:|:---:|
+| *LETTER* | [Learnable Item Tokenization for Generative Recommendation](https://doi.org/10.1145/3627673.3679569) | CIKM'24 | [![Github](https://img.shields.io/github/stars/HonghuiBao2000/LETTER.svg?style=social&label=Github)](https://github.com/HonghuiBao2000/LETTER) |
+| *CoST* | [CoST: Contrastive Quantization based Semantic Tokenization for Generative Recommendation](https://doi.org/10.1145/3640457.3688178) | RecSys'24 | / |
+| *ETEGRec* | [Generative Recommender with End-to-End Learnable Item Tokenization](https://doi.org/10.1145/3726302.3729989) | SIGIR'25 | [![Github](https://img.shields.io/github/stars/RUCAIBox/ETEGRec.svg?style=social&label=Github)](https://github.com/RUCAIBox/ETEGRec) |
+| *CCFRec* | [Bridging Textual-Collaborative Gap through Semantic Codes for Sequential Recommendation](https://doi.org/10.1145/3711896.3736869) | KDD'25 | [![Github](https://img.shields.io/github/stars/RUCAIBox/CCFRec.svg?style=social&label=Github)](https://github.com/RUCAIBox/CCFRec) |
 | *DiscRec* | [DiscRec: Disentangled Semantic-Collaborative Modeling for Generative Recommendation](https://arxiv.org/abs/2506.15576) | arXiv'25 | [![Github](https://img.shields.io/github/stars/Ten-Mao/DiscRec.svg?style=social&label=Github)](https://github.com/Ten-Mao/DiscRec) |
 | *BBQRec* | [BBQRec: Behavior-Bind Quantization for Multi-Modal Sequential Recommendation](https://arxiv.org/abs/2504.06636) | arXiv'25 | / |
-| *Q-BERT4Rec* | [Q-BERT4Rec: Quantized Semantic-ID Representation Learning for Multimodal Recommendation](https://arxiv.org/abs/2512.02474) | arXiv'25 | / |
 | *DQ-VAE* | [Representation Quantization for Collaborative Filtering Augmentation](https://arxiv.org/abs/2508.11194) | arXiv'25 | / |
 | *ADC-SID* | [Taming the Long Tail: Denoising Collaborative Information for Robust Semantic ID Generation](https://arxiv.org/abs/2510.25622) | arXiv'25 | / |
 | *CEMG* | [CEMG: Collaborative-Enhanced Multimodal Generative Recommendation](https://arxiv.org/abs/2512.21543) | MMM'26 | / |
-| *QARM V2* | [QARM V2: Quantitative Alignment Multi-Modal Recommendation for Reasoning User Sequence Modeling](https://arxiv.org/abs/2602.08559) | arXiv'26 | / |
-| *DMESR* | [DMESR: Dual-view MLLM-based Enhancing Framework for Multimodal Sequential Recommendation](https://arxiv.org/abs/2602.13715) | arXiv'26 | / |
 | *DECOR* | [Learning Decomposed Contextual Token Representations from Pretrained and Collaborative Signals for Generative Recommendation](https://arxiv.org/abs/2509.10468) | SIGIR'26 | [![Github](https://img.shields.io/github/stars/yliuaa/DECOR.svg?style=social&label=Github)](https://github.com/yliuaa/DECOR) |
 | *GateSID* | [GateSID: Adaptive Gating for Balancing Semantic and Collaborative Signals in Recommendation](https://arxiv.org/abs/2603.22916) | arXiv'26 | / |
-| *AdaSID* | [Beyond Static Collision Handling: Adaptive Semantic ID Learning for Multimodal Recommendation at Industrial Scale](https://arxiv.org/abs/2604.23522) | arXiv'26 | / |
+| *SID Staleness* | [Mitigating Collaborative Semantic ID Staleness in Generative Retrieval](https://doi.org/10.1145/3805712.3809877) | SIGIR'26 | / |
+| *UNGER* | [UNGER: Generative Recommendation with A Unified Code via Semantic and Collaborative Integration](https://arxiv.org/abs/2502.06269) | arXiv'25 | / |
+| *SaviorRec* | [SaviorRec: Semantic-Behavior Alignment for Cold-Start Recommendation](https://arxiv.org/abs/2508.01375) | arXiv'25 | / |
+| *Bi-Level Tokenization* | [Bi-Level Optimization for Generative Recommendation: Bridging Tokenization and Generation](https://doi.org/10.1145/3805712.3809632) | SIGIR'26 | / |
+| *PRISM* | [PRISM: Purified Representation and Integrated Semantic Modeling for Generative Sequential Recommendation](https://arxiv.org/abs/2601.16556) | arXiv'26 | / |
+| *QuaSID* | [Stop Treating Collisions Equally: Qualification-Aware Semantic ID Learning for Recommendation at Industrial Scale](https://arxiv.org/abs/2603.00632) | arXiv'26 | / |
+| *Rethinking Sem-Collab* | [Rethinking Semantic Collaborative Integration: Why Alignment Is Not Enough](https://doi.org/10.1145/3805712.3808539) | SIGIR'26 | / |
 
 ## Cold-Start Recommendation with Semantic IDs
 
