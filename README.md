@@ -60,20 +60,20 @@ How to *build* semantic IDs — quantization/tokenization architectures that tur
 | *VQ-Rec* | [Learning Vector-Quantized Item Representation for Transferable Sequential Recommenders](https://doi.org/10.1145/3543507.3583434) | WWW'23 | [![Github](https://img.shields.io/github/stars/RUCAIBox/VQ-Rec.svg?style=social&label=Github)](https://github.com/RUCAIBox/VQ-Rec) |
 | *GenRet* | [Learning to Tokenize for Generative Retrieval](https://proceedings.neurips.cc/paper_files/paper/2023/hash/91228b942a4528cdae031c1b68b127e8-Abstract-Conference.html) | NeurIPS'23 | [![Github](https://img.shields.io/github/stars/sunnweiwei/GenRet.svg?style=social&label=Github)](https://github.com/sunnweiwei/GenRet) |
 | *SEATER* | [Generative Retrieval with Semantic Tree-Structured Item Identifiers via Contrastive Learning](https://arxiv.org/abs/2309.13375) | arXiv'23 | [![Github](https://img.shields.io/github/stars/Ethan00Si/SEATER_Generative_Retrieval.svg?style=social&label=Github)](https://github.com/Ethan00Si/SEATER_Generative_Retrieval) |
-| *LMIndexer* | [Language Models as Semantic Indexers](https://arxiv.org/abs/2310.07815) | ICML'24 | [![Github](https://img.shields.io/github/stars/PeterGriffinJin/LMIndexer.svg?style=social&label=Github)](https://github.com/PeterGriffinJin/LMIndexer) |
-| *ActionPiece* | [ActionPiece: Contextually Tokenizing Action Sequences for Generative Recommendation](https://arxiv.org/abs/2502.13581) | ICML'25 | [![Github](https://img.shields.io/github/stars/google-deepmind/action_piece.svg?style=social&label=Github)](https://github.com/google-deepmind/action_piece) |
-| *TokenRec* | [TokenRec: Learning to Tokenize ID for LLM-based Generative Recommendation](https://arxiv.org/abs/2406.10450) | TKDE'25 | [![Github](https://img.shields.io/github/stars/Quhaoh233/TokenRec.svg?style=social&label=Github)](https://github.com/Quhaoh233/TokenRec) |
+| *LMIndexer* | [Language Models as Semantic Indexers](https://openreview.net/forum?id=hJEMTDOwKx) | ICML'24 | [![Github](https://img.shields.io/github/stars/PeterGriffinJin/LMIndexer.svg?style=social&label=Github)](https://github.com/PeterGriffinJin/LMIndexer) |
+| *ActionPiece* | [ActionPiece: Contextually Tokenizing Action Sequences for Generative Recommendation](https://openreview.net/forum?id=h2oNQOzbc5) | ICML'25 | [![Github](https://img.shields.io/github/stars/google-deepmind/action_piece.svg?style=social&label=Github)](https://github.com/google-deepmind/action_piece) |
+| *TokenRec* | [TokenRec: Learning to Tokenize ID for LLM-based Generative Recommendation](https://ieeexplore.ieee.org/document/11129873) | TKDE'25 | [![Github](https://img.shields.io/github/stars/Quhaoh233/TokenRec.svg?style=social&label=Github)](https://github.com/Quhaoh233/TokenRec) |
 | *UTGRec* | [Universal Item Tokenization for Transferable Generative Recommendation](https://arxiv.org/abs/2504.04405) | arXiv'25 | [![Github](https://img.shields.io/github/stars/RUCAIBox/UTGRec.svg?style=social&label=Github)](https://github.com/RUCAIBox/UTGRec) |
 | *HiD-VAE* | [HiD-VAE: Interpretable Generative Recommendation via Hierarchical and Disentangled Semantic IDs](https://arxiv.org/abs/2508.04618) | arXiv'25 | / |
 | *PCR-CA* | [PCR-CA: Parallel Codebook Representations with Contrastive Alignment for Multiple-Category App Recommendation](https://arxiv.org/abs/2508.18166) | arXiv'25 | / |
 | *COSETTE* | [Closing the Performance Gap in Generative Recommenders with Collaborative Tokenization and Efficient Modeling](https://arxiv.org/abs/2508.14910) | arXiv'25 | / |
-| *PSRQ* | [Progressive Semantic Residual Quantization for Multimodal-Joint Interest Modeling in Music Recommendation](https://arxiv.org/abs/2508.20359) | CIKM'25 | / |
+| *PSRQ* | [Progressive Semantic Residual Quantization for Multimodal-Joint Interest Modeling in Music Recommendation](https://doi.org/10.1145/3746252.3761579) | CIKM'25 | / |
 | *FORGE* | [FORGE: Forming Semantic Identifiers for Generative Retrieval in Industrial Datasets](https://arxiv.org/abs/2509.20904) | arXiv'25 | [![Github](https://img.shields.io/github/stars/selous123/al_sid.svg?style=social&label=Github)](https://github.com/selous123/al_sid) |
 | *Purely Semantic Indexing* | [Purely Semantic Indexing for LLM-based Generative Recommendation and Retrieval](https://arxiv.org/abs/2509.16446) | arXiv'25 | / |
 | *Semantics Meet Signals* | [Semantics Meet Signals: Dual Codebook Representation Learning for Generative Recommendation](https://arxiv.org/abs/2511.20673) | arXiv'25 | / |
 | *H2W* | [The Best of the Two Worlds: Harmonizing Semantic and Hash IDs for Sequential Recommendation](https://arxiv.org/abs/2512.10388) | arXiv'25 | / |
 | *MERGE* | [MERGE: Next-Generation Item Indexing Paradigm for Large-Scale Streaming Recommendation](https://arxiv.org/abs/2601.20199) | arXiv'26 | / |
-| *SemanticConvergence* | [Semantic Convergence: Harmonizing Recommender Systems via Two-Stage Alignment and Behavioral Semantic Tokenization](https://arxiv.org/abs/2412.13771) | AAAI'25 | / |
+| *SemanticConvergence* | [Semantic Convergence: Harmonizing Recommender Systems via Two-Stage Alignment and Behavioral Semantic Tokenization](https://ojs.aaai.org/index.php/AAAI/article/view/33311) | AAAI'25 | / |
 | *R3-VAE* | [R3-VAE: Reference Vector-Guided Rating Residual Quantization VAE for Generative Recommendation](https://arxiv.org/abs/2604.11440) | arXiv'26 | / |
 | *PrefixMem* | [LLMs Need Encoders for Semantic IDs Too](https://arxiv.org/abs/2606.00324) | arXiv'26 | / |
 | *Rethinking Tokenizer* | [Rethinking Generative Recommender Tokenizer: RecSys-Native Encoding and Semantic Quantization Beyond LLMs](https://arxiv.org/abs/2602.02338) | arXiv'26 | / |
@@ -97,14 +97,14 @@ Semantic IDs as the backbone of **generative retrieval/recommendation**: a model
 | *EAGER-LLM* | [EAGER-LLM: Enhancing Large Language Models as Recommenders through Exogenous Behavior-Semantic Integration](https://doi.org/10.1145/3696410.3714933) | WWW'25 | / |
 | *SETRec* | [SETRec: Order-Agnostic Identifier for Large Language Model-based Generative Recommendation](https://doi.org/10.1145/3726302.3730053) | SIGIR'25 | [![Github](https://img.shields.io/github/stars/Linxyhaha/SETRec.svg?style=social&label=Github)](https://github.com/Linxyhaha/SETRec) |
 | *RPG* | [Generating Long Semantic IDs in Parallel for Recommendation](https://doi.org/10.1145/3711896.3736979) | KDD'25 | [![Github](https://img.shields.io/github/stars/facebookresearch/RPG_KDD2025.svg?style=social&label=Github)](https://github.com/facebookresearch/RPG_KDD2025) |
-| *GNPR-SID* | [Generative Next POI Recommendation with Semantic ID](https://arxiv.org/abs/2506.01375) | KDD'25 | [![Github](https://img.shields.io/github/stars/wds1996/GNPR-SID.svg?style=social&label=Github)](https://github.com/wds1996/GNPR-SID) |
-| *EARN* | [EARN: Efficient Inference Acceleration for LLM-based Generative Recommendation by Register Tokens](https://arxiv.org/abs/2507.00715) | KDD'25 | [![Github](https://img.shields.io/github/stars/transcend-0/EARN.svg?style=social&label=Github)](https://github.com/transcend-0/EARN) |
+| *GNPR-SID* | [Generative Next POI Recommendation with Semantic ID](https://doi.org/10.1145/3711896.3736981) | KDD'25 | [![Github](https://img.shields.io/github/stars/wds1996/GNPR-SID.svg?style=social&label=Github)](https://github.com/wds1996/GNPR-SID) |
+| *EARN* | [EARN: Efficient Inference Acceleration for LLM-based Generative Recommendation by Register Tokens](https://doi.org/10.1145/3711896.3736919) | KDD'25 | [![Github](https://img.shields.io/github/stars/transcend-0/EARN.svg?style=social&label=Github)](https://github.com/transcend-0/EARN) |
 | *AtSpeed* | [Efficient Inference for Large Language Model-based Generative Recommendation](https://openreview.net/forum?id=ACSNlt77hq) | ICLR'25 | [![Github](https://img.shields.io/github/stars/Linxyhaha/AtSpeed.svg?style=social&label=Github)](https://github.com/Linxyhaha/AtSpeed) |
-| *SpecGR* | [Inductive Generative Recommendation via Retrieval-based Speculation](https://arxiv.org/abs/2410.02939) | AAAI'26 | [![Github](https://img.shields.io/github/stars/Jamesding000/SpecGR.svg?style=social&label=Github)](https://github.com/Jamesding000/SpecGR) |
+| *SpecGR* | [Inductive Generative Recommendation via Retrieval-based Speculation](https://ojs.aaai.org/index.php/AAAI/article/view/38486) | AAAI'26 | [![Github](https://img.shields.io/github/stars/Jamesding000/SpecGR.svg?style=social&label=Github)](https://github.com/Jamesding000/SpecGR) |
 | *LLaDA-Rec* | [LLaDA-Rec: Discrete Diffusion for Parallel Semantic ID Generation in Generative Recommendation](https://arxiv.org/abs/2511.06254) | arXiv'25 | [![Github](https://img.shields.io/github/stars/TengShi-RUC/LLaDA-Rec.svg?style=social&label=Github)](https://github.com/TengShi-RUC/LLaDA-Rec) |
 | *ContRec* | [Diffusion Generative Recommendation with Continuous Tokens](https://arxiv.org/abs/2504.12007) | arXiv'25 | [![Github](https://img.shields.io/github/stars/Quhaoh233/ContRec.svg?style=social&label=Github)](https://github.com/Quhaoh233/ContRec) |
 | *GRAM* | [GRAM: Generative Recommendation via Semantic-aware Multi-granular Late Fusion](https://aclanthology.org/2025.acl-long.1596/) | ACL'25 | [![Github](https://img.shields.io/github/stars/skleee/GRAM.svg?style=social&label=Github)](https://github.com/skleee/GRAM) |
-| *GRAM (retrieval)* | [Generative Retrieval and Alignment Model: A New Paradigm for E-commerce Retrieval](https://arxiv.org/abs/2504.01403) | WWW'25 (Companion) | / |
+| *GRAM (retrieval)* | [Generative Retrieval and Alignment Model: A New Paradigm for E-commerce Retrieval](https://doi.org/10.1145/3701716.3715228) | WWW'25 (Companion) | / |
 | *OneRec* | [OneRec: Unifying Retrieve and Rank with Generative Recommender and Iterative Preference Alignment](https://arxiv.org/abs/2502.18965) | arXiv'25 | [![Github](https://img.shields.io/github/stars/Kuaishou-OneRec/OpenOneRec.svg?style=social&label=Github)](https://github.com/Kuaishou-OneRec/OpenOneRec) |
 | *OneRec (Tech Report)* | [OneRec Technical Report](https://arxiv.org/abs/2506.13695) | arXiv'25 | [![Github](https://img.shields.io/github/stars/Kuaishou-OneRec/OpenOneRec.svg?style=social&label=Github)](https://github.com/Kuaishou-OneRec/OpenOneRec) |
 | *OneRec-V2* | [OneRec-V2 Technical Report](https://arxiv.org/abs/2508.20900) | arXiv'25 | [![Github](https://img.shields.io/github/stars/Kuaishou-OneRec/OpenOneRec.svg?style=social&label=Github)](https://github.com/Kuaishou-OneRec/OpenOneRec) |
@@ -116,7 +116,7 @@ Semantic IDs as the backbone of **generative retrieval/recommendation**: a model
 | *GLIDE* | [Deploying Semantic ID-based Generative Retrieval for Large-Scale Podcast Discovery at Spotify](https://arxiv.org/abs/2603.17540) | arXiv'26 | / |
 | *Model-Scaling for SIDs* | [Understanding Generative Recommendation with Semantic IDs from a Model-scaling View](https://arxiv.org/abs/2509.25522) | arXiv'25 | / |
 | *NEZHA* | [NEZHA: A Zero-sacrifice and Hyperspeed Decoding Architecture for Generative Recommendations](https://arxiv.org/abs/2511.18793) | arXiv'25 | / |
-| *Align3GR* | [Align3GR: Unified Multi-Level Alignment for LLM-based Generative Recommendation](https://arxiv.org/abs/2511.11255) | AAAI'26 | / |
+| *Align3GR* | [Align3GR: Unified Multi-Level Alignment for LLM-based Generative Recommendation](https://ojs.aaai.org/index.php/AAAI/article/view/38651) | AAAI'26 | / |
 | *PROMISE* | [PROMISE: Process Reward Models Unlock Test-Time Scaling Laws in Generative Recommendations](https://arxiv.org/abs/2601.04674) | arXiv'26 | / |
 | *Latte* | [Expressiveness Limits of Autoregressive Semantic ID Generation in Generative Recommendation](https://arxiv.org/abs/2605.06331) | arXiv'26 | [![Github](https://img.shields.io/github/stars/hyp1231/Latte.svg?style=social&label=Github)](https://github.com/hyp1231/Latte) |
 | *DualGR* | [DualGR: Generative Retrieval with Long and Short-Term Interests Modeling](https://arxiv.org/abs/2511.12518) | WWW'26 (Best Short Paper) | / |
@@ -130,13 +130,13 @@ Semantic IDs used as **structured input features** in traditional discriminative
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
 | *UIST* | [Discrete Semantic Tokenization for Deep CTR Prediction](https://doi.org/10.1145/3589335.3651558) | WWW'24 (Companion) | [![Github](https://img.shields.io/github/stars/Jyonn/SemanticTokenizer.svg?style=social&label=Github)](https://github.com/Jyonn/SemanticTokenizer) |
-| *SIDE* | [SIDE: Semantic ID Embedding for Effective Learning from Sequences](https://arxiv.org/abs/2506.16698) | AdKDD'25 | / |
+| *SIDE* | [SIDE: Semantic ID Embedding for Effective Learning from Sequences](https://doi.org/10.1007/978-3-032-16358-5_5) | AdKDD'25 | / |
 | *USIRL* | [Unified Semantic and ID Representation Learning for Deep Recommenders](https://arxiv.org/abs/2502.16474) | arXiv'25 | / |
 | *IDProxy* | [IDProxy: Cold-Start CTR Prediction for Ads and Recommendation at Xiaohongshu with Multimodal LLMs](https://arxiv.org/abs/2603.01590) | arXiv'26 | / |
-| *RQ-GMM* | [RQ-GMM: Residual Quantized Gaussian Mixture Model for Multimodal Semantic Discretization in CTR Prediction](https://arxiv.org/abs/2602.12593) | SIGIR'26 | / |
+| *RQ-GMM* | [RQ-GMM: Residual Quantized Gaussian Mixture Model for Multimodal Semantic Discretization in CTR Prediction](https://doi.org/10.1145/3805712.3809968) | SIGIR'26 | / |
 | *PaletteID* | [PaletteID: Prototype-Composed Semantic Identifiers for Multimodal CTR Prediction](https://arxiv.org/abs/2607.29000) | arXiv'26 | / |
 | *Dual-Purpose SIDs* | [Tokens are All You Need: Dual-purpose Semantic IDs for Achieving LLM-Level I/O Efficiency in Recommendation Systems](https://arxiv.org/abs/2607.24865) | arXiv'26 | / |
-| *FedMM* | [FedMM: Federated Collaborative Signal Quantization for Multi-Market CTR Prediction](https://arxiv.org/abs/2605.11433) | SIGIR'26 | / |
+| *FedMM* | [FedMM: Federated Collaborative Signal Quantization for Multi-Market CTR Prediction](https://doi.org/10.1145/3805712.3809654) | SIGIR'26 | / |
 | *SIREN* | [SIREN: Unified Multi-Granularity Semantic Interaction for Multi-Modal Lifelong User Interest Modeling](https://arxiv.org/abs/2605.25726) | arXiv'26 | / |
 | *Snapchat SIDs* | [Semantic IDs for Recommender Systems at Snapchat: Use Cases, Technical Challenges, and Design Choices](https://doi.org/10.1145/3805712.3808405) | SIGIR'26 | / |
 | *STORE* | [STORE: Semantic Tokenization, Orthogonal Rotation and Efficient Attention for Scaling Up Ranking Models](https://arxiv.org/abs/2511.18805) | arXiv'25 | / |
@@ -147,7 +147,7 @@ Papers centered on fusing multiple content modalities (text/image/audio/video) i
 
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
-| *MMQ* | [MMQ: Multimodal Mixture-of-Quantization Tokenization for Semantic ID Generation and User Behavioral Adaptation](https://arxiv.org/abs/2508.15281) | WSDM'26 | / |
+| *MMQ* | [MMQ: Multimodal Mixture-of-Quantization Tokenization for Semantic ID Generation and User Behavioral Adaptation](https://doi.org/10.1145/3773966.3777923) | WSDM'26 | / |
 | *Q-BERT4Rec* | [Q-BERT4Rec: Quantized Semantic-ID Representation Learning for Multimodal Recommendation](https://arxiv.org/abs/2512.02474) | arXiv'25 | / |
 | *QARM V2* | [QARM V2: Quantitative Alignment Multi-Modal Recommendation for Reasoning User Sequence Modeling](https://arxiv.org/abs/2602.08559) | arXiv'26 | / |
 | *DMESR* | [DMESR: Dual-view MLLM-based Enhancing Framework for Multimodal Sequential Recommendation](https://arxiv.org/abs/2602.13715) | arXiv'26 | / |
@@ -167,8 +167,8 @@ Papers specifically about injecting/aligning collaborative-filtering or behavior
 | *BBQRec* | [BBQRec: Behavior-Bind Quantization for Multi-Modal Sequential Recommendation](https://arxiv.org/abs/2504.06636) | arXiv'25 | / |
 | *DQ-VAE* | [Representation Quantization for Collaborative Filtering Augmentation](https://arxiv.org/abs/2508.11194) | arXiv'25 | / |
 | *ADC-SID* | [Taming the Long Tail: Denoising Collaborative Information for Robust Semantic ID Generation](https://arxiv.org/abs/2510.25622) | arXiv'25 | / |
-| *CEMG* | [CEMG: Collaborative-Enhanced Multimodal Generative Recommendation](https://arxiv.org/abs/2512.21543) | MMM'26 | / |
-| *DECOR* | [Learning Decomposed Contextual Token Representations from Pretrained and Collaborative Signals for Generative Recommendation](https://arxiv.org/abs/2509.10468) | SIGIR'26 | [![Github](https://img.shields.io/github/stars/yliuaa/DECOR.svg?style=social&label=Github)](https://github.com/yliuaa/DECOR) |
+| *CEMG* | [CEMG: Collaborative-Enhanced Multimodal Generative Recommendation](https://link.springer.com/chapter/10.1007/978-981-95-6950-2_36) | MMM'26 | / |
+| *DECOR* | [Learning Decomposed Contextual Token Representations from Pretrained and Collaborative Signals for Generative Recommendation](https://doi.org/10.1145/3805712.3809578) | SIGIR'26 | [![Github](https://img.shields.io/github/stars/yliuaa/DECOR.svg?style=social&label=Github)](https://github.com/yliuaa/DECOR) |
 | *GateSID* | [GateSID: Adaptive Gating for Balancing Semantic and Collaborative Signals in Recommendation](https://arxiv.org/abs/2603.22916) | arXiv'26 | / |
 | *SID Staleness* | [Mitigating Collaborative Semantic ID Staleness in Generative Retrieval](https://doi.org/10.1145/3805712.3809877) | SIGIR'26 | / |
 | *UNGER* | [UNGER: Generative Recommendation with A Unified Code via Semantic and Collaborative Integration](https://arxiv.org/abs/2502.06269) | arXiv'25 | / |
@@ -194,8 +194,8 @@ Using the shared semantic structure of semantic IDs to transfer knowledge across
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
 | *Quantizing Intent* | [Quantizing Intent: Cross-Domain Semantic IDs from Organic Activity for Industrial Ranking](https://arxiv.org/abs/2606.01396) | arXiv'26 (LinkedIn) | / |
-| *GenCDSR* | [Empowering Cross-Domain Sequential Recommendation with Hybrid Tokenization and Serial-Parallel Decoding](https://arxiv.org/abs/2607.28659) | RecSys'26 | [![Github](https://img.shields.io/github/stars/Applied-Machine-Learning-Lab/RecSys2026_GenCDSR.svg?style=social&label=Github)](https://github.com/Applied-Machine-Learning-Lab/RecSys2026_GenCDSR) |
-| *MetaRec* | [Transferable Sequential Recommendation via Vector Quantized Meta Learning](https://arxiv.org/abs/2411.01785) | IEEE BigData'24 | / |
+| *GenCDSR* | [Empowering Cross-Domain Sequential Recommendation with Hybrid Tokenization and Serial-Parallel Decoding](https://doi.org/10.1145/3773078.3831777) | RecSys'26 | [![Github](https://img.shields.io/github/stars/Applied-Machine-Learning-Lab/RecSys2026_GenCDSR.svg?style=social&label=Github)](https://github.com/Applied-Machine-Learning-Lab/RecSys2026_GenCDSR) |
+| *MetaRec* | [Transferable Sequential Recommendation via Vector Quantized Meta Learning](https://ieeexplore.ieee.org/document/10825425/) | IEEE BigData'24 | / |
 | *RecGPT* | [RecGPT: A Foundation Model for Sequential Recommendation](https://aclanthology.org/2025.emnlp-main.513/) | EMNLP'25 | [![Github](https://img.shields.io/github/stars/HKUDS/RecGPT.svg?style=social&label=Github)](https://github.com/HKUDS/RecGPT) |
 | *RecBase* | [RecBase: Generative Foundation Model Pretraining for Zero-Shot Recommendation](https://aclanthology.org/2025.emnlp-main.786/) | EMNLP'25 | / |
 
@@ -205,7 +205,7 @@ Semantic IDs as a shared representation unifying recommendation with search/retr
 
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
-| *SIDReasoner* | [Reasoning over Semantic IDs Enhances Generative Recommendation](https://arxiv.org/abs/2603.23183) | KDD'26 | [![Github](https://img.shields.io/github/stars/HappyPointer/SIDReasoner.svg?style=social&label=Github)](https://github.com/HappyPointer/SIDReasoner) |
+| *SIDReasoner* | [Reasoning over Semantic IDs Enhances Generative Recommendation](https://doi.org/10.1145/3770855.3818122) | KDD'26 | [![Github](https://img.shields.io/github/stars/HappyPointer/SIDReasoner.svg?style=social&label=Github)](https://github.com/HappyPointer/SIDReasoner) |
 | *SIGMA* | [SIGMA: A Semantic-Grounded Instruction-Driven Generative Multi-Task Recommender at AliExpress](https://doi.org/10.1145/3805712.3808421) | SIGIR'26 (Industry) | / |
 | *UniSearch* | [UniSearch: Rethinking Search System with a Unified Generative Architecture](https://arxiv.org/abs/2509.06887) | arXiv'25 | / |
 
