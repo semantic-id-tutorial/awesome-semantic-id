@@ -251,16 +251,16 @@ Semantic IDs as a shared representation unifying recommendation with search/retr
 
 ### Tutorials
 
-| Method | Paper Title | Published At | Code |
+| Method | Paper Title | Published At | Website |
 |:---:|:---|:---:|:---:|
-| *Tutorial* | [Tutorial on Large Language Models for Recommendation](https://doi.org/10.1145/3604915.3609494) | RecSys'23 | / |
-| *Tutorial* | [Large Language Models for Recommendation: Progresses and Future Directions](https://doi.org/10.1145/3589335.3641247) | WWW'24 (Companion) | / |
-| *Tutorial* | [Recommendation with Generative Models (Gen-RecSys)](https://doi.org/10.1145/3701551.3703485) | WSDM'25 | / |
-| *Tutorial* | [Navigating Large Language Models for Recommendation: From Architecture to Learning Paradigms and Deployment](https://doi.org/10.1145/3726302.3731696) | SIGIR'25 | / |
-| *Tutorial* | [A Tutorial on Recent Advances in Generative Conversational Recommender Systems](https://doi.org/10.1145/3705328.3748010) | RecSys'25 | / |
-| *Tutorial* | [Towards Large Generative Recommendation: A Tokenization Perspective](https://doi.org/10.1145/3746252.3761451) | CIKM'25 | / |
-| *Tutorial* | [Generative Recommendation Models: Progress and Directions](https://doi.org/10.1145/3701716.3715856) | WWW'25 (Companion) | / |
-| *Tutorial* | [Tutorial on Generative Recommendation: Foundations and Frontiers](https://doi.org/10.1145/3770855.3816450) | KDD'26 | [GitHub](https://github.com/Applied-Machine-Learning-Lab/KDD2026_GenRec_Tutorial) |
+| *Tutorial* | [Tutorial on Large Language Models for Recommendation](https://doi.org/10.1145/3604915.3609494) | RecSys'23 | [Website](https://llmrecsys.github.io/) |
+| *Tutorial* | [Large Language Models for Recommendation: Progresses and Future Directions](https://doi.org/10.1145/3589335.3641247) | WWW'24 (Companion) | [Website](https://generative-rec.github.io/tutorial/) |
+| *Tutorial* | [Recommendation with Generative Models (Gen-RecSys)](https://doi.org/10.1145/3701551.3703485) | WSDM'25 | [Website](https://www.wsdm-conference.org/2025/tutorials/) |
+| *Tutorial* | [Navigating Large Language Models for Recommendation: From Architecture to Learning Paradigms and Deployment](https://doi.org/10.1145/3726302.3731696) | SIGIR'25 | [Website](https://generative-rec.github.io/tutorial/) |
+| *Tutorial* | [A Tutorial on Recent Advances in Generative Conversational Recommender Systems](https://doi.org/10.1145/3705328.3748010) | RecSys'25 | [Website](https://recsys-lab.at/gen-conv-recsys-tutorial/) |
+| *Tutorial* | [Towards Large Generative Recommendation: A Tokenization Perspective](https://doi.org/10.1145/3746252.3761451) | CIKM'25 | [Website](https://large-genrec.github.io/cikm2025.html) |
+| *Tutorial* | [Generative Recommendation Models: Progress and Directions](https://doi.org/10.1145/3701716.3715856) | WWW'25 (Companion) | [Website](https://large-genrec.github.io/www2025.html) |
+| *Tutorial* | [Tutorial on Generative Recommendation: Foundations and Frontiers](https://doi.org/10.1145/3770855.3816450) | KDD'26 | [Website](https://applied-machine-learning-lab.github.io/KDD2026_GenRec_Tutorial/) |
 
 
 ## Related Awesome Lists
