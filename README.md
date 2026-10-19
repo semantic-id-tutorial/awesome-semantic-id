@@ -5,7 +5,9 @@
 
 A curated reading list on **Semantic IDs for Recommender Systems** — item identity encoded as discrete, content-aware token sequences (typically via RQ-VAE / RQ-KMeans style vector quantization) rather than arbitrary integer IDs. This list accompanies the CIKM '26 tutorial *["IDs That Mean Something: A Hands-On Tutorial on Semantic IDs for Recommender Systems"](https://doi.org/10.1145/3799682.3839274)*.
 
-We trace the field from raw IDs to semantic IDs, and organize papers published **since [TIGER](https://proceedings.neurips.cc/paper_files/paper/2023/hash/20dcab0f14046a5c6b02b61da9f13229-Abstract-Conference.html) (NeurIPS '23)** — the paper that established generating semantic IDs as a recommendation paradigm — across construction, generative and discriminative usage, multimodal/collaborative fusion, cold-start, cross-domain transfer, and cross-task unification. Where a paper has both an official venue version and an arXiv preprint, we link the official version and note the arXiv id.
+We trace the field from raw IDs to semantic IDs, and organize papers published **since [TIGER](https://proceedings.neurips.cc/paper_files/paper/2023/hash/20dcab0f14046a5c6b02b61da9f13229-Abstract-Conference.html) (NeurIPS '23)** — the paper that established generating semantic IDs as a recommendation paradigm — across construction, generative and discriminative usage, multimodal/collaborative fusion, cold-start, cross-domain transfer, and cross-task unification. Where a paper has both an official venue version and an arXiv preprint, we link the official version.
+
+Reading paths follow the camera-ready tutorial (Sections 2.3–2.7); papers are listed once under their main contribution, with cross-references for overlapping topics. Bibliographic refresh: 2026-10-19.
 
 We continuously maintain this list to foster future endeavors. Contributions welcome — see [How to Contribute](#how-to-contribute).
 
@@ -81,7 +83,7 @@ How to *build* semantic IDs — quantization/tokenization architectures that tur
 
 ## Generative Recommendation with Semantic IDs
 
-Semantic IDs as the backbone of **generative retrieval/recommendation**: a model autoregressively generates the semantic ID of the next item, starting from TIGER.
+Semantic IDs as the backbone of **generative retrieval/recommendation**, starting from TIGER. This section includes autoregressive generation and alternative decoding approaches.
 
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
@@ -138,10 +140,15 @@ Semantic IDs used as **structured input features** in traditional discriminative
 | *SIREN* | [SIREN: Unified Multi-Granularity Semantic Interaction for Multi-Modal Lifelong User Interest Modeling](https://arxiv.org/abs/2605.25726) | arXiv'26 | / |
 | *Snapchat SIDs* | [Semantic IDs for Recommender Systems at Snapchat: Use Cases, Technical Challenges, and Design Choices](https://doi.org/10.1145/3805712.3808405) | SIGIR'26 | / |
 | *STORE* | [STORE: Semantic Tokenization, Orthogonal Rotation and Efficient Attention for Scaling Up Ranking Models](https://arxiv.org/abs/2511.18805) | arXiv'25 | / |
+| *YouTube Semantic IDs* | [Better Generalization with Semantic IDs: A Case Study in Ranking for Recommendations](https://doi.org/10.1145/3640457.3688190) | RecSys'24 | / |
+| *DAS* | [DAS: Dual-Aligned Semantic IDs Empowered Industrial Recommender System](https://doi.org/10.1145/3746252.3761529) | CIKM'25 | / |
+| *Meta SID Stability* | [Enhancing Embedding Representation Stability in Recommendation Systems with Semantic ID](https://doi.org/10.1145/3705328.3748123) | RecSys'25 | / |
+| *TRM* | [Farewell to Item IDs: Unlocking the Scaling Potential of Large Ranking Models via Semantic Tokens](https://arxiv.org/abs/2601.22694) | arXiv'26 | / |
+
 
 ## Multimodality in Semantic ID Construction
 
-Papers centered on fusing multiple content modalities (text/image/audio/video) into semantic ID construction.
+Papers centered on fusing multiple content modalities (text/image/audio/video) into semantic ID construction. Read along two axes: early fusion before quantization versus late fusion of modality-specific codes, and redundancy versus complementary cross-modal information. FusID and Multimodal Semantics are starting points; MME-SID and QARM appear under [Collaborative Signals](#collaborative-signals-in-semantic-id-construction).
 
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
@@ -150,10 +157,20 @@ Papers centered on fusing multiple content modalities (text/image/audio/video) i
 | *QARM V2* | [QARM V2: Quantitative Alignment Multi-Modal Recommendation for Reasoning User Sequence Modeling](https://arxiv.org/abs/2602.08559) | arXiv'26 | / |
 | *DMESR* | [DMESR: Dual-view MLLM-based Enhancing Framework for Multimodal Sequential Recommendation](https://arxiv.org/abs/2602.13715) | arXiv'26 | / |
 | *AdaSID* | [Beyond Static Collision Handling: Adaptive Semantic ID Learning for Multimodal Recommendation at Industrial Scale](https://arxiv.org/abs/2604.23522) | arXiv'26 | / |
+| *Multimodal Semantics* | [Beyond Unimodal Perspectives: Generative Retrieval with Multimodal Semantics](https://doi.org/10.1145/3805712.3809844) | SIGIR'26 | / |
+| *FusID* | [FusID: Modality-Fused Semantic IDs for Generative Music Recommendation](https://arxiv.org/abs/2601.08764) | arXiv'26 | / |
+
 
 ## Collaborative Signals in Semantic ID Construction
 
 Papers specifically about injecting/aligning collaborative-filtering or behavioral signals into semantic ID construction — the tension between IDs that are semantically meaningful (from content) vs. recommendation-aware (from interactions). Includes joint/end-to-end tokenizer-recommender training, contrastive alignment to CF embeddings, semantic-collaborative disentanglement, and collision/staleness handling driven by interaction skew.
+
+Reading paths following Section 2.5 of the tutorial:
+
+- **Quantize collaborative embeddings:** TokenRec and MME-SID.
+- **Fine-tune content representations before tokenization:** QARM and TRM (listed under Discriminative Ranking).
+- **Train on collaborative pairs:** PLUM; LETTER and CoST provide related alignment objectives.
+- **Optimize tokenizer and recommender jointly:** ETEGRec, DIGER (under Construction), and Bi-Level Tokenization.
 
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
@@ -175,6 +192,10 @@ Papers specifically about injecting/aligning collaborative-filtering or behavior
 | *PRISM* | [PRISM: Purified Representation and Integrated Semantic Modeling for Generative Sequential Recommendation](https://arxiv.org/abs/2601.16556) | arXiv'26 | / |
 | *QuaSID* | [Stop Treating Collisions Equally: Qualification-Aware Semantic ID Learning for Recommendation at Industrial Scale](https://arxiv.org/abs/2603.00632) | arXiv'26 | / |
 | *Rethinking Sem-Collab* | [Rethinking Semantic Collaborative Integration: Why Alignment Is Not Enough](https://doi.org/10.1145/3805712.3808539) | SIGIR'26 | / |
+| *QARM* | [QARM: Quantitative Alignment Multi-Modal Recommendation at Kuaishou](https://doi.org/10.1145/3746252.3761502) | CIKM'25 | / |
+| *MME-SID* | [Empowering Large Language Model for Sequential Recommendation via Multimodal Embeddings and Semantic IDs](https://doi.org/10.1145/3746252.3761169) | CIKM'25 | [GitHub](https://github.com/Applied-Machine-Learning-Lab/MME-SID) |
+| *PLUM* | [PLUM: Adapting Pre-trained Language Models for Industrial-scale Generative Recommendations](https://doi.org/10.1145/3774904.3792802) | WWW'26 | / |
+
 
 ## Cold-Start Recommendation with Semantic IDs
 
@@ -196,6 +217,9 @@ Using the shared semantic structure of semantic IDs to transfer knowledge across
 | *MetaRec* | [Transferable Sequential Recommendation via Vector Quantized Meta Learning](https://ieeexplore.ieee.org/document/10825425/) | IEEE BigData'24 | / |
 | *RecGPT* | [RecGPT: A Foundation Model for Sequential Recommendation](https://aclanthology.org/2025.emnlp-main.513/) | EMNLP'25 | [GitHub](https://github.com/HKUDS/RecGPT) |
 | *RecBase* | [RecBase: Generative Foundation Model Pretraining for Zero-Shot Recommendation](https://aclanthology.org/2025.emnlp-main.786/) | EMNLP'25 | / |
+| *GMC* | [Generative Multi-Target Cross-Domain Recommendation](https://arxiv.org/abs/2507.12871) | arXiv'25 | / |
+| *GenCDR* | [From IDs to Semantics: A Generative Framework for Cross-Domain Recommendation with Adaptive Semantic Tokenization](https://ojs.aaai.org/index.php/AAAI/article/view/38508) | AAAI'26 | [GitHub](https://github.com/hupeiyu21/GenCDR) |
+
 
 ## Cross-Task Unification & Semantic Planning
 
@@ -206,6 +230,9 @@ Semantic IDs as a shared representation unifying recommendation with search/retr
 | *SIDReasoner* | [Reasoning over Semantic IDs Enhances Generative Recommendation](https://doi.org/10.1145/3770855.3818122) | KDD'26 | [GitHub](https://github.com/HappyPointer/SIDReasoner) |
 | *SIGMA* | [SIGMA: A Semantic-Grounded Instruction-Driven Generative Multi-Task Recommender at AliExpress](https://doi.org/10.1145/3805712.3808421) | SIGIR'26 (Industry) | / |
 | *UniSearch* | [UniSearch: Rethinking Search System with a Unified Generative Architecture](https://arxiv.org/abs/2509.06887) | arXiv'25 | / |
+| *Joint Search & Recommendation* | [Semantic IDs for Joint Generative Search and Recommendation](https://doi.org/10.1145/3705328.3759300) | RecSys'25 | / |
+| *GenSAR* | [GenSAR: Unifying Balanced Search and Recommendation with Generative Retrieval](https://doi.org/10.1145/3705328.3748071) | RecSys'25 | / |
+
 
 ## Related Surveys & Tutorials
 
@@ -220,7 +247,7 @@ Semantic IDs as a shared representation unifying recommendation with search/retr
 | *Gen-RecSys* | [A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)](https://doi.org/10.1145/3637528.3671474) | KDD'24 | / |
 | *Gen Search & Rec Survey* | [A Survey of Generative Search and Recommendation in the Era of Large Language Models](https://arxiv.org/abs/2404.16924) | arXiv'24 | / |
 | *LLM4Rec Survey* | [A Survey on Large Language Models for Recommendation](https://arxiv.org/abs/2305.19860) | arXiv'23 | [GitHub](https://github.com/WLiK/LLM4Rec-Awesome-Papers) |
-| *LLM4Rec TOIS Survey* | [How Can Recommender Systems Benefit from Large Language Models: A Survey](https://doi.org/10.1145/3678004) | TOIS'24 | [GitHub](https://github.com/CHIANGEL/Awesome-LLM-for-RecSys) |
+| *LLM4Rec TOIS Survey* | [How Can Recommender Systems Benefit from Large Language Models: A Survey](https://doi.org/10.1145/3678004) | TOIS'25 | [GitHub](https://github.com/CHIANGEL/Awesome-LLM-for-RecSys) |
 
 ### Tutorials
 
@@ -231,6 +258,9 @@ Semantic IDs as a shared representation unifying recommendation with search/retr
 | *Tutorial* | [Recommendation with Generative Models (Gen-RecSys)](https://doi.org/10.1145/3701551.3703485) | WSDM'25 | / |
 | *Tutorial* | [Navigating Large Language Models for Recommendation: From Architecture to Learning Paradigms and Deployment](https://doi.org/10.1145/3726302.3731696) | SIGIR'25 | / |
 | *Tutorial* | [A Tutorial on Recent Advances in Generative Conversational Recommender Systems](https://doi.org/10.1145/3705328.3748010) | RecSys'25 | / |
+| *Tutorial* | [Towards Large Generative Recommendation: A Tokenization Perspective](https://doi.org/10.1145/3746252.3761451) | CIKM'25 | / |
+| *Tutorial* | [Generative Recommendation Models: Progress and Directions](https://doi.org/10.1145/3701716.3715856) | WWW'25 (Companion) | / |
+
 
 ## Related Awesome Lists
 
