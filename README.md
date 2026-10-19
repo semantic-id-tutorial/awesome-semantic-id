@@ -260,6 +260,7 @@ Semantic IDs as a shared representation unifying recommendation with search/retr
 | *Tutorial* | [A Tutorial on Recent Advances in Generative Conversational Recommender Systems](https://doi.org/10.1145/3705328.3748010) | RecSys'25 | / |
 | *Tutorial* | [Towards Large Generative Recommendation: A Tokenization Perspective](https://doi.org/10.1145/3746252.3761451) | CIKM'25 | / |
 | *Tutorial* | [Generative Recommendation Models: Progress and Directions](https://doi.org/10.1145/3701716.3715856) | WWW'25 (Companion) | / |
+| *Tutorial* | [Tutorial on Generative Recommendation: Foundations and Frontiers](https://doi.org/10.1145/3770855.3816450) | KDD'26 | [GitHub](https://github.com/Applied-Machine-Learning-Lab/KDD2026_GenRec_Tutorial) |
 
 
 ## Related Awesome Lists
