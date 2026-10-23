@@ -48,7 +48,7 @@ For two decades, item identity in industrial recommenders was anchored in arbitr
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
 | *Wide & Deep* | [Wide & Deep Learning for Recommender Systems](https://doi.org/10.1145/2988450.2988454) | DLRS@RecSys'16 | / |
-| *Multimedia RS Survey* | [Recommender Systems Leveraging Multimedia Content](https://doi.org/10.1145/3453142) | ACM CSUR'21 | / |
+| *Multimedia RS Survey* | [Recommender Systems Leveraging Multimedia Content](https://doi.org/10.1145/3407190) | ACM CSUR'21 | / |
 | *Multi-Modal RS Hands-On* | [Multi-Modal Recommender Systems: Hands-On Exploration](https://doi.org/10.1145/3460231.3473324) | RecSys'21 | [GitHub](https://github.com/PreferredAI/cornac) |
 
 ## Semantic ID Construction & Tokenization
