@@ -48,7 +48,7 @@ For two decades, item identity in industrial recommenders was anchored in arbitr
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
 | *Wide & Deep* | [Wide & Deep Learning for Recommender Systems](https://doi.org/10.1145/2988450.2988454) | DLRS@RecSys'16 | / |
-| *Multimedia RS Survey* | [Recommender Systems Leveraging Multimedia Content](https://doi.org/10.1145/3453142) | ACM CSUR'21 | / |
+| *Multimedia RS Survey* | [Recommender Systems Leveraging Multimedia Content](https://doi.org/10.1145/3407190) | ACM CSUR'21 | / |
 | *Multi-Modal RS Hands-On* | [Multi-Modal Recommender Systems: Hands-On Exploration](https://doi.org/10.1145/3460231.3473324) | RecSys'21 | [GitHub](https://github.com/PreferredAI/cornac) |
 
 ## Semantic ID Construction & Tokenization
@@ -88,7 +88,7 @@ Semantic IDs as the backbone of **generative retrieval/recommendation**, startin
 | Method | Paper Title | Published At | Code |
 |:---:|:---|:---:|:---:|
 | *TIGER* | [Recommender Systems with Generative Retrieval](https://proceedings.neurips.cc/paper_files/paper/2023/hash/20dcab0f14046a5c6b02b61da9f13229-Abstract-Conference.html) | NeurIPS'23 (seminal) | [GitHub](https://github.com/EdoardoBotta/RQ-VAE-Recommender) |
-| *LC-Rec* | [Adapting Large Language Models by Integrating Collaborative Semantics for Recommendation](https://doi.org/10.1109/ICDE60146.2024.00268) | ICDE'24 | [GitHub](https://github.com/RUCAIBox/LC-Rec) |
+| *LC-Rec* | [Adapting Large Language Models by Integrating Collaborative Semantics for Recommendation](https://doi.org/10.1109/ICDE60146.2024.00118) | ICDE'24 | [GitHub](https://github.com/RUCAIBox/LC-Rec) |
 | *ColaRec* | [Content-Based Collaborative Generation for Recommender Systems](https://doi.org/10.1145/3627673.3679692) | CIKM'24 | [GitHub](https://github.com/Junewang0614/ColaRec) |
 | *MBGen* | [Multi-Behavior Generative Recommendation](https://doi.org/10.1145/3627673.3679730) | CIKM'24 | [GitHub](https://github.com/anananan116/MBGen) |
 | *EAGER* | [EAGER: Two-Stream Generative Recommender with Behavior-Semantic Collaboration](https://doi.org/10.1145/3637528.3671775) | KDD'24 | [GitHub](https://github.com/yewzz/EAGER) |
