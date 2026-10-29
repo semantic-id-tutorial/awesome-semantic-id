@@ -124,6 +124,7 @@ Semantic IDs as the backbone of **generative retrieval/recommendation**, startin
 | *DualGR* | [DualGR: Generative Retrieval with Long and Short-Term Interests Modeling](https://arxiv.org/abs/2511.12518) | WWW'26 (Best Short Paper) | / |
 | *Text2Tracks* | [Text2Tracks: Prompt-based Music Recommendation via Generative Retrieval](https://arxiv.org/abs/2503.24193) | arXiv'25 | [GitHub](https://github.com/mayurbhangale/text2tracks) |
 | *RedGR* | [RedGR: Unified Generative Retrieval for Recommendation in REDnote](https://doi.org/10.1145/3805712.3808417) | SIGIR'26 | / |
+| *Intent-Driven SIDs* | [Intent-Driven Semantic ID Generation for Grounded Conversational News Recommendation](https://aclanthology.org/2026.acl-industry.130/) | ACL'26 (Industry) | / |
 
 ## Semantic IDs in Discriminative Ranking & Retrieval
 
