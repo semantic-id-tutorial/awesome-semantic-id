@@ -147,6 +147,7 @@ Semantic IDs used as **structured input features** in traditional discriminative
 | *Meta SID Stability* | [Enhancing Embedding Representation Stability in Recommendation Systems with Semantic ID](https://doi.org/10.1145/3705328.3748123) | RecSys'25 | / |
 | *TRM* | [Farewell to Item IDs: Unlocking the Scaling Potential of Large Ranking Models via Semantic Tokens](https://arxiv.org/abs/2601.22694) | arXiv'26 | / |
 | *SID-Coord* | [SID-Coord: Coordinating Semantic IDs for ID-based Ranking in Short-Video Search](https://doi.org/10.1145/3805712.3808436) | SIGIR'26 | / |
+| *GEM* | [Generative Enhanced Modeling: A Collaborative Framework for Enhancing User Representations via Semantic ID](https://doi.org/10.1145/3805712.3808448) | SIGIR'26 | / |
 
 
 ## Multimodality in Semantic ID Construction
