@@ -198,6 +198,7 @@ Reading paths following Section 2.5 of the tutorial:
 | *MME-SID* | [Empowering Large Language Model for Sequential Recommendation via Multimodal Embeddings and Semantic IDs](https://doi.org/10.1145/3746252.3761169) | CIKM'25 | [GitHub](https://github.com/Applied-Machine-Learning-Lab/MME-SID) |
 | *PLUM* | [PLUM: Adapting Pre-trained Language Models for Industrial-scale Generative Recommendations](https://doi.org/10.1145/3774904.3792802) | WWW'26 | / |
 | *SCRec* | [Addressing Cross-Stage Decoupling of Semantic and Collaborative Signals in Generative Recommendation](https://doi.org/10.1145/3773078.3831736) | RecSys'26 | / |
+| *DACT* | [Drift-Aware Continual Tokenization for Generative Recommendation](https://arxiv.org/abs/2603.29705) | arXiv'26 | [GitHub](https://github.com/HomesAmaranta/DACT) |
 
 
 ## Cold-Start Recommendation with Semantic IDs
