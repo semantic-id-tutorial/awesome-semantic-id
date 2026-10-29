@@ -80,6 +80,7 @@ How to *build* semantic IDs — quantization/tokenization architectures that tur
 | *UniSID* | [End-to-End Semantic ID Generation for Generative Advertisement Recommendation](https://arxiv.org/abs/2602.10445) | arXiv'26 | / |
 | *TAAC-SID* | [Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation](https://arxiv.org/abs/2604.04976) | arXiv'26 | [GitHub](https://github.com/TencentAdvertisingAlgorithmCompetition/baseline_2025) |
 | *DIGER* | [Differentiable Semantic ID for Generative Recommendation](https://doi.org/10.1145/3805712.3809641) | SIGIR'26 | [GitHub](https://github.com/junchen-fu/DIGER) |
+| *Variable-Length SIDs* | [Variable-Length Semantic IDs for Recommender Systems](https://arxiv.org/abs/2602.16375) | arXiv'26 | / |
 
 ## Generative Recommendation with Semantic IDs
 
