@@ -212,6 +212,7 @@ Reading paths following Section 2.5 of the tutorial:
 | *ColdGenRec* | [Cold-Starts in Generative Recommendation: A Reproducibility Study](https://arxiv.org/abs/2603.29845) | SIGIR'26 | [GitHub](https://github.com/zhangzhen-research/ColdGenrec) |
 | *GR Cold-Item Reachability* | [Can Generative Recommendation Reach Cold Items? A Temporal Perspective on Semantic-ID Generation](https://arxiv.org/abs/2607.21101) | arXiv'26 | [GitHub](https://github.com/Lucas-PJ/GRColdItemReachability) |
 | *GTI* | [Grounded Token Initialization for New Vocabulary in LMs for Generative Recommendation](https://arxiv.org/abs/2604.02324) | arXiv'26 | / |
+| *Pin-SCALE* | [Pin-SCALE: Semantic Cascading and Alignment Learning for Engagement-Aware IDs in Cold-Start Recommendations](https://doi.org/10.1145/3805712.3808507) | SIGIR'26 | / |
 
 ## Cross-Domain Transfer with Semantic IDs
 
