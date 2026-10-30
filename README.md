@@ -80,6 +80,8 @@ How to *build* semantic IDs — quantization/tokenization architectures that tur
 | *UniSID* | [End-to-End Semantic ID Generation for Generative Advertisement Recommendation](https://arxiv.org/abs/2602.10445) | arXiv'26 | / |
 | *TAAC-SID* | [Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation](https://arxiv.org/abs/2604.04976) | arXiv'26 | [GitHub](https://github.com/TencentAdvertisingAlgorithmCompetition/baseline_2025) |
 | *DIGER* | [Differentiable Semantic ID for Generative Recommendation](https://doi.org/10.1145/3805712.3809641) | SIGIR'26 | [GitHub](https://github.com/junchen-fu/DIGER) |
+| *Variable-Length SIDs* | [Variable-Length Semantic IDs for Recommender Systems](https://arxiv.org/abs/2602.16375) | arXiv'26 | / |
+| *CCE / ZCR* | [Faithful Evaluation of Semantic-ID Tokenizers for Generative Recommendation](https://arxiv.org/abs/2605.25330) | CIKM'26 (accepted) | [GitHub](https://github.com/Nishikata97/CollisionGenRec) |
 
 ## Generative Recommendation with Semantic IDs
 
@@ -122,6 +124,7 @@ Semantic IDs as the backbone of **generative retrieval/recommendation**, startin
 | *DualGR* | [DualGR: Generative Retrieval with Long and Short-Term Interests Modeling](https://arxiv.org/abs/2511.12518) | WWW'26 (Best Short Paper) | / |
 | *Text2Tracks* | [Text2Tracks: Prompt-based Music Recommendation via Generative Retrieval](https://arxiv.org/abs/2503.24193) | arXiv'25 | [GitHub](https://github.com/mayurbhangale/text2tracks) |
 | *RedGR* | [RedGR: Unified Generative Retrieval for Recommendation in REDnote](https://doi.org/10.1145/3805712.3808417) | SIGIR'26 | / |
+| *Intent-Driven SIDs* | [Intent-Driven Semantic ID Generation for Grounded Conversational News Recommendation](https://aclanthology.org/2026.acl-industry.130/) | ACL'26 (Industry) | / |
 
 ## Semantic IDs in Discriminative Ranking & Retrieval
 
@@ -144,6 +147,8 @@ Semantic IDs used as **structured input features** in traditional discriminative
 | *DAS* | [DAS: Dual-Aligned Semantic IDs Empowered Industrial Recommender System](https://doi.org/10.1145/3746252.3761529) | CIKM'25 | / |
 | *Meta SID Stability* | [Enhancing Embedding Representation Stability in Recommendation Systems with Semantic ID](https://doi.org/10.1145/3705328.3748123) | RecSys'25 | / |
 | *TRM* | [Farewell to Item IDs: Unlocking the Scaling Potential of Large Ranking Models via Semantic Tokens](https://arxiv.org/abs/2601.22694) | arXiv'26 | / |
+| *SID-Coord* | [SID-Coord: Coordinating Semantic IDs for ID-based Ranking in Short-Video Search](https://doi.org/10.1145/3805712.3808436) | SIGIR'26 | / |
+| *GEM* | [Generative Enhanced Modeling: A Collaborative Framework for Enhancing User Representations via Semantic ID](https://doi.org/10.1145/3805712.3808448) | SIGIR'26 | / |
 
 
 ## Multimodality in Semantic ID Construction
@@ -195,6 +200,9 @@ Reading paths following Section 2.5 of the tutorial:
 | *QARM* | [QARM: Quantitative Alignment Multi-Modal Recommendation at Kuaishou](https://doi.org/10.1145/3746252.3761502) | CIKM'25 | / |
 | *MME-SID* | [Empowering Large Language Model for Sequential Recommendation via Multimodal Embeddings and Semantic IDs](https://doi.org/10.1145/3746252.3761169) | CIKM'25 | [GitHub](https://github.com/Applied-Machine-Learning-Lab/MME-SID) |
 | *PLUM* | [PLUM: Adapting Pre-trained Language Models for Industrial-scale Generative Recommendations](https://doi.org/10.1145/3774904.3792802) | WWW'26 | / |
+| *SCRec* | [Addressing Cross-Stage Decoupling of Semantic and Collaborative Signals in Generative Recommendation](https://doi.org/10.1145/3773078.3831736) | RecSys'26 | / |
+| *DACT* | [Drift-Aware Continual Tokenization for Generative Recommendation](https://arxiv.org/abs/2603.29705) | arXiv'26 | [GitHub](https://github.com/HomesAmaranta/DACT) |
+| *GrIS* | [Neither Black nor White: Balancing Semantic and Collaborative Signals with Graph-Informed Semantic IDs (GrIS)](https://arxiv.org/abs/2610.01533) | arXiv'26 | / |
 
 
 ## Cold-Start Recommendation with Semantic IDs
@@ -205,6 +213,7 @@ Reading paths following Section 2.5 of the tutorial:
 | *ColdGenRec* | [Cold-Starts in Generative Recommendation: A Reproducibility Study](https://arxiv.org/abs/2603.29845) | SIGIR'26 | [GitHub](https://github.com/zhangzhen-research/ColdGenrec) |
 | *GR Cold-Item Reachability* | [Can Generative Recommendation Reach Cold Items? A Temporal Perspective on Semantic-ID Generation](https://arxiv.org/abs/2607.21101) | arXiv'26 | [GitHub](https://github.com/Lucas-PJ/GRColdItemReachability) |
 | *GTI* | [Grounded Token Initialization for New Vocabulary in LMs for Generative Recommendation](https://arxiv.org/abs/2604.02324) | arXiv'26 | / |
+| *Pin-SCALE* | [Pin-SCALE: Semantic Cascading and Alignment Learning for Engagement-Aware IDs in Cold-Start Recommendations](https://doi.org/10.1145/3805712.3808507) | SIGIR'26 | / |
 
 ## Cross-Domain Transfer with Semantic IDs
 
