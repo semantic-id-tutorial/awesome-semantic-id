@@ -5,9 +5,9 @@
 
 A curated reading list on **Semantic IDs for Recommender Systems** — item identity encoded as discrete, content-aware token sequences (typically via RQ-VAE / RQ-KMeans style vector quantization) rather than arbitrary integer IDs. This list accompanies the CIKM '26 tutorial *["IDs That Mean Something: A Hands-On Tutorial on Semantic IDs for Recommender Systems"](https://doi.org/10.1145/3799682.3839274)*.
 
-We trace the field from raw IDs to semantic IDs, and organize papers published **since [TIGER](https://proceedings.neurips.cc/paper_files/paper/2023/hash/20dcab0f14046a5c6b02b61da9f13229-Abstract-Conference.html) (NeurIPS '23)** — the paper that established generating semantic IDs as a recommendation paradigm — across construction, generative and discriminative usage, multimodal/collaborative fusion, cold-start, cross-domain transfer, and cross-task unification. Where a paper has both an official venue version and an arXiv preprint, we link the official version.
+We trace the field from raw IDs to semantic IDs. The list starts with background on raw IDs and auxiliary content, and the vector quantization methods that semantic IDs are built on. It then covers semantic IDs in recommendation: construction, generative and discriminative use, multimodal and collaborative fusion, cold-start, cross-domain transfer, and cross-task unification. [TIGER](https://proceedings.neurips.cc/paper_files/paper/2023/hash/20dcab0f14046a5c6b02b61da9f13229-Abstract-Conference.html) (NeurIPS '23), which established generating semantic IDs as a recommendation paradigm, anchors the generative recommendation section. Where a paper has both an official venue version and an arXiv preprint, we link the official version.
 
-Reading paths follow the camera-ready tutorial (Sections 2.3–2.7); papers are listed once under their main contribution, with cross-references for overlapping topics. Bibliographic refresh: 2026-10-19.
+Reading paths follow the camera-ready tutorial (Sections 2.3–2.7); papers are listed once under their main contribution, with cross-references for overlapping topics. Bibliographic refresh: 2026-10-31.
 
 We continuously maintain this list to foster future endeavors. Contributions welcome — see [How to Contribute](#how-to-contribute).
 
@@ -29,6 +29,7 @@ If you find this list useful, please cite the tutorial it accompanies:
 
 ## Table of Contents
 - [Background: From Raw IDs to Semantic IDs](#background-from-raw-ids-to-semantic-ids)
+- [Foundations: Vector Quantization](#foundations-vector-quantization)
 - [Semantic ID Construction \& Tokenization](#semantic-id-construction--tokenization)
 - [Generative Recommendation with Semantic IDs](#generative-recommendation-with-semantic-ids)
 - [Semantic IDs in Discriminative Ranking \& Retrieval](#semantic-ids-in-discriminative-ranking--retrieval)
@@ -50,6 +51,20 @@ For two decades, item identity in industrial recommenders was anchored in arbitr
 | *Wide & Deep* | [Wide & Deep Learning for Recommender Systems](https://doi.org/10.1145/2988450.2988454) | DLRS@RecSys'16 | / |
 | *Multimedia RS Survey* | [Recommender Systems Leveraging Multimedia Content](https://doi.org/10.1145/3407190) | ACM CSUR'21 | / |
 | *Multi-Modal RS Hands-On* | [Multi-Modal Recommender Systems: Hands-On Exploration](https://doi.org/10.1145/3460231.3473324) | RecSys'21 | [GitHub](https://github.com/PreferredAI/cornac) |
+
+## Foundations: Vector Quantization
+
+The quantization methods that semantic ID tokenizers build on, from classic vector, product, and residual quantization to the learned VQ-VAE and RQ-VAE.
+
+| Method | Paper Title | Published At | Code |
+|:---:|:---|:---:|:---:|
+| *VQ* | [Vector Quantization](https://doi.org/10.1109/MASSP.1984.1162229) | IEEE ASSP Mag.'84 | / |
+| *Multi-Stage VQ* | [Multiple Stage Vector Quantization for Speech Coding](https://doi.org/10.1109/ICASSP.1982.1171604) | ICASSP'82 | / |
+| *RVQ* | [Approximate Nearest Neighbor Search by Residual Vector Quantization](https://doi.org/10.3390/s101211259) | Sensors'10 | / |
+| *PQ* | [Product Quantization for Nearest Neighbor Search](https://doi.org/10.1109/TPAMI.2010.57) | TPAMI'11 | [GitHub](https://github.com/facebookresearch/faiss) |
+| *OPQ* | [Optimized Product Quantization for Approximate Nearest Neighbor Search](https://doi.org/10.1109/CVPR.2013.379) | CVPR'13 | [GitHub](https://github.com/facebookresearch/faiss) |
+| *VQ-VAE* | [Neural Discrete Representation Learning](https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html) | NeurIPS'17 | / |
+| *RQ-VAE* | [Autoregressive Image Generation using Residual Quantization](https://doi.org/10.1109/CVPR52688.2022.01123) | CVPR'22 | [GitHub](https://github.com/kakaobrain/rq-vae-transformer) |
 
 ## Semantic ID Construction & Tokenization
 
