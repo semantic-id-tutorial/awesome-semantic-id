@@ -1,0 +1,3151 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f4ef"><title>Semantic ID Relation Map</title><meta name="description" content="An interactive map of research categories, application contexts, and papers in Awesome Semantic IDs."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2216%22%20fill%3D%22%23173c37%22%2F%3E%3Cpath%20d%3D%22M18%2024h12v12H18zM34%2024h12v12H34zM26%2040h12v8H26z%22%20fill%3D%22%23c7ebad%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2217%22%20r%3D%225%22%20fill%3D%22%23ed9176%22%2F%3E%3C%2Fsvg%3E%0A"><style>.graph-root {
+  --graph-ink: #e4ecf7;
+  --graph-muted: #8e9db4;
+  --graph-line: #26334b;
+  color: var(--graph-ink);
+  background: #0a1121;
+  border: 1px solid var(--graph-line);
+  border-radius: 20px;
+  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+  isolation: isolate;
+  font-family: inherit;
+}
+.graph-root *, .graph-root *::before, .graph-root *::after { box-sizing: border-box; }
+.graph-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #0d1627;
+  border-bottom: 1px solid var(--graph-line);
+}
+.graph-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; }
+.graph-legend-item { display: inline-flex; gap: 9px; align-items: center; font-size: 11px; line-height: 1.4; color: #b6c3d7; }
+.graph-legend-line { width: 25px; height: 0; border-top: 2px solid #80b3e6; flex-shrink: 0; }
+.graph-legend-line--dashed { border-top: 2px dashed #7888a2; }
+.graph-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.graph-control {
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #33415a;
+  border-radius: 9px;
+  background: #131e32;
+  color: #e4ecf7;
+  font: 500 22px/1 system-ui, sans-serif;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 150ms, background 150ms;
+}
+.graph-control:hover { background: #1d2c45; border-color: #7187a8; }
+.graph-control--fit { font-size: 21px; }
+.graph-root button:focus-visible, .graph-list summary:focus-visible { outline: 2px solid #add1ff; outline-offset: 3px; }
+.graph-stage {
+  position: relative;
+  height: 640px;
+  min-width: 0;
+  background: radial-gradient(ellipse at 50% 28%, #111e34 0%, #0b1323 62%);
+  overflow: hidden;
+  cursor: grab;
+}
+.graph-stage.is-panning, .graph-stage.is-panning .graph-node { cursor: grabbing; }
+.graph-svg { display: block; width: 100%; height: 100%; touch-action: none; user-select: none; }
+.graph-background { opacity: .62; }
+.graph-edge { fill: none; stroke-width: 1.25; opacity: .22; pointer-events: none; }
+.graph-edge--editorial { stroke-dasharray: 4 6; stroke-width: 1.1; opacity: .2; }
+.graph-edge--repository.is-active { opacity: .95; stroke-width: 2.2; }
+.graph-edge--editorial.is-active { opacity: .9; stroke-width: 2; }
+.graph-band-label { fill: #8f9fb5; font-size: 11px; letter-spacing: 1.6px; font-weight: 650; }
+.graph-node { cursor: pointer; outline: none; }
+.graph-node rect, .graph-node circle { transition: fill 140ms, stroke 140ms, stroke-width 140ms; }
+.graph-node text { pointer-events: none; font-family: inherit; }
+.graph-use-shape { fill: #111c2d; stroke: #33415a; stroke-width: 1; stroke-dasharray: 4 3; }
+.graph-use-label { fill: #c3d0e2; font-size: 12px; font-weight: 500; }
+.graph-use-node.is-selected .graph-use-shape { fill: #263750; stroke: #b6d4f8; stroke-width: 1.8; }
+.graph-use-node:hover .graph-use-shape, .graph-use-node:focus-visible .graph-use-shape { fill: #1b2b43; stroke: #a3b9d7; }
+.graph-use-node:focus-visible .graph-use-shape { stroke-width: 3; stroke-dasharray: none; }
+.graph-category-shape { fill: #142034; stroke: #3a4b65; stroke-width: 1; }
+.graph-category-node.is-selected .graph-category-shape { fill: #1a2b43; stroke: var(--graph-node-color); stroke-width: 2; }
+.graph-category-node.is-related .graph-category-shape { stroke: #d3e6ff; stroke-width: 2; }
+.graph-category-label { fill: #e1eafa; font-size: 13px; font-weight: 650; }
+.graph-category-count { fill: #a2b2c9; font-size: 11px; }
+.graph-category-node:hover .graph-category-shape { fill: #22334d; stroke: var(--graph-node-color); }
+.graph-category-node:focus-visible .graph-category-shape { stroke: #e9f3ff; stroke-width: 3; }
+.graph-paper-shape { fill: #111d30; stroke: #2d405c; stroke-width: 1; }
+.graph-paper-node:hover .graph-paper-shape { fill: #1b2b44; stroke: var(--graph-node-color); }
+.graph-paper-node:focus-visible .graph-paper-shape, .graph-paper-node.is-selected .graph-paper-shape { stroke: #d7eaff; stroke-width: 2.5; fill: #1b2c44; }
+.graph-paper-method { fill: #e5eefc; font-size: 13px; font-weight: 700; }
+.graph-paper-title { fill: #b1bfd3; font-size: 11.5px; font-weight: 400; }
+.graph-paper-node.is-match .graph-paper-shape { stroke: #67d6ba; fill: #132c34; }
+.graph-paper-node.is-muted { opacity: .42; }
+.graph-paper-node.is-muted:hover, .graph-paper-node.is-muted:focus-visible { opacity: 1; }
+.graph-search-dot { fill: #7ae4c7; }
+.graph-empty { fill: #9eadc3; font-size: 15px; }
+.graph-footer { padding: 16px 20px 8px; border-top: 1px solid var(--graph-line); display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+.graph-status { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 13px; font-size: 11px; color: var(--graph-muted); }
+.graph-status strong { color: #dce8f9; font-size: 12px; font-weight: 600; }
+.graph-search-count { color: #7fe2c7; }
+.graph-footer-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+.graph-more, .graph-clear {
+  border: 1px solid #34445d;
+  border-radius: 7px;
+  padding: 7px 10px;
+  color: #c7d6e9;
+  background: #162238;
+  font: inherit;
+  font-weight: 500;
+  line-height: 1.3;
+  font-size: 11px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.graph-more:hover, .graph-clear:hover { border-color: #829fc2; background: #22334d; }
+.graph-clear { color: #b4d3fa; }
+.graph-hint { padding: 0 20px; margin: 4px 0 10px; color: #778ba7; font-size: 10px; line-height: 1.5; }
+.graph-note { margin: 0; padding: 0 20px 17px; color: #8e9fb7; font-size: 11px; line-height: 1.6; max-width: 900px; }
+.graph-list { border-top: 1px solid var(--graph-line); background: #0d1627; }
+.graph-list summary { cursor: pointer; padding: 14px 20px; color: #adc1da; font-size: 12px; }
+.graph-paper-list { padding: 0 20px 16px 38px; margin: 0; columns: 2; column-gap: 30px; }
+.graph-paper-list li { break-inside: avoid; margin: 0 0 7px; padding-left: 2px; color: #617894; }
+.graph-paper-list button { background: none; border: 0; padding: 4px 0; color: #b0c1d8; font-family: inherit; font-size: 11px; line-height: 1.5; text-align: left; cursor: pointer; }
+.graph-paper-list button:hover { color: #e8f3ff; text-decoration: underline; }
+.graph-paper-list .is-match button { color: #82dec7; }
+@media (max-width: 700px) {
+  .graph-toolbar { padding: 12px; align-items: flex-start; }
+  .graph-legend { gap: 8px; flex-direction: column; align-items: flex-start; }
+  .graph-legend-item { font-size: 10px; }
+  .graph-stage { height: 520px; }
+  .graph-control { width: 33px; height: 33px; }
+  .graph-footer { padding: 13px 14px 7px; align-items: flex-start; flex-direction: column; gap: 10px; }
+  .graph-footer-actions { justify-content: flex-start; }
+  .graph-hint { padding: 0 14px; font-size: 9px; }
+  .graph-note { padding: 0 14px 14px; font-size: 10px; }
+  .graph-paper-list { columns: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .graph-root * { transition: none !important; }
+}
+
+:root{--paper:#f5f4ef;--surface:#fcfbf7;--ink:#233c36;--muted:#7a8477;--olive:#838c6f;--coral:#d87960;--line:#dedfd5;--soft:#ebece3;--sidebar-width:248px;--radius:12px;--font:'DM Sans','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;color-scheme:light;font-family:var(--font);color:var(--ink);background:var(--paper);font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}body{margin:0;font-size:14px;line-height:1.65}button,input,select,textarea{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{color:inherit;cursor:pointer}button:disabled{cursor:default;opacity:.5}button{border:0;background:none}a{color:inherit;text-decoration:none}a:hover{color:#9f5945}img,svg{max-width:100%}button svg,a svg{flex-shrink:0}p,h1,h2,h3,h4{margin:0}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--coral);outline-offset:4px}::selection{background:#e5b19e;color:#233c36}[hidden]{display:none!important}.skip-link{position:fixed;left:16px;top:-60px;background:var(--ink);color:white;padding:10px 18px;z-index:200;border-radius:8px}.skip-link:focus{top:12px}
+.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar-width);padding:31px 22px 26px;background:#edeee6;border-right:1px solid #daddd1;display:flex;flex-direction:column;z-index:40;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#c7cbbd transparent}
+.brand{display:flex;align-items:center;gap:11px;min-height:44px;flex-shrink:0}.brand-mark{width:36px;height:36px;background:var(--ink);color:#f0f2df;display:grid;place-items:center;border-radius:10px;transform:rotate(-5deg)}.brand-mark svg{width:25px;height:25px}.brand-name,.brand strong{display:block;font-size:17px;line-height:1.2;letter-spacing:-.6px;font-weight:650}.brand-sub{font-size:10px;letter-spacing:1.05px;color:#7d8773;margin-top:5px;line-height:1.2}.sidebar-label{font-size:10px;font-weight:600;letter-spacing:1.35px;text-transform:uppercase;color:#919987;margin:30px 10px 11px}.sidebar-label:first-of-type{margin-top:37px}.nav-item{display:flex;align-items:center;width:100%;gap:11px;text-align:left;padding:11px 12px;margin:2px 0;border-radius:7px;font-size:13px;font-weight:500;color:#6c7867;transition:background .16s,color .16s}.nav-item svg{width:16px;height:16px}.nav-item:hover{background:#e1e5d8;color:var(--ink)}.nav-item.active{background:#dfe5d4;color:#2e483b}.nav-item .count,.nav-item .badge{margin-left:auto;min-width:24px;text-align:center;font-size:10px;line-height:20px;border-radius:4px;background:#edf0e6;color:#6e7d60}.category-nav{display:grid;gap:3px}.category-item{display:flex;align-items:center;gap:9px;width:100%;min-height:34px;padding:7px 9px;text-align:left;color:#7d8577;font-size:11px;line-height:1.5;border-radius:6px;transition:background .16s,color .16s}.category-item:hover,.category-item.active{background:#e1e5d8;color:#304c3b}.category-item .category-dot,.category-item .dot{width:6px;height:6px;border-radius:50%;background:var(--category-color,var(--olive));flex:0 0 6px}.category-item .count,.category-item small,.category-count{font-size:10px;margin-left:auto;font-variant-numeric:tabular-nums;color:#929b86}.sidebar-bottom{margin-top:auto;padding:32px 10px 0;color:#89937f;font-size:10px;line-height:1.8}.sidebar-bottom a{font-size:11px;display:inline-flex;align-items:center;gap:6px;color:#596f55}.sidebar-bottom p{margin-top:10px}.sidebar-bottom .source-dot{display:inline-block;width:5px;height:5px;background:#94a484;border-radius:50%;margin-right:5px}.workspace{margin-left:var(--sidebar-width);min-height:100dvh}.topbar{height:77px;padding:0 42px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}.breadcrumb{display:flex;align-items:center;gap:11px;font-size:11px;color:#969b8e}.breadcrumb strong,.breadcrumb .current{font-weight:500;color:#596d58}.breadcrumb .separator{font-size:11px;color:#c1c5b7}.topbar-actions{display:flex;align-items:center;gap:18px}.topbar-actions>a{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:#6f7b69}.topbar-actions svg{width:14px;height:14px}.language-switch{display:inline-flex;padding:3px;border:1px solid #daddd1;border-radius:6px;gap:2px;background:#f1f2eb}.language-switch button{padding:3px 7px;font-size:10px;line-height:1.5;color:#8a927f;border-radius:3px;min-width:30px}.language-switch button.selected,.language-switch button.active{background:var(--ink);color:#fff}.mobile-menu{display:none}.workspace>main,.workspace>.content,.main-content{max-width:1450px;margin:0 auto;padding:29px 42px 0}.view-tabs{display:flex;align-items:center;gap:27px;border-bottom:1px solid var(--line);margin-bottom:35px}.view-tab{font-size:12px;line-height:1.5;color:#8a927e;padding:0 1px 14px;display:inline-flex;align-items:center;gap:8px;border-bottom:2px solid transparent;margin-bottom:-1px}.view-tab.active{color:var(--ink);border-color:var(--ink);font-weight:600}.view-tab svg{width:14px;height:14px}.view-tab .tab-count{font-size:9px;background:#e8eadf;color:#7a876b;border-radius:4px;padding:1px 5px}.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(250px,.85fr);align-items:center;gap:40px;padding:5px 0 39px}.hero-copy{max-width:640px}.eyebrow{display:flex;align-items:center;gap:8px;font-size:9px;line-height:1.7;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:#8a947d;margin-bottom:14px}.eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--coral)}.hero h1{font-size:clamp(39px,4.2vw,56px);font-weight:500;line-height:1.12;letter-spacing:-2.5px;max-width:660px}.hero h1 em{font-weight:450;font-style:italic;color:var(--olive)}.hero h1 .accent{color:var(--olive)}.hero-copy>p,.hero-description{font-size:12px;line-height:1.9;color:#87907e;max-width:540px;margin-top:20px}.hero-meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px 17px;color:#8b947f;font-size:10px;margin-top:24px}.hero-meta>span{display:inline-flex;align-items:center;gap:7px}.hero-meta strong{font-size:12px;color:#65785d;font-weight:600}.hero-meta .divider{height:12px;width:1px;background:#d3d8c8}.hero-art{display:flex;align-items:center;justify-content:center;min-height:220px;position:relative;color:var(--olive)}.hero-art svg{width:100%;height:auto;max-height:275px;overflow:visible}.hero-art::after{content:'';position:absolute;width:190px;height:190px;border:1px solid #e3e6d9;border-radius:50%;z-index:-1}.paths{padding-bottom:34px}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}.section-heading h2,.library-heading h2{font-size:19px;font-weight:550;line-height:1.35;letter-spacing:-.65px}.section-heading>p,.section-heading>span{font-size:10px;color:#969d8b}.section-description{font-size:11px;line-height:1.8;color:#8e9785;margin-top:6px;max-width:700px}.usecase-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.usecase{position:relative;display:flex;flex-direction:column;text-align:left;align-items:flex-start;min-height:167px;padding:19px 20px 17px;background:#fafaf5;border:1px solid #e0e2d7;border-radius:var(--radius);transition:border-color .17s,background .17s,transform .17s}.usecase:hover{border-color:#9eac92;background:#fdfdf8;transform:translateY(-2px)}.usecase.selected{background:#e9eee0;border-color:#aab89b}.usecase.selected::after{position:absolute;content:'✓';right:17px;top:14px;font-size:12px;color:#72876a}.usecase-no{font-family:var(--font);font-size:9px;color:#a2a995;margin-bottom:12px;letter-spacing:1px;font-variant-numeric:tabular-nums}.usecase-icon{color:#8c9b7d;position:absolute;right:18px;top:18px}.usecase h3,.usecase strong{font-size:13px;font-weight:550;line-height:1.5;letter-spacing:-.25px;padding-right:16px}.usecase p{font-size:10px;color:#909985;line-height:1.8;margin-top:8px;max-width:95%}.usecase .usecase-footer,.usecase .usecase-link{display:flex;align-items:center;gap:5px;font-size:9px;color:#7e916f;margin-top:auto;padding-top:12px}.usecase svg{width:14px;height:14px}.usecase .usecase-arrow{position:absolute;right:18px;bottom:18px;color:#9da88f;font-size:15px}.library{border-top:1px solid var(--line);padding-top:29px}.library-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:19px}.library-heading .text-button{margin-top:2px}.filters{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}.search-wrap{position:relative;flex:1;min-width:220px;display:flex;align-items:center}.search-wrap>svg{position:absolute;left:13px;width:14px;height:14px;color:#9ba58f;pointer-events:none}.search-wrap input{width:100%;height:39px;padding:8px 15px 8px 38px;border:1px solid #dde0d3;border-radius:7px;background:#fafbf6;font-size:11px;color:var(--ink);outline-offset:1px}.search-wrap input::placeholder{color:#a3aa99}.search-wrap .search-key{position:absolute;right:11px;font-size:9px;color:#a2aa98;border:1px solid #dde1d2;border-radius:3px;padding:0 4px}.filters select{height:39px;border:1px solid #dde0d3;border-radius:7px;padding:0 31px 0 11px;background:#fafbf6;color:#7a8770;font-size:10px;min-width:112px}.filter-check{display:flex;align-items:center;gap:6px;font-size:10px;color:#87947a;white-space:nowrap}.filter-check input{accent-color:var(--ink);width:13px;height:13px;cursor:pointer}.results-status{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:10px;color:#98a18c;padding:5px 0 12px;border-bottom:1px solid var(--line);min-height:30px}.results-status strong{font-weight:500;color:#6f8165}.results-status button{font-size:10px;color:#9e6b55}.paper-row{display:grid;grid-template-columns:29px minmax(0,1fr) auto;gap:13px;align-items:start;padding:19px 0 18px;border-bottom:1px solid var(--line);transition:background .16s}.paper-row:hover{background:#eef0e6}.paper-index{padding-top:3px;color:#b0b6a6;font-size:9px;font-variant-numeric:tabular-nums;letter-spacing:.5px}.paper-main{min-width:0}.paper-kicker{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px;line-height:1.4}.method{font-size:9px;font-weight:600;letter-spacing:.6px;color:#61775d}.category-pill{display:inline-flex;align-items:center;gap:5px;font-size:8px;line-height:1.5;padding:2px 6px;background:#e9ede1;color:#8d9a7e;border:1px solid #e0e6d5;border-radius:4px}.category-pill::before{content:'';width:3px;height:3px;background:var(--category-color,#9ba88a);border-radius:50%}.paper-title{display:block;font-size:13px;font-weight:500;line-height:1.55;letter-spacing:-.15px;color:#3a5144;text-align:left;padding:0}.paper-title:hover{color:#a26952}.paper-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:9px;color:#9ba38f;margin-top:6px}.paper-meta .year{font-variant-numeric:tabular-nums}.paper-meta svg{width:10px;height:10px}.paper-actions{display:flex;gap:7px;align-items:center;padding-top:15px}.paper-link,.code-link{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:27px;font-size:9px;border:1px solid #dce2d2;border-radius:5px;background:#f9fbf3;padding:4px 8px;color:#809270;white-space:nowrap}.paper-link{background:#e9eedf;border-color:#e0e6d6;color:#6b805d}.paper-link:hover,.code-link:hover{border-color:#8c9d7a;background:#e8eedc;color:var(--ink)}.paper-link svg,.code-link svg{width:10px;height:10px}.save-button{width:27px;height:27px;display:grid;place-items:center;border:1px solid transparent;border-radius:5px;color:#a8b19a}.save-button:hover{border-color:#d9e0cd;color:#718862}.save-button svg{width:13px;height:13px}.save-button.is-saved{background:#e3ead5;color:#5b7651}.save-button.is-saved svg{fill:#b8c6a6}.primary-button,.secondary-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:6px;font-size:11px;line-height:1.5;padding:10px 16px;min-height:37px}.primary-button{color:#f8faef;background:var(--ink);border:1px solid var(--ink)}.primary-button:hover{background:#3a5548;color:white}.secondary-button{background:#f7f9f0;border:1px solid #d9e0cd;color:#617858}.secondary-button:hover{background:#e9efdf;color:var(--ink)}.primary-button svg,.secondary-button svg{width:13px;height:13px}.text-button{display:inline-flex;align-items:center;gap:6px;padding:0;font-size:10px;color:#819572}.text-button:hover{color:var(--ink)}.text-button svg{width:12px;height:12px}.empty-state{text-align:center;color:#8e9c81;padding:66px 20px;border-bottom:1px solid var(--line)}.empty-state h3{font-size:18px;color:#4f694a;margin-bottom:10px;font-weight:500}.empty-state p{font-size:12px;margin-bottom:22px}.footer{padding:34px 0 24px;color:#98a28c;font-size:9px;line-height:1.9}.footer-line{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.footer-links,.resource-links{display:flex;align-items:center;flex-wrap:wrap;gap:9px 16px}.footer-links a{color:#7e9071}.footer .resource-links{margin-top:16px;border-top:1px solid #e1e4d9;padding-top:14px;gap:6px 14px}.resource-links a{font-size:9px;color:#96a188}.footer-note{margin-top:9px;max-width:870px;line-height:1.9}.footer .source-label{font-size:9px;letter-spacing:.6px;color:#7e8f70}
+.icon-button{width:31px;height:31px;display:grid;place-items:center;border:1px solid #dce1d3;border-radius:6px;color:#87977b;background:#f6f8ee;flex-shrink:0}.icon-button:hover{background:#e7eddb;color:var(--ink)}.icon-button svg{width:15px;height:15px}.dialog-backdrop{position:fixed;inset:0;z-index:100;background:rgba(23,43,35,.24);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);display:flex;justify-content:flex-end;animation:backdrop-in .2s ease}.paper-dialog{width:min(620px,100%);height:100dvh;overflow-y:auto;background:#f7f8f0;padding:34px 35px 28px;border-left:1px solid #dce4cf;box-shadow:-16px 0 60px rgba(32,51,30,.13);animation:drawer-in .24s ease;overscroll-behavior:contain}.dialog-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:24px}.dialog-method{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#80966e}.dialog-venue{font-size:10px;color:#98a48d;margin-top:5px}.paper-dialog h2{font-size:27px;line-height:1.35;font-weight:500;letter-spacing:-.7px;color:#324d3b;margin:0 0 18px}.paper-dialog>.category-pill{margin-bottom:22px}.dialog-actions{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0 29px}.guide-panel{border:1px solid #dae2cc;background:#edf2e3;border-radius:11px;padding:22px 23px;margin:24px 0}.guide-panel h3{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#758a63;margin-bottom:14px}.guide-summary{font-size:14px;line-height:1.9;color:#4e6944;margin-bottom:20px}.guide-panel dl{margin:0}.guide-panel dt{font-size:10px;font-weight:600;color:#7f946d;margin-top:17px}.guide-panel dd{margin:5px 0 0;font-size:12px;line-height:1.9;color:#6e835e}.guide-panel .guide-item+.guide-item{border-top:1px solid #dce4d0;margin-top:16px;padding-top:14px}.guide-panel .guide-item h4{font-size:10px;color:#7d936a;font-weight:600;margin-bottom:5px}.guide-panel .guide-item p{font-size:12px;line-height:1.9;color:#6a805a}.guide-note{font-size:10px;line-height:1.8;color:#91a17f;border-top:1px solid #dce5cd;padding-top:13px;margin-top:18px}.related{margin:25px 0}.related h3{font-size:12px;font-weight:550;color:#637e56;margin-bottom:13px}.related button,.related a{display:block;width:100%;font-size:11px;line-height:1.7;text-align:left;padding:10px 0;border-bottom:1px solid #e0e5d6;color:#7e9270}.related button:hover,.related a:hover{color:var(--ink)}.related .method{display:block;margin-bottom:3px}.dialog-provenance{border-top:1px solid #dce3d0;padding-top:18px;margin-top:28px;color:#9aa88d;font-size:9px;line-height:1.9}.dialog-provenance a{text-decoration:underline;text-decoration-color:#c6d1b9;text-underline-offset:3px;word-break:break-word}.dialog-provenance code{font-size:9px;background:#eaf0df;padding:2px 5px;border-radius:3px}.graph-context{font-size:11px;color:#8b9c7b;max-width:700px;line-height:1.9}.map-intro{display:flex;align-items:flex-start;justify-content:space-between;gap:30px;margin-bottom:24px}.map-intro h1{font-size:35px;line-height:1.2;font-weight:500;letter-spacing:-1.3px;margin-bottom:12px}.map-intro p{font-size:12px;color:#91a080;line-height:1.9;max-width:650px}.toast{position:fixed;left:calc(50% + 124px);bottom:26px;transform:translateX(-50%);z-index:150;max-width:calc(100vw - 32px);border:1px solid #4d654a;border-radius:8px;background:#2d4737;color:#f0f6e7;padding:11px 20px;box-shadow:0 6px 25px #263c2522;font-size:12px;animation:backdrop-in .2s ease}.sidebar-shade{display:none}.load-more{display:flex;justify-content:center;padding-top:24px}.view-count{font-size:10px;color:#9daa8e}.reading-note{font-size:11px;color:#899a79;line-height:1.9;padding:16px 0}.catalog-caption{font-size:10px;color:#95a186;line-height:1.8}
+html[lang=ko] .hero h1{font-size:clamp(36px,3.8vw,50px);line-height:1.3;letter-spacing:-2.2px;word-break:keep-all}html[lang=ko] .hero-copy>p,html[lang=ko] .section-description,html[lang=ko] .usecase p,html[lang=ko] .guide-panel,html[lang=ko] .map-intro p{word-break:keep-all}html[lang=ko] .category-item{font-size:10px;letter-spacing:-.15px}html[lang=ko] .usecase{min-height:174px}html[lang=ko] .usecase h3{font-size:12px}html[lang=ko] .usecase p{font-size:10px;line-height:1.9}html[lang=ko] .section-heading h2,html[lang=ko] .library-heading h2{font-size:18px;letter-spacing:-.65px}html[lang=ko] .hero-copy>p{font-size:12px;line-height:2}html[lang=ko] .paper-title{letter-spacing:-.1px}
+@keyframes backdrop-in{from{opacity:0}to{opacity:1}}@keyframes drawer-in{from{transform:translateX(26px);opacity:.5}to{transform:translateX(0);opacity:1}}
+@media(min-width:1600px){.workspace>main,.workspace>.content,.main-content{padding-left:58px;padding-right:58px}.topbar{padding-left:58px;padding-right:58px}.hero{padding-top:12px;padding-bottom:48px}.usecase{min-height:180px;padding:22px 23px}.hero h1{font-size:60px}}
+@media(max-width:1150px){:root{--sidebar-width:222px}.sidebar{padding-left:15px;padding-right:15px}.workspace>main,.workspace>.content,.main-content{padding-left:28px;padding-right:28px}.topbar{padding-left:28px;padding-right:28px}.hero{gap:20px;grid-template-columns:minmax(0,1.2fr) minmax(210px,.8fr)}.hero h1{font-size:43px;letter-spacing:-1.8px}.usecase{padding:17px 16px;min-height:176px}.paper-row{gap:10px;grid-template-columns:22px minmax(0,1fr) auto}.paper-actions{gap:5px}.paper-link,.code-link{padding:4px 6px}.toast{left:calc(50% + 111px)}}
+@media(max-width:1000px) and (min-width:821px){.hero-art{opacity:.8;min-height:170px}.hero h1{font-size:39px}.usecase-grid{gap:10px}.usecase h3{font-size:12px}.usecase p{font-size:9px}.paper-actions{flex-wrap:wrap;max-width:84px;justify-content:flex-end}.paper-link,.code-link{font-size:8px}.paper-title{font-size:12px}.topbar-actions{gap:10px}}
+@media(max-width:820px){:root{--sidebar-width:248px}.sidebar{transform:translateX(-100%);transition:transform .22s ease;z-index:80;box-shadow:12px 0 40px #233c3610}.sidebar.open,.sidebar.is-open,body.sidebar-open .sidebar{transform:translateX(0)}.sidebar-shade.open,.sidebar-shade.is-open,body.sidebar-open .sidebar-shade{display:block;position:fixed;inset:0;background:#233c3640;backdrop-filter:blur(2px);z-index:70}.workspace{margin-left:0}.mobile-menu{display:grid;width:29px;height:29px;place-items:center;padding:0;color:#819371}.mobile-menu svg{width:18px;height:18px}.topbar{height:65px;padding:0 24px;gap:12px}.breadcrumb{margin-right:auto;font-size:10px;gap:7px}.topbar-actions{gap:12px}.workspace>main,.workspace>.content,.main-content{padding:25px 24px 0}.view-tabs{margin-bottom:28px}.hero{grid-template-columns:minmax(0,1.15fr) minmax(190px,.85fr);padding-bottom:31px;gap:15px}.hero h1{font-size:43px}.hero-art{min-height:190px}.hero-copy>p{font-size:11px;max-width:420px}.hero-meta{font-size:9px;gap:9px 12px}.usecase-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.usecase{padding:16px;min-height:172px}.usecase h3{font-size:12px}.usecase p{font-size:9px}.section-heading>p,.section-heading>span{font-size:9px}.toast{left:50%}.paper-dialog{padding:28px}.map-intro{gap:18px}.map-intro h1{font-size:31px}html[lang=ko] .hero h1{font-size:39px}}
+@media(max-width:650px){.hero h1{font-size:39px}.hero-art{min-height:160px}.hero{grid-template-columns:minmax(0,1.35fr) minmax(150px,.65fr)}.usecase-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.usecase{min-height:156px}.usecase p{font-size:10px}.paper-row{grid-template-columns:22px minmax(0,1fr);gap:7px}.paper-actions{grid-column:2;padding-top:2px;justify-content:flex-start}.paper-title{font-size:13px}.paper-link,.code-link{font-size:9px}.filters{gap:9px}.search-wrap{flex-basis:100%}.filters select{flex:1}.results-status{font-size:9px}.library-heading{gap:12px}.library-heading .text-button{font-size:9px}.section-heading{align-items:flex-end}.section-heading>p,.section-heading>span{max-width:170px;text-align:right}.map-intro{flex-direction:column;gap:14px}html[lang=ko] .hero h1{font-size:35px}}
+@media(max-width:560px){.topbar{padding:0 18px;height:61px}.breadcrumb{gap:6px;font-size:9px}.breadcrumb .breadcrumb-root{display:none}.topbar-actions{gap:10px}.topbar-actions>a{font-size:0;gap:0}.topbar-actions>a svg{width:16px;height:16px}.language-switch button{min-width:27px;font-size:9px;padding:3px 5px}.workspace>main,.workspace>.content,.main-content{padding:23px 19px 0}.view-tabs{gap:24px;margin-bottom:28px}.view-tab{font-size:11px;padding-bottom:12px}.hero{display:block;padding:0 0 31px}.hero-art{display:none}.hero h1{font-size:42px;line-height:1.13;letter-spacing:-1.9px;max-width:390px}.eyebrow{font-size:8px;letter-spacing:1.5px;margin-bottom:13px}.hero-copy>p{font-size:11px;line-height:1.9;max-width:370px;margin-top:18px}.hero-meta{margin-top:20px;gap:8px 12px}.hero-meta strong{font-size:11px}.paths{padding-bottom:26px}.section-heading{margin-bottom:14px;gap:10px}.section-heading h2,.library-heading h2{font-size:17px}.section-heading>p,.section-heading>span{font-size:8px;max-width:135px}.usecase-grid{gap:9px}.usecase{padding:15px 14px;min-height:166px;border-radius:9px}.usecase-no{margin-bottom:9px;font-size:8px}.usecase h3{font-size:12px;line-height:1.5;padding-right:0}.usecase p{font-size:9px;line-height:1.8;max-width:100%;margin-top:7px}.usecase .usecase-footer,.usecase .usecase-link{font-size:8px;padding-top:11px}.usecase .usecase-arrow{right:13px;bottom:12px}.library{padding-top:25px}.library-heading{margin-bottom:16px}.section-description{font-size:10px;line-height:1.9;margin-top:5px}.filters{margin-bottom:12px}.filters select{font-size:9px;min-width:95px;padding-right:20px}.filter-check{font-size:9px;gap:5px}.search-wrap input{font-size:10px}.results-status{padding-bottom:10px;line-height:1.8}.paper-row{padding:17px 0;grid-template-columns:18px minmax(0,1fr)}.paper-index{font-size:8px;padding-top:3px}.paper-title{font-size:12px;line-height:1.65;letter-spacing:-.1px}.paper-kicker{gap:6px;margin-bottom:5px}.method{font-size:8px}.category-pill{font-size:7px;padding:2px 5px}.paper-meta{font-size:8px;gap:7px;margin-top:5px}.paper-actions{gap:7px}.paper-link,.code-link{min-height:25px;font-size:8px}.save-button{width:25px;height:25px}.footer{padding-top:26px;font-size:8px}.footer-line{gap:9px}.footer-links{gap:9px 13px}.footer .resource-links{gap:5px 12px}.resource-links a{font-size:8px}.paper-dialog{width:100%;padding:23px 22px 28px}.dialog-top{margin-bottom:20px}.paper-dialog h2{font-size:24px;line-height:1.4}.guide-panel{padding:19px 18px}.guide-summary{font-size:13px}.guide-panel dd,.guide-panel .guide-item p{font-size:11px;line-height:1.95}.dialog-actions{gap:8px}.primary-button,.secondary-button{font-size:10px;padding:9px 12px}.map-intro h1{font-size:30px}.map-intro p{font-size:11px}.empty-state{padding:50px 16px}.toast{bottom:18px;padding:10px 15px;font-size:11px}html[lang=ko] .hero h1{font-size:38px;line-height:1.3;letter-spacing:-1.9px}html[lang=ko] .hero-copy>p{font-size:11px}html[lang=ko] .usecase{min-height:174px}html[lang=ko] .usecase h3{font-size:11px}html[lang=ko] .usecase p{font-size:9px}html[lang=ko] .section-heading h2,html[lang=ko] .library-heading h2{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.boot{min-height:100dvh;display:grid;place-items:center;color:#87977d;font-size:13px;letter-spacing:.25px}
+#toast{position:fixed;left:calc(50% + 124px);bottom:26px;transform:translate(-50%,8px);z-index:150;border:1px solid #4d654a;border-radius:8px;background:#2d4737;color:#f0f6e7;padding:11px 20px;box-shadow:0 6px 25px #263c2522;font-size:12px;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;max-width:calc(100vw - 32px)}#toast:empty{display:none}#toast.visible{opacity:1;transform:translate(-50%,0)}
+@media(max-width:820px){#toast{left:50%}}
+@media print{.sidebar,.topbar,.paper-actions,.filters,.view-tabs,.dialog-backdrop,.toast,#toast{display:none!important}.workspace{margin-left:0}.workspace>main{padding:0;max-width:none}.hero-art{display:none}.hero{display:block}.paper-row{break-inside:avoid;grid-template-columns:25px 1fr}.usecase-grid{grid-template-columns:repeat(3,1fr)}.paper-title{color:#000}.paper-title::after{content:' (' attr(href) ')';font-size:8px}body{background:#fff}.footer{font-size:9px}}
+
+/* Keep small research labels readable across languages and screen sizes. */
+.brand{text-align:left}.brand-mark{flex:0 0 36px}.brand>span:last-child{font-size:16px;font-weight:600;line-height:1.2}.brand-sub{display:block;font-size:8px;font-weight:500;letter-spacing:.8px;white-space:nowrap;margin-top:7px}.map-intro h1{word-break:keep-all;text-wrap:balance}.category-item{font-size:12px}.usecase h3{font-size:15px}.usecase p{font-size:13px;line-height:1.8}.usecase-link{font-size:11px!important}.hero-copy>p{font-size:14px}.paper-title{font-size:14px}.paper-meta{font-size:11px}.search-wrap input{font-size:13px}.section-description{font-size:13px}.footer-note{font-size:11px;line-height:1.8}
+@media(max-width:560px){.usecase{padding:15px 13px}.usecase h3,html[lang=ko] .usecase h3{font-size:13px}.usecase p,html[lang=ko] .usecase p{font-size:11px;line-height:1.8}.usecase-link{font-size:10px!important}.hero-copy>p,html[lang=ko] .hero-copy>p{font-size:13px}.paper-title{font-size:13px}.paper-meta{font-size:10px}.section-description{font-size:12px}.paper-link,.code-link{font-size:10px;min-height:30px}.save-button{width:30px;height:30px}.category-pill{font-size:9px}.method{font-size:10px}}
+/* Standalone, full-width relation map. */
+.map-header{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:17px clamp(20px,3.5vw,64px);min-height:80px;border-bottom:1px solid #dce2d6;background:#fafbf6}.map-brand{display:flex;align-items:center;gap:12px;font-size:17px;letter-spacing:-.5px}.map-brand strong{font-weight:600}.map-brand small{display:block;font-size:8px;letter-spacing:1.5px;color:#87987c;margin-top:2px}.map-mark{width:38px;height:38px;display:grid;place-items:center;background:#264d3c;color:#d0e9bd;border-radius:11px}.map-header-actions{display:flex;align-items:center;gap:20px}.map-source{display:inline-flex;gap:6px;align-items:center;font-size:11px;color:#74866a}.map-share{padding:8px 12px;min-height:33px;font-size:10px}.map-only{width:100%;max-width:1840px;margin:0 auto;padding:28px clamp(20px,3.5vw,64px) 0;outline:none}.map-only .map-intro{margin-bottom:23px;align-items:flex-end}.map-eyebrow{display:flex;align-items:center;gap:8px;font-size:8px!important;letter-spacing:1.7px;color:#879a79!important;margin-bottom:9px}.map-eyebrow:before{content:'';width:5px;height:5px;background:#cc835e;border-radius:50%}.map-only h1{font-size:clamp(28px,2.8vw,41px);line-height:1.25;letter-spacing:-1.3px;word-break:keep-all;margin-bottom:11px}.map-only .map-intro>div>p:not(.map-eyebrow){font-size:11px;line-height:1.9;max-width:850px}.map-stats{display:flex;align-items:baseline;justify-content:flex-end;flex-wrap:wrap;gap:12px 17px;min-width:220px;font-size:10px;color:#8fa17f}.map-stats strong{font-size:20px;line-height:1;font-weight:550;color:#647f54;letter-spacing:-.6px}.map-stats small{width:100%;text-align:right;font-size:8px;color:#a0ad91}.map-filterbar{display:flex;align-items:center;gap:18px;border:1px solid #dce4d3;border-radius:10px;background:#fafcf6;padding:12px 14px}.map-filterbar .search-wrap input{background:transparent;border:0}.map-select{display:flex;gap:9px;align-items:center;flex-shrink:0}.map-select>span{color:#8b9e7a;font-size:10px}.map-select select{height:34px;max-width:255px;border:1px solid #dbe4d0;background:#f1f5e9;border-radius:6px;padding:5px 26px 5px 10px;color:#6b855b;font-size:11px}.map-reset{font-size:10px;color:#ac7959;padding:5px 0;white-space:nowrap}.map-feedback{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;font-size:9px;color:#94a586;padding:11px 2px 12px;min-height:37px}.map-feedback strong{font-weight:600;color:#67825a}.map-feedback>span:last-child{text-align:right}.map-only .graph-root{border-radius:15px;box-shadow:0 12px 35px #1f392712}.map-only .graph-stage{height:clamp(520px,65vh,810px)}.map-foot{padding:19px 2px 24px;font-size:9px;line-height:1.9;color:#94a586}.map-foot p{max-width:1100px}.map-foot a{color:#738f62;text-decoration:underline;text-decoration-color:#cad8bd;text-underline-offset:3px}.map-foot>div{display:flex;gap:8px 18px;flex-wrap:wrap;align-items:center;margin-top:7px}.map-foot>div>span{margin-left:auto;color:#a4b196}#toast{left:50%}.paper-dialog [data-save]{display:none}
+@media(max-width:1000px){.map-header{padding-left:25px;padding-right:25px}.map-only{padding-left:25px;padding-right:25px}.map-header-actions{gap:14px}.map-select>span{display:none}.map-select select{max-width:215px}.map-filterbar{gap:12px}.map-stats{min-width:190px}.map-only h1{font-size:33px}}
+@media(max-width:760px){.map-header{padding:14px 19px;min-height:74px;gap:15px}.map-brand{font-size:15px;gap:9px}.map-brand small{font-size:7px;letter-spacing:1px}.map-mark{width:34px;height:34px;border-radius:9px}.map-header-actions{gap:9px}.map-source{font-size:0;gap:0}.map-source svg{width:16px}.map-share>span{display:none}.map-share{padding:8px}.map-only{padding:24px 19px 0}.map-only .map-intro{display:block}.map-only h1{font-size:32px;letter-spacing:-1px}.map-stats{justify-content:flex-start;margin-top:18px;gap:12px}.map-stats strong{font-size:16px}.map-stats small{width:auto;margin-left:auto}.map-filterbar{flex-wrap:wrap;padding:10px 12px;gap:10px 12px}.map-filterbar .search-wrap{flex-basis:100%;border-bottom:1px solid #e1e8d8;padding-bottom:5px}.map-select{flex:1;min-width:0}.map-select select{width:100%;max-width:100%;font-size:10px}.map-filterbar .filter-check{font-size:9px}.map-reset{font-size:9px}.map-feedback{font-size:8px;line-height:1.7}.map-feedback>span:last-child{max-width:60%}.map-only .graph-stage{height:520px}.map-foot{font-size:8px}.map-foot>div>span{margin-left:0;width:100%}}
+@media(max-width:430px){.map-header{padding-left:15px;padding-right:15px}.map-brand{font-size:13px;gap:8px}.map-brand small{font-size:6px;letter-spacing:.9px}.map-mark{width:31px;height:31px}.map-mark svg{width:19px}.map-header-actions{gap:7px}.map-only{padding:22px 14px 0}.map-only h1{font-size:29px;line-height:1.3}.map-only .map-intro>div>p:not(.map-eyebrow){font-size:10px}.map-stats{font-size:9px}.map-select select{font-size:9px}.map-filterbar{gap:9px}.map-only .graph-toolbar{padding:11px}}
+</style></head><body><a class="skip-link" href="#main">Skip to map</a><div id="app">Loading the relation map…</div><div id="dialog-root"></div><div id="toast" role="status" aria-live="polite"></div><noscript>This map needs JavaScript. Visit <a href="https://github.com/semantic-id-tutorial/awesome-semantic-id">the source reading list</a>.</noscript><script type="module">const catalogModule=(()=>{
+// Generated from a source README snapshot. Paper metadata is unchanged; bilingual discovery notes are editorial.
+const meta = {
+  "repoUrl": "https://github.com/semantic-id-tutorial/awesome-semantic-id",
+  "sourceUrl": "https://github.com/semantic-id-tutorial/awesome-semantic-id/blob/main/README.md",
+  "snapshotDate": "2026-11-16",
+  "commit": "f64b6646fa964d725a7fb6b0ae2f1e5c151063f6",
+  "dirty": false,
+  "readmeSha256": "4b6988e3d95d566b81fa083546ba537f183090cd808b14d4778f96df46d10e64",
+  "paperCount": 152,
+  "categoryCount": 12
+};
+
+const categories = [
+  {
+    "id": "background",
+    "en": "Background",
+    "ko": "배경과 출발점",
+    "description": {
+      "en": "How item identity evolved from arbitrary IDs toward content-aware representations.",
+      "ko": "임의의 상품 번호에서 내용과 의미를 반영하는 표현으로 발전해 온 배경을 살펴봅니다."
+    },
+    "color": "#78918b",
+    "sourceHeading": "Background: From Raw IDs to Semantic IDs"
+  },
+  {
+    "id": "foundations",
+    "en": "Foundations",
+    "ko": "양자화 기초",
+    "description": {
+      "en": "The vector quantization foundations used to turn continuous representations into discrete codes.",
+      "ko": "연속 벡터를 이산 코드로 바꾸는 벡터 양자화의 기초를 살펴봅니다."
+    },
+    "color": "#927da7",
+    "sourceHeading": "Foundations: Vector Quantization"
+  },
+  {
+    "id": "construction",
+    "en": "Construction & tokenization",
+    "ko": "ID 구성과 토큰화",
+    "description": {
+      "en": "Build discrete, structured item identifiers from content representations.",
+      "ko": "상품의 내용 표현을 이산적이고 구조화된 식별자로 바꾸는 방법을 다룹니다."
+    },
+    "color": "#c69150",
+    "sourceHeading": "Semantic ID Construction & Tokenization"
+  },
+  {
+    "id": "generative",
+    "en": "Generative recommendation",
+    "ko": "생성형 추천",
+    "description": {
+      "en": "Retrieve or recommend items by generating their identifiers, including alternative decoding methods.",
+      "ko": "상품 식별자를 생성해 검색하거나 추천하는 방법과 다양한 디코딩 방식을 다룹니다."
+    },
+    "color": "#cb765b",
+    "sourceHeading": "Generative Recommendation with Semantic IDs"
+  },
+  {
+    "id": "discriminative",
+    "en": "Ranking & retrieval",
+    "ko": "판별형 랭킹과 검색",
+    "description": {
+      "en": "Use Semantic IDs as structured features for ranking, CTR prediction, or embedding-based retrieval.",
+      "ko": "Semantic ID를 랭킹, 클릭률 예측, 벡터 검색의 구조화된 입력 특징으로 활용합니다."
+    },
+    "color": "#748daf",
+    "sourceHeading": "Semantic IDs in Discriminative Ranking & Retrieval"
+  },
+  {
+    "id": "multimodal",
+    "en": "Multimodal information",
+    "ko": "멀티모달 정보",
+    "description": {
+      "en": "Combine complementary text, image, audio, and video information when constructing IDs.",
+      "ko": "텍스트·이미지·오디오·영상의 공통 정보와 상호 보완적인 정보를 ID 구성에 반영합니다."
+    },
+    "color": "#af849c",
+    "sourceHeading": "Multimodality in Semantic ID Construction"
+  },
+  {
+    "id": "collaborative",
+    "en": "Collaborative signals",
+    "ko": "사용자 행동과 협업 신호",
+    "description": {
+      "en": "Align content-based identities with preferences and relationships observed in user interactions.",
+      "ko": "내용 기반 식별자에 사용자 상호작용에서 관찰되는 선호와 상품 간 관계를 반영합니다."
+    },
+    "color": "#77a099",
+    "sourceHeading": "Collaborative Signals in Semantic ID Construction"
+  },
+  {
+    "id": "cold-start",
+    "en": "Cold-start recommendation",
+    "ko": "콜드 스타트",
+    "description": {
+      "en": "Study recommendation for new or sparsely observed items, including limits of ID reachability.",
+      "ko": "행동 기록이 적거나 새로 들어온 상품을 추천하는 방법과 생성 모델의 도달 가능성 한계를 살펴봅니다."
+    },
+    "color": "#88a46b",
+    "sourceHeading": "Cold-Start Recommendation with Semantic IDs"
+  },
+  {
+    "id": "cross-domain",
+    "en": "Cross-domain transfer",
+    "ko": "도메인 간 전이",
+    "description": {
+      "en": "Transfer useful representations across recommendation domains or platforms.",
+      "ko": "추천 도메인이나 플랫폼 사이에서 유용한 표현과 지식을 이전하는 방법을 다룹니다."
+    },
+    "color": "#7b9eb3",
+    "sourceHeading": "Cross-Domain Transfer with Semantic IDs"
+  },
+  {
+    "id": "cross-task",
+    "en": "Cross-task unification",
+    "ko": "작업 통합과 계획",
+    "description": {
+      "en": "Share item representations across search, recommendation, and emerging planning tasks.",
+      "ko": "검색·추천과 초기 계획·추론 연구에서 상품 표현을 공유하는 방법을 다룹니다."
+    },
+    "color": "#a395b8",
+    "sourceHeading": "Cross-Task Unification & Semantic Planning"
+  },
+  {
+    "id": "surveys",
+    "en": "Surveys & handbooks",
+    "ko": "서베이와 핸드북",
+    "description": {
+      "en": "Broader reviews that position Semantic IDs within recommendation and generative retrieval.",
+      "ko": "Semantic ID와 생성형 검색·추천의 연구 흐름을 넓게 정리한 서베이와 핸드북입니다."
+    },
+    "color": "#8f9c9c",
+    "sourceHeading": "Surveys"
+  },
+  {
+    "id": "tutorials",
+    "en": "Tutorials",
+    "ko": "튜토리얼",
+    "description": {
+      "en": "Tutorial papers and accompanying learning websites from the source reading list.",
+      "ko": "원본 목록에 포함된 학회 튜토리얼 논문과 학습용 웹사이트입니다."
+    },
+    "color": "#a49a7e",
+    "sourceHeading": "Tutorials"
+  }
+];
+
+const papers = [
+  {
+    "id": "wide-deep-528052b3",
+    "method": "Wide & Deep",
+    "title": "Wide & Deep Learning for Recommender Systems",
+    "url": "https://doi.org/10.1145/2988450.2988454",
+    "code": null,
+    "venue": "DLRS@RecSys'16",
+    "year": 2016,
+    "category": "background",
+    "sourceLine": 51,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "multimedia-rs-survey-4cdd7dff",
+    "method": "Multimedia RS Survey",
+    "title": "Recommender Systems Leveraging Multimedia Content",
+    "url": "https://doi.org/10.1145/3407190",
+    "code": null,
+    "venue": "ACM CSUR'21",
+    "year": 2021,
+    "category": "background",
+    "sourceLine": 52,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "multi-modal-rs-hands-on-3e32f3c0",
+    "method": "Multi-Modal RS Hands-On",
+    "title": "Multi-Modal Recommender Systems: Hands-On Exploration",
+    "url": "https://doi.org/10.1145/3460231.3473324",
+    "code": "https://github.com/PreferredAI/cornac",
+    "venue": "RecSys'21",
+    "year": 2021,
+    "category": "background",
+    "sourceLine": 53,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "vq-b4767f2a",
+    "method": "VQ",
+    "title": "Vector Quantization",
+    "url": "https://doi.org/10.1109/MASSP.1984.1162229",
+    "code": null,
+    "venue": "IEEE ASSP Mag.'84",
+    "year": 1984,
+    "category": "foundations",
+    "sourceLine": 61,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "multi-stage-vq-6eba2553",
+    "method": "Multi-Stage VQ",
+    "title": "Multiple Stage Vector Quantization for Speech Coding",
+    "url": "https://doi.org/10.1109/ICASSP.1982.1171604",
+    "code": null,
+    "venue": "ICASSP'82",
+    "year": 1982,
+    "category": "foundations",
+    "sourceLine": 62,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "rvq-b0f077b6",
+    "method": "RVQ",
+    "title": "Approximate Nearest Neighbor Search by Residual Vector Quantization",
+    "url": "https://doi.org/10.3390/s101211259",
+    "code": null,
+    "venue": "Sensors'10",
+    "year": 2010,
+    "category": "foundations",
+    "sourceLine": 63,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "pq-541d3caa",
+    "method": "PQ",
+    "title": "Product Quantization for Nearest Neighbor Search",
+    "url": "https://doi.org/10.1109/TPAMI.2010.57",
+    "code": "https://github.com/facebookresearch/faiss",
+    "venue": "TPAMI'11",
+    "year": 2011,
+    "category": "foundations",
+    "sourceLine": 64,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "opq-f6bbc0b3",
+    "method": "OPQ",
+    "title": "Optimized Product Quantization for Approximate Nearest Neighbor Search",
+    "url": "https://doi.org/10.1109/CVPR.2013.379",
+    "code": "https://github.com/facebookresearch/faiss",
+    "venue": "CVPR'13",
+    "year": 2013,
+    "category": "foundations",
+    "sourceLine": 65,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "vq-vae-dacd6264",
+    "method": "VQ-VAE",
+    "title": "Neural Discrete Representation Learning",
+    "url": "https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html",
+    "code": null,
+    "venue": "NeurIPS'17",
+    "year": 2017,
+    "category": "foundations",
+    "sourceLine": 66,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "rq-vae-0a001cb6",
+    "method": "RQ-VAE",
+    "title": "Autoregressive Image Generation using Residual Quantization",
+    "url": "https://doi.org/10.1109/CVPR52688.2022.01123",
+    "code": "https://github.com/kakaobrain/rq-vae-transformer",
+    "venue": "CVPR'22",
+    "year": 2022,
+    "category": "foundations",
+    "sourceLine": 67,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "vq-rec-65b635d9",
+    "method": "VQ-Rec",
+    "title": "Learning Vector-Quantized Item Representation for Transferable Sequential Recommenders",
+    "url": "https://doi.org/10.1145/3543507.3583434",
+    "code": "https://github.com/RUCAIBox/VQ-Rec",
+    "venue": "WWW'23",
+    "year": 2023,
+    "category": "construction",
+    "sourceLine": 75,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "genret-d9385e58",
+    "method": "GenRet",
+    "title": "Learning to Tokenize for Generative Retrieval",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/91228b942a4528cdae031c1b68b127e8-Abstract-Conference.html",
+    "code": "https://github.com/sunnweiwei/GenRet",
+    "venue": "NeurIPS'23",
+    "year": 2023,
+    "category": "construction",
+    "sourceLine": 76,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "seater-c80747ef",
+    "method": "SEATER",
+    "title": "Generative Retrieval with Semantic Tree-Structured Item Identifiers via Contrastive Learning",
+    "url": "https://arxiv.org/abs/2309.13375",
+    "code": "https://github.com/Ethan00Si/SEATER_Generative_Retrieval",
+    "venue": "arXiv'23",
+    "year": 2023,
+    "category": "construction",
+    "sourceLine": 77,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "lmindexer-11e758e0",
+    "method": "LMIndexer",
+    "title": "Language Models as Semantic Indexers",
+    "url": "https://openreview.net/forum?id=hJEMTDOwKx",
+    "code": "https://github.com/PeterGriffinJin/LMIndexer",
+    "venue": "ICML'24",
+    "year": 2024,
+    "category": "construction",
+    "sourceLine": 78,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "actionpiece-6cd74696",
+    "method": "ActionPiece",
+    "title": "ActionPiece: Contextually Tokenizing Action Sequences for Generative Recommendation",
+    "url": "https://openreview.net/forum?id=h2oNQOzbc5",
+    "code": "https://github.com/google-deepmind/action_piece",
+    "venue": "ICML'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 79,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "tokenrec-3f20563d",
+    "method": "TokenRec",
+    "title": "TokenRec: Learning to Tokenize ID for LLM-based Generative Recommendation",
+    "url": "https://ieeexplore.ieee.org/document/11129873",
+    "code": "https://github.com/Quhaoh233/TokenRec",
+    "venue": "TKDE'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 80,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "utgrec-db8ec610",
+    "method": "UTGRec",
+    "title": "Universal Item Tokenization for Transferable Generative Recommendation",
+    "url": "https://arxiv.org/abs/2504.04405",
+    "code": "https://github.com/RUCAIBox/UTGRec",
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 81,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "hid-vae-6ff2df1e",
+    "method": "HiD-VAE",
+    "title": "HiD-VAE: Interpretable Generative Recommendation via Hierarchical and Disentangled Semantic IDs",
+    "url": "https://arxiv.org/abs/2508.04618",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 82,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "pcr-ca-c95a7df3",
+    "method": "PCR-CA",
+    "title": "PCR-CA: Parallel Codebook Representations with Contrastive Alignment for Multiple-Category App Recommendation",
+    "url": "https://arxiv.org/abs/2508.18166",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 83,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "cosette-c5dd715c",
+    "method": "COSETTE",
+    "title": "Closing the Performance Gap in Generative Recommenders with Collaborative Tokenization and Efficient Modeling",
+    "url": "https://arxiv.org/abs/2508.14910",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 84,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "psrq-d6a0b865",
+    "method": "PSRQ",
+    "title": "Progressive Semantic Residual Quantization for Multimodal-Joint Interest Modeling in Music Recommendation",
+    "url": "https://doi.org/10.1145/3746252.3761579",
+    "code": null,
+    "venue": "CIKM'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 85,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "forge-5a048247",
+    "method": "FORGE",
+    "title": "FORGE: Forming Semantic Identifiers for Generative Retrieval in Industrial Datasets",
+    "url": "https://arxiv.org/abs/2509.20904",
+    "code": "https://github.com/selous123/al_sid",
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 86,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "purely-semantic-indexing-123cc06c",
+    "method": "Purely Semantic Indexing",
+    "title": "Purely Semantic Indexing for LLM-based Generative Recommendation and Retrieval",
+    "url": "https://arxiv.org/abs/2509.16446",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 87,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "semantics-meet-signals-353855eb",
+    "method": "Semantics Meet Signals",
+    "title": "Semantics Meet Signals: Dual Codebook Representation Learning for Generative Recommendation",
+    "url": "https://arxiv.org/abs/2511.20673",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 88,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "h2w-4189a505",
+    "method": "H2W",
+    "title": "The Best of the Two Worlds: Harmonizing Semantic and Hash IDs for Sequential Recommendation",
+    "url": "https://arxiv.org/abs/2512.10388",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 89,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "merge-e67d4202",
+    "method": "MERGE",
+    "title": "MERGE: Next-Generation Item Indexing Paradigm for Large-Scale Streaming Recommendation",
+    "url": "https://arxiv.org/abs/2601.20199",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "construction",
+    "sourceLine": 90,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "semanticconvergence-dbc9be17",
+    "method": "SemanticConvergence",
+    "title": "Semantic Convergence: Harmonizing Recommender Systems via Two-Stage Alignment and Behavioral Semantic Tokenization",
+    "url": "https://ojs.aaai.org/index.php/AAAI/article/view/33311",
+    "code": null,
+    "venue": "AAAI'25",
+    "year": 2025,
+    "category": "construction",
+    "sourceLine": 91,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "r3-vae-fadb9951",
+    "method": "R3-VAE",
+    "title": "R3-VAE: Reference Vector-Guided Rating Residual Quantization VAE for Generative Recommendation",
+    "url": "https://arxiv.org/abs/2604.11440",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "construction",
+    "sourceLine": 92,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "prefixmem-3ff1c351",
+    "method": "PrefixMem",
+    "title": "LLMs Need Encoders for Semantic IDs Too",
+    "url": "https://arxiv.org/abs/2606.00324",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "construction",
+    "sourceLine": 93,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "rethinking-tokenizer-e95417aa",
+    "method": "Rethinking Tokenizer",
+    "title": "Rethinking Generative Recommender Tokenizer: RecSys-Native Encoding and Semantic Quantization Beyond LLMs",
+    "url": "https://arxiv.org/abs/2602.02338",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "construction",
+    "sourceLine": 94,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "unisid-4383f402",
+    "method": "UniSID",
+    "title": "End-to-End Semantic ID Generation for Generative Advertisement Recommendation",
+    "url": "https://arxiv.org/abs/2602.10445",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "construction",
+    "sourceLine": 95,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "taac-sid-8be78a77",
+    "method": "TAAC-SID",
+    "title": "Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation",
+    "url": "https://arxiv.org/abs/2604.04976",
+    "code": "https://github.com/TencentAdvertisingAlgorithmCompetition/baseline_2025",
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "construction",
+    "sourceLine": 96,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "diger-9806ccec",
+    "method": "DIGER",
+    "title": "Differentiable Semantic ID for Generative Recommendation",
+    "url": "https://doi.org/10.1145/3805712.3809641",
+    "code": "https://github.com/junchen-fu/DIGER",
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "construction",
+    "sourceLine": 97,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "variable-length-sids-0c1515bb",
+    "method": "Variable-Length SIDs",
+    "title": "Variable-Length Semantic IDs for Recommender Systems",
+    "url": "https://arxiv.org/abs/2602.16375",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "construction",
+    "sourceLine": 98,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "cce-zcr-7edb401f",
+    "method": "CCE / ZCR",
+    "title": "Faithful Evaluation of Semantic-ID Tokenizers for Generative Recommendation",
+    "url": "https://arxiv.org/abs/2605.25330",
+    "code": "https://github.com/Nishikata97/CollisionGenRec",
+    "venue": "CIKM'26 (accepted)",
+    "year": 2026,
+    "category": "construction",
+    "sourceLine": 99,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "tiger-ffebb474",
+    "method": "TIGER",
+    "title": "Recommender Systems with Generative Retrieval",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/20dcab0f14046a5c6b02b61da9f13229-Abstract-Conference.html",
+    "code": "https://github.com/EdoardoBotta/RQ-VAE-Recommender",
+    "venue": "NeurIPS'23 (seminal)",
+    "year": 2023,
+    "category": "generative",
+    "sourceLine": 107,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "lc-rec-e98fc9ab",
+    "method": "LC-Rec",
+    "title": "Adapting Large Language Models by Integrating Collaborative Semantics for Recommendation",
+    "url": "https://doi.org/10.1109/ICDE60146.2024.00118",
+    "code": "https://github.com/RUCAIBox/LC-Rec",
+    "venue": "ICDE'24",
+    "year": 2024,
+    "category": "generative",
+    "sourceLine": 108,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "colarec-40f121ee",
+    "method": "ColaRec",
+    "title": "Content-Based Collaborative Generation for Recommender Systems",
+    "url": "https://doi.org/10.1145/3627673.3679692",
+    "code": "https://github.com/Junewang0614/ColaRec",
+    "venue": "CIKM'24",
+    "year": 2024,
+    "category": "generative",
+    "sourceLine": 109,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "mbgen-200a8030",
+    "method": "MBGen",
+    "title": "Multi-Behavior Generative Recommendation",
+    "url": "https://doi.org/10.1145/3627673.3679730",
+    "code": "https://github.com/anananan116/MBGen",
+    "venue": "CIKM'24",
+    "year": 2024,
+    "category": "generative",
+    "sourceLine": 110,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "eager-aa358a4d",
+    "method": "EAGER",
+    "title": "EAGER: Two-Stream Generative Recommender with Behavior-Semantic Collaboration",
+    "url": "https://doi.org/10.1145/3637528.3671775",
+    "code": "https://github.com/yewzz/EAGER",
+    "venue": "KDD'24",
+    "year": 2024,
+    "category": "generative",
+    "sourceLine": 111,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "mmgrec-6d17b255",
+    "method": "MMGRec",
+    "title": "MMGRec: Multimodal Generative Recommendation with Transformer Model",
+    "url": "https://arxiv.org/abs/2404.16555",
+    "code": "https://github.com/hanliu95/MMGRec",
+    "venue": "arXiv'24",
+    "year": 2024,
+    "category": "generative",
+    "sourceLine": 112,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "mviger-fca17dfe",
+    "method": "MVIGER",
+    "title": "MVIGER: Multi-View Variational Integration of Complementary Knowledge for Generative Recommender",
+    "url": "https://arxiv.org/abs/2408.08686",
+    "code": null,
+    "venue": "arXiv'24",
+    "year": 2024,
+    "category": "generative",
+    "sourceLine": 113,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "eager-llm-a50da05e",
+    "method": "EAGER-LLM",
+    "title": "EAGER-LLM: Enhancing Large Language Models as Recommenders through Exogenous Behavior-Semantic Integration",
+    "url": "https://doi.org/10.1145/3696410.3714933",
+    "code": null,
+    "venue": "WWW'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 114,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "setrec-687b6bd7",
+    "method": "SETRec",
+    "title": "SETRec: Order-Agnostic Identifier for Large Language Model-based Generative Recommendation",
+    "url": "https://doi.org/10.1145/3726302.3730053",
+    "code": "https://github.com/Linxyhaha/SETRec",
+    "venue": "SIGIR'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 115,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "rpg-960b6f14",
+    "method": "RPG",
+    "title": "Generating Long Semantic IDs in Parallel for Recommendation",
+    "url": "https://doi.org/10.1145/3711896.3736979",
+    "code": "https://github.com/facebookresearch/RPG_KDD2025",
+    "venue": "KDD'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 116,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "gnpr-sid-8f93dde4",
+    "method": "GNPR-SID",
+    "title": "Generative Next POI Recommendation with Semantic ID",
+    "url": "https://doi.org/10.1145/3711896.3736981",
+    "code": "https://github.com/wds1996/GNPR-SID",
+    "venue": "KDD'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 117,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "earn-a572ddf8",
+    "method": "EARN",
+    "title": "EARN: Efficient Inference Acceleration for LLM-based Generative Recommendation by Register Tokens",
+    "url": "https://doi.org/10.1145/3711896.3736919",
+    "code": "https://github.com/transcend-0/EARN",
+    "venue": "KDD'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 118,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "atspeed-012fa619",
+    "method": "AtSpeed",
+    "title": "Efficient Inference for Large Language Model-based Generative Recommendation",
+    "url": "https://openreview.net/forum?id=ACSNlt77hq",
+    "code": "https://github.com/Linxyhaha/AtSpeed",
+    "venue": "ICLR'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 119,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "specgr-5f4fa3bd",
+    "method": "SpecGR",
+    "title": "Inductive Generative Recommendation via Retrieval-based Speculation",
+    "url": "https://ojs.aaai.org/index.php/AAAI/article/view/38486",
+    "code": "https://github.com/Jamesding000/SpecGR",
+    "venue": "AAAI'26",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 120,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "llada-rec-bacddcb2",
+    "method": "LLaDA-Rec",
+    "title": "LLaDA-Rec: Discrete Diffusion for Parallel Semantic ID Generation in Generative Recommendation",
+    "url": "https://arxiv.org/abs/2511.06254",
+    "code": "https://github.com/TengShi-RUC/LLaDA-Rec",
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 121,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "contrec-73055dbe",
+    "method": "ContRec",
+    "title": "Diffusion Generative Recommendation with Continuous Tokens",
+    "url": "https://arxiv.org/abs/2504.12007",
+    "code": "https://github.com/Quhaoh233/ContRec",
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 122,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "gram-7dc33526",
+    "method": "GRAM",
+    "title": "GRAM: Generative Recommendation via Semantic-aware Multi-granular Late Fusion",
+    "url": "https://aclanthology.org/2025.acl-long.1596/",
+    "code": "https://github.com/skleee/GRAM",
+    "venue": "ACL'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 123,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "gram-retrieval-0152b2ae",
+    "method": "GRAM (retrieval)",
+    "title": "Generative Retrieval and Alignment Model: A New Paradigm for E-commerce Retrieval",
+    "url": "https://doi.org/10.1145/3701716.3715228",
+    "code": null,
+    "venue": "WWW'25 (Companion)",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 124,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "onerec-d00e6838",
+    "method": "OneRec",
+    "title": "OneRec: Unifying Retrieve and Rank with Generative Recommender and Iterative Preference Alignment",
+    "url": "https://arxiv.org/abs/2502.18965",
+    "code": "https://github.com/Kuaishou-OneRec/OpenOneRec",
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 125,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "onerec-tech-report-b1a93d4e",
+    "method": "OneRec (Tech Report)",
+    "title": "OneRec Technical Report",
+    "url": "https://arxiv.org/abs/2506.13695",
+    "code": "https://github.com/Kuaishou-OneRec/OpenOneRec",
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 126,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "onerec-v2-11375dbf",
+    "method": "OneRec-V2",
+    "title": "OneRec-V2 Technical Report",
+    "url": "https://arxiv.org/abs/2508.20900",
+    "code": "https://github.com/Kuaishou-OneRec/OpenOneRec",
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 127,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "cobra-fe3fd4e8",
+    "method": "COBRA",
+    "title": "Sparse Meets Dense: Unified Generative Recommendations with Cascaded Sparse-Dense Representations",
+    "url": "https://openreview.net/forum?id=zugMif2nm6",
+    "code": null,
+    "venue": "NeurIPS'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 128,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "mtgr-90fa2c45",
+    "method": "MTGR",
+    "title": "MTGR: Industrial-Scale Generative Recommendation Framework in Meituan",
+    "url": "https://doi.org/10.1145/3746252.3761565",
+    "code": null,
+    "venue": "CIKM'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 129,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "gr4ad-14ca9f2e",
+    "method": "GR4AD",
+    "title": "Generative Recommendation for Large-Scale Advertising",
+    "url": "https://arxiv.org/abs/2602.22732",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 130,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "tsgr-c02e33ec",
+    "method": "TSGR",
+    "title": "TSGR: Taobao Search Generative Retrieval",
+    "url": "https://arxiv.org/abs/2607.18796",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 131,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "higr-4e27503c",
+    "method": "HiGR",
+    "title": "HiGR: Industrial-Scale Hierarchical Generative Slate Recommendation Framework in Tencent",
+    "url": "https://arxiv.org/abs/2512.24787",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 132,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "glide-7b168706",
+    "method": "GLIDE",
+    "title": "Deploying Semantic ID-based Generative Retrieval for Large-Scale Podcast Discovery at Spotify",
+    "url": "https://arxiv.org/abs/2603.17540",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 133,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "model-scaling-for-sids-206f4408",
+    "method": "Model-Scaling for SIDs",
+    "title": "Understanding Generative Recommendation with Semantic IDs from a Model-scaling View",
+    "url": "https://arxiv.org/abs/2509.25522",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 134,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "nezha-3f774e58",
+    "method": "NEZHA",
+    "title": "NEZHA: A Zero-sacrifice and Hyperspeed Decoding Architecture for Generative Recommendations",
+    "url": "https://arxiv.org/abs/2511.18793",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 135,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "align3gr-fc7e7b36",
+    "method": "Align3GR",
+    "title": "Align3GR: Unified Multi-Level Alignment for LLM-based Generative Recommendation",
+    "url": "https://ojs.aaai.org/index.php/AAAI/article/view/38651",
+    "code": null,
+    "venue": "AAAI'26",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 136,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "promise-55139a58",
+    "method": "PROMISE",
+    "title": "PROMISE: Process Reward Models Unlock Test-Time Scaling Laws in Generative Recommendations",
+    "url": "https://arxiv.org/abs/2601.04674",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 137,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "latte-6b971045",
+    "method": "Latte",
+    "title": "Expressiveness Limits of Autoregressive Semantic ID Generation in Generative Recommendation",
+    "url": "https://arxiv.org/abs/2605.06331",
+    "code": "https://github.com/hyp1231/Latte",
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 138,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "dualgr-5af68aa8",
+    "method": "DualGR",
+    "title": "DualGR: Generative Retrieval with Long and Short-Term Interests Modeling",
+    "url": "https://arxiv.org/abs/2511.12518",
+    "code": null,
+    "venue": "WWW'26 (Best Short Paper)",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 139,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "text2tracks-9bf6b435",
+    "method": "Text2Tracks",
+    "title": "Text2Tracks: Prompt-based Music Recommendation via Generative Retrieval",
+    "url": "https://arxiv.org/abs/2503.24193",
+    "code": "https://github.com/mayurbhangale/text2tracks",
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "generative",
+    "sourceLine": 140,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "redgr-5000eb86",
+    "method": "RedGR",
+    "title": "RedGR: Unified Generative Retrieval for Recommendation in REDnote",
+    "url": "https://doi.org/10.1145/3805712.3808417",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 141,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "intent-driven-sids-8360c557",
+    "method": "Intent-Driven SIDs",
+    "title": "Intent-Driven Semantic ID Generation for Grounded Conversational News Recommendation",
+    "url": "https://aclanthology.org/2026.acl-industry.130/",
+    "code": null,
+    "venue": "ACL'26 (Industry)",
+    "year": 2026,
+    "category": "generative",
+    "sourceLine": 142,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "uist-d628de5c",
+    "method": "UIST",
+    "title": "Discrete Semantic Tokenization for Deep CTR Prediction",
+    "url": "https://doi.org/10.1145/3589335.3651558",
+    "code": "https://github.com/Jyonn/SemanticTokenizer",
+    "venue": "WWW'24 (Companion)",
+    "year": 2024,
+    "category": "discriminative",
+    "sourceLine": 150,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "side-7fb184f9",
+    "method": "SIDE",
+    "title": "SIDE: Semantic ID Embedding for Effective Learning from Sequences",
+    "url": "https://doi.org/10.1007/978-3-032-16358-5_5",
+    "code": null,
+    "venue": "AdKDD'25",
+    "year": 2025,
+    "category": "discriminative",
+    "sourceLine": 151,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "usirl-86aeb7a6",
+    "method": "USIRL",
+    "title": "Unified Semantic and ID Representation Learning for Deep Recommenders",
+    "url": "https://arxiv.org/abs/2502.16474",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "discriminative",
+    "sourceLine": 152,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "idproxy-e737c1cc",
+    "method": "IDProxy",
+    "title": "IDProxy: Cold-Start CTR Prediction for Ads and Recommendation at Xiaohongshu with Multimodal LLMs",
+    "url": "https://arxiv.org/abs/2603.01590",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 153,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "rq-gmm-a9066c90",
+    "method": "RQ-GMM",
+    "title": "RQ-GMM: Residual Quantized Gaussian Mixture Model for Multimodal Semantic Discretization in CTR Prediction",
+    "url": "https://doi.org/10.1145/3805712.3809968",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 154,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "paletteid-4134cd26",
+    "method": "PaletteID",
+    "title": "PaletteID: Prototype-Composed Semantic Identifiers for Multimodal CTR Prediction",
+    "url": "https://arxiv.org/abs/2607.29000",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 155,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "dual-purpose-sids-767e3c8e",
+    "method": "Dual-Purpose SIDs",
+    "title": "Tokens are All You Need: Dual-purpose Semantic IDs for Achieving LLM-Level I/O Efficiency in Recommendation Systems",
+    "url": "https://arxiv.org/abs/2607.24865",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 156,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "fedmm-2072e918",
+    "method": "FedMM",
+    "title": "FedMM: Federated Collaborative Signal Quantization for Multi-Market CTR Prediction",
+    "url": "https://doi.org/10.1145/3805712.3809654",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 157,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "siren-dbe127ef",
+    "method": "SIREN",
+    "title": "SIREN: Unified Multi-Granularity Semantic Interaction for Multi-Modal Lifelong User Interest Modeling",
+    "url": "https://arxiv.org/abs/2605.25726",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 158,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "snapchat-sids-0b29cb6d",
+    "method": "Snapchat SIDs",
+    "title": "Semantic IDs for Recommender Systems at Snapchat: Use Cases, Technical Challenges, and Design Choices",
+    "url": "https://doi.org/10.1145/3805712.3808405",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 159,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "store-3966c3c0",
+    "method": "STORE",
+    "title": "STORE: Semantic Tokenization, Orthogonal Rotation and Efficient Attention for Scaling Up Ranking Models",
+    "url": "https://arxiv.org/abs/2511.18805",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "discriminative",
+    "sourceLine": 160,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "youtube-semantic-ids-32e8b61c",
+    "method": "YouTube Semantic IDs",
+    "title": "Better Generalization with Semantic IDs: A Case Study in Ranking for Recommendations",
+    "url": "https://doi.org/10.1145/3640457.3688190",
+    "code": null,
+    "venue": "RecSys'24",
+    "year": 2024,
+    "category": "discriminative",
+    "sourceLine": 161,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "das-9068f5b7",
+    "method": "DAS",
+    "title": "DAS: Dual-Aligned Semantic IDs Empowered Industrial Recommender System",
+    "url": "https://doi.org/10.1145/3746252.3761529",
+    "code": null,
+    "venue": "CIKM'25",
+    "year": 2025,
+    "category": "discriminative",
+    "sourceLine": 162,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "meta-sid-stability-0f22a4c8",
+    "method": "Meta SID Stability",
+    "title": "Enhancing Embedding Representation Stability in Recommendation Systems with Semantic ID",
+    "url": "https://doi.org/10.1145/3705328.3748123",
+    "code": null,
+    "venue": "RecSys'25",
+    "year": 2025,
+    "category": "discriminative",
+    "sourceLine": 163,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "trm-bc41eed4",
+    "method": "TRM",
+    "title": "Farewell to Item IDs: Unlocking the Scaling Potential of Large Ranking Models via Semantic Tokens",
+    "url": "https://arxiv.org/abs/2601.22694",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 164,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "sid-coord-99d6cf22",
+    "method": "SID-Coord",
+    "title": "SID-Coord: Coordinating Semantic IDs for ID-based Ranking in Short-Video Search",
+    "url": "https://doi.org/10.1145/3805712.3808436",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 165,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "gem-6730ca2e",
+    "method": "GEM",
+    "title": "Generative Enhanced Modeling: A Collaborative Framework for Enhancing User Representations via Semantic ID",
+    "url": "https://doi.org/10.1145/3805712.3808448",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "discriminative",
+    "sourceLine": 166,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "mmq-a21d6da3",
+    "method": "MMQ",
+    "title": "MMQ: Multimodal Mixture-of-Quantization Tokenization for Semantic ID Generation and User Behavioral Adaptation",
+    "url": "https://doi.org/10.1145/3773966.3777923",
+    "code": null,
+    "venue": "WSDM'26",
+    "year": 2026,
+    "category": "multimodal",
+    "sourceLine": 175,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "q-bert4rec-b88c0a9d",
+    "method": "Q-BERT4Rec",
+    "title": "Q-BERT4Rec: Quantized Semantic-ID Representation Learning for Multimodal Recommendation",
+    "url": "https://arxiv.org/abs/2512.02474",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "multimodal",
+    "sourceLine": 176,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "qarm-v2-6071018f",
+    "method": "QARM V2",
+    "title": "QARM V2: Quantitative Alignment Multi-Modal Recommendation for Reasoning User Sequence Modeling",
+    "url": "https://arxiv.org/abs/2602.08559",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "multimodal",
+    "sourceLine": 177,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "dmesr-6e4911fe",
+    "method": "DMESR",
+    "title": "DMESR: Dual-view MLLM-based Enhancing Framework for Multimodal Sequential Recommendation",
+    "url": "https://arxiv.org/abs/2602.13715",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "multimodal",
+    "sourceLine": 178,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "adasid-9756e8e4",
+    "method": "AdaSID",
+    "title": "Beyond Static Collision Handling: Adaptive Semantic ID Learning for Multimodal Recommendation at Industrial Scale",
+    "url": "https://arxiv.org/abs/2604.23522",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "multimodal",
+    "sourceLine": 179,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "multimodal-semantics-d1761e70",
+    "method": "Multimodal Semantics",
+    "title": "Beyond Unimodal Perspectives: Generative Retrieval with Multimodal Semantics",
+    "url": "https://doi.org/10.1145/3805712.3809844",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "multimodal",
+    "sourceLine": 180,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "fusid-9c7488ea",
+    "method": "FusID",
+    "title": "FusID: Modality-Fused Semantic IDs for Generative Music Recommendation",
+    "url": "https://arxiv.org/abs/2601.08764",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "multimodal",
+    "sourceLine": 181,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "letter-49b5909f",
+    "method": "LETTER",
+    "title": "Learnable Item Tokenization for Generative Recommendation",
+    "url": "https://doi.org/10.1145/3627673.3679569",
+    "code": "https://github.com/HonghuiBao2000/LETTER",
+    "venue": "CIKM'24",
+    "year": 2024,
+    "category": "collaborative",
+    "sourceLine": 197,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "cost-5dcad07c",
+    "method": "CoST",
+    "title": "CoST: Contrastive Quantization based Semantic Tokenization for Generative Recommendation",
+    "url": "https://doi.org/10.1145/3640457.3688178",
+    "code": null,
+    "venue": "RecSys'24",
+    "year": 2024,
+    "category": "collaborative",
+    "sourceLine": 198,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "etegrec-918ac226",
+    "method": "ETEGRec",
+    "title": "Generative Recommender with End-to-End Learnable Item Tokenization",
+    "url": "https://doi.org/10.1145/3726302.3729989",
+    "code": "https://github.com/RUCAIBox/ETEGRec",
+    "venue": "SIGIR'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 199,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "ccfrec-b6da4f78",
+    "method": "CCFRec",
+    "title": "Bridging Textual-Collaborative Gap through Semantic Codes for Sequential Recommendation",
+    "url": "https://doi.org/10.1145/3711896.3736869",
+    "code": "https://github.com/RUCAIBox/CCFRec",
+    "venue": "KDD'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 200,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "discrec-aac9669e",
+    "method": "DiscRec",
+    "title": "DiscRec: Disentangled Semantic-Collaborative Modeling for Generative Recommendation",
+    "url": "https://arxiv.org/abs/2506.15576",
+    "code": "https://github.com/Ten-Mao/DiscRec",
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 201,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "bbqrec-3f9f9c4c",
+    "method": "BBQRec",
+    "title": "BBQRec: Behavior-Bind Quantization for Multi-Modal Sequential Recommendation",
+    "url": "https://arxiv.org/abs/2504.06636",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 202,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "dq-vae-932fa7c5",
+    "method": "DQ-VAE",
+    "title": "Representation Quantization for Collaborative Filtering Augmentation",
+    "url": "https://arxiv.org/abs/2508.11194",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 203,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "adc-sid-ab533708",
+    "method": "ADC-SID",
+    "title": "Taming the Long Tail: Denoising Collaborative Information for Robust Semantic ID Generation",
+    "url": "https://arxiv.org/abs/2510.25622",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 204,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "cemg-6f5843f8",
+    "method": "CEMG",
+    "title": "CEMG: Collaborative-Enhanced Multimodal Generative Recommendation",
+    "url": "https://link.springer.com/chapter/10.1007/978-981-95-6950-2_36",
+    "code": null,
+    "venue": "MMM'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 205,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "decor-895cb13a",
+    "method": "DECOR",
+    "title": "Learning Decomposed Contextual Token Representations from Pretrained and Collaborative Signals for Generative Recommendation",
+    "url": "https://doi.org/10.1145/3805712.3809578",
+    "code": "https://github.com/yliuaa/DECOR",
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 206,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "gatesid-fc299373",
+    "method": "GateSID",
+    "title": "GateSID: Adaptive Gating for Balancing Semantic and Collaborative Signals in Recommendation",
+    "url": "https://arxiv.org/abs/2603.22916",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 207,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "sid-staleness-964657eb",
+    "method": "SID Staleness",
+    "title": "Mitigating Collaborative Semantic ID Staleness in Generative Retrieval",
+    "url": "https://doi.org/10.1145/3805712.3809877",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 208,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "unger-bff6b41a",
+    "method": "UNGER",
+    "title": "UNGER: Generative Recommendation with A Unified Code via Semantic and Collaborative Integration",
+    "url": "https://arxiv.org/abs/2502.06269",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 209,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "saviorrec-bdfcd357",
+    "method": "SaviorRec",
+    "title": "SaviorRec: Semantic-Behavior Alignment for Cold-Start Recommendation",
+    "url": "https://arxiv.org/abs/2508.01375",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 210,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "bi-level-tokenization-f18b08df",
+    "method": "Bi-Level Tokenization",
+    "title": "Bi-Level Optimization for Generative Recommendation: Bridging Tokenization and Generation",
+    "url": "https://doi.org/10.1145/3805712.3809632",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 211,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "prism-64499085",
+    "method": "PRISM",
+    "title": "PRISM: Purified Representation and Integrated Semantic Modeling for Generative Sequential Recommendation",
+    "url": "https://arxiv.org/abs/2601.16556",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 212,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "quasid-e938b176",
+    "method": "QuaSID",
+    "title": "Stop Treating Collisions Equally: Qualification-Aware Semantic ID Learning for Recommendation at Industrial Scale",
+    "url": "https://arxiv.org/abs/2603.00632",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 213,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "rethinking-sem-collab-51f938ed",
+    "method": "Rethinking Sem-Collab",
+    "title": "Rethinking Semantic Collaborative Integration: Why Alignment Is Not Enough",
+    "url": "https://doi.org/10.1145/3805712.3808539",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 214,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "qarm-8e915890",
+    "method": "QARM",
+    "title": "QARM: Quantitative Alignment Multi-Modal Recommendation at Kuaishou",
+    "url": "https://doi.org/10.1145/3746252.3761502",
+    "code": null,
+    "venue": "CIKM'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 215,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "mme-sid-c281a865",
+    "method": "MME-SID",
+    "title": "Empowering Large Language Model for Sequential Recommendation via Multimodal Embeddings and Semantic IDs",
+    "url": "https://doi.org/10.1145/3746252.3761169",
+    "code": "https://github.com/Applied-Machine-Learning-Lab/MME-SID",
+    "venue": "CIKM'25",
+    "year": 2025,
+    "category": "collaborative",
+    "sourceLine": 216,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "plum-d5734aa6",
+    "method": "PLUM",
+    "title": "PLUM: Adapting Pre-trained Language Models for Industrial-scale Generative Recommendations",
+    "url": "https://doi.org/10.1145/3774904.3792802",
+    "code": null,
+    "venue": "WWW'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 217,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "screc-435e2002",
+    "method": "SCRec",
+    "title": "Addressing Cross-Stage Decoupling of Semantic and Collaborative Signals in Generative Recommendation",
+    "url": "https://doi.org/10.1145/3773078.3831736",
+    "code": null,
+    "venue": "RecSys'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 218,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "dact-716b7285",
+    "method": "DACT",
+    "title": "Drift-Aware Continual Tokenization for Generative Recommendation",
+    "url": "https://arxiv.org/abs/2603.29705",
+    "code": "https://github.com/HomesAmaranta/DACT",
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 219,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "gris-387b7304",
+    "method": "GrIS",
+    "title": "Neither Black nor White: Balancing Semantic and Collaborative Signals with Graph-Informed Semantic IDs (GrIS)",
+    "url": "https://arxiv.org/abs/2610.01533",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "collaborative",
+    "sourceLine": 220,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "motorec-9044d02a",
+    "method": "MoToRec",
+    "title": "MoToRec: Sparse-Regularized Multimodal Tokenization for Cold-Start Recommendation",
+    "url": "https://doi.org/10.1609/aaai.v40i18.38558",
+    "code": null,
+    "venue": "AAAI'26",
+    "year": 2026,
+    "category": "cold-start",
+    "sourceLine": 227,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "coldgenrec-20e862b8",
+    "method": "ColdGenRec",
+    "title": "Cold-Starts in Generative Recommendation: A Reproducibility Study",
+    "url": "https://arxiv.org/abs/2603.29845",
+    "code": "https://github.com/zhangzhen-research/ColdGenrec",
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "cold-start",
+    "sourceLine": 228,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "gr-cold-item-reachability-d84f1f03",
+    "method": "GR Cold-Item Reachability",
+    "title": "Can Generative Recommendation Reach Cold Items? A Temporal Perspective on Semantic-ID Generation",
+    "url": "https://arxiv.org/abs/2607.21101",
+    "code": "https://github.com/Lucas-PJ/GRColdItemReachability",
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "cold-start",
+    "sourceLine": 229,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "gti-c6e6b4bd",
+    "method": "GTI",
+    "title": "Grounded Token Initialization for New Vocabulary in LMs for Generative Recommendation",
+    "url": "https://arxiv.org/abs/2604.02324",
+    "code": null,
+    "venue": "arXiv'26",
+    "year": 2026,
+    "category": "cold-start",
+    "sourceLine": 230,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "pin-scale-52830a5c",
+    "method": "Pin-SCALE",
+    "title": "Pin-SCALE: Semantic Cascading and Alignment Learning for Engagement-Aware IDs in Cold-Start Recommendations",
+    "url": "https://doi.org/10.1145/3805712.3808507",
+    "code": null,
+    "venue": "SIGIR'26",
+    "year": 2026,
+    "category": "cold-start",
+    "sourceLine": 231,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "quantizing-intent-0c052d0f",
+    "method": "Quantizing Intent",
+    "title": "Quantizing Intent: Cross-Domain Semantic IDs from Organic Activity for Industrial Ranking",
+    "url": "https://arxiv.org/abs/2606.01396",
+    "code": null,
+    "venue": "arXiv'26 (LinkedIn)",
+    "year": 2026,
+    "category": "cross-domain",
+    "sourceLine": 239,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "gencdsr-e282e0c0",
+    "method": "GenCDSR",
+    "title": "Empowering Cross-Domain Sequential Recommendation with Hybrid Tokenization and Serial-Parallel Decoding",
+    "url": "https://doi.org/10.1145/3773078.3831777",
+    "code": "https://github.com/Applied-Machine-Learning-Lab/RecSys2026_GenCDSR",
+    "venue": "RecSys'26",
+    "year": 2026,
+    "category": "cross-domain",
+    "sourceLine": 240,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "metarec-512bcc5b",
+    "method": "MetaRec",
+    "title": "Transferable Sequential Recommendation via Vector Quantized Meta Learning",
+    "url": "https://ieeexplore.ieee.org/document/10825425/",
+    "code": null,
+    "venue": "IEEE BigData'24",
+    "year": 2024,
+    "category": "cross-domain",
+    "sourceLine": 241,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "recgpt-b1089cbb",
+    "method": "RecGPT",
+    "title": "RecGPT: A Foundation Model for Sequential Recommendation",
+    "url": "https://aclanthology.org/2025.emnlp-main.513/",
+    "code": "https://github.com/HKUDS/RecGPT",
+    "venue": "EMNLP'25",
+    "year": 2025,
+    "category": "cross-domain",
+    "sourceLine": 242,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "recbase-9d44ee2a",
+    "method": "RecBase",
+    "title": "RecBase: Generative Foundation Model Pretraining for Zero-Shot Recommendation",
+    "url": "https://aclanthology.org/2025.emnlp-main.786/",
+    "code": null,
+    "venue": "EMNLP'25",
+    "year": 2025,
+    "category": "cross-domain",
+    "sourceLine": 243,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "gmc-78c67912",
+    "method": "GMC",
+    "title": "Generative Multi-Target Cross-Domain Recommendation",
+    "url": "https://arxiv.org/abs/2507.12871",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "cross-domain",
+    "sourceLine": 244,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "gencdr-0102be9d",
+    "method": "GenCDR",
+    "title": "From IDs to Semantics: A Generative Framework for Cross-Domain Recommendation with Adaptive Semantic Tokenization",
+    "url": "https://ojs.aaai.org/index.php/AAAI/article/view/38508",
+    "code": "https://github.com/hupeiyu21/GenCDR",
+    "venue": "AAAI'26",
+    "year": 2026,
+    "category": "cross-domain",
+    "sourceLine": 245,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "sidreasoner-d548d6ba",
+    "method": "SIDReasoner",
+    "title": "Reasoning over Semantic IDs Enhances Generative Recommendation",
+    "url": "https://doi.org/10.1145/3770855.3818122",
+    "code": "https://github.com/HappyPointer/SIDReasoner",
+    "venue": "KDD'26",
+    "year": 2026,
+    "category": "cross-task",
+    "sourceLine": 254,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "sigma-b04f9ead",
+    "method": "SIGMA",
+    "title": "SIGMA: A Semantic-Grounded Instruction-Driven Generative Multi-Task Recommender at AliExpress",
+    "url": "https://doi.org/10.1145/3805712.3808421",
+    "code": null,
+    "venue": "SIGIR'26 (Industry)",
+    "year": 2026,
+    "category": "cross-task",
+    "sourceLine": 255,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "unisearch-28f2affe",
+    "method": "UniSearch",
+    "title": "UniSearch: Rethinking Search System with a Unified Generative Architecture",
+    "url": "https://arxiv.org/abs/2509.06887",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "cross-task",
+    "sourceLine": 256,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "joint-search-recommendation-b814368a",
+    "method": "Joint Search & Recommendation",
+    "title": "Semantic IDs for Joint Generative Search and Recommendation",
+    "url": "https://doi.org/10.1145/3705328.3759300",
+    "code": null,
+    "venue": "RecSys'25",
+    "year": 2025,
+    "category": "cross-task",
+    "sourceLine": 257,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "gensar-48882efd",
+    "method": "GenSAR",
+    "title": "GenSAR: Unifying Balanced Search and Recommendation with Generative Retrieval",
+    "url": "https://doi.org/10.1145/3705328.3748071",
+    "code": null,
+    "venue": "RecSys'25",
+    "year": 2025,
+    "category": "cross-task",
+    "sourceLine": 258,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "item-id-survey-b6e36a89",
+    "method": "Item-ID Survey",
+    "title": "A Survey of Item Identifiers in Generative Recommendation: Construction, Alignment, and Generation",
+    "url": "https://doi.org/10.36227/techrxiv.176945895.52184668/v1",
+    "code": "https://github.com/HKBU-LAGAS/Awesome-Item-ID-Gen-RecSys",
+    "venue": "TechRxiv'26",
+    "year": 2026,
+    "category": "surveys",
+    "sourceLine": 267,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "practitioner-s-handbook-8239daf9",
+    "method": "Practitioner's Handbook",
+    "title": "Generative Recommendation with Semantic IDs: A Practitioner's Handbook",
+    "url": "https://doi.org/10.1145/3746252.3761612",
+    "code": null,
+    "venue": "CIKM'25",
+    "year": 2025,
+    "category": "surveys",
+    "sourceLine": 268,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "vq4rec-survey-da9e26e5",
+    "method": "VQ4Rec Survey",
+    "title": "Vector Quantization for Recommender Systems: A Review and Outlook",
+    "url": "https://arxiv.org/abs/2405.03110",
+    "code": "https://github.com/Jyonn/VQ4Rec",
+    "venue": "arXiv'24",
+    "year": 2024,
+    "category": "surveys",
+    "sourceLine": 269,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "gen-rec-data-model-tasks-21c2258f",
+    "method": "Gen-Rec Data/Model/Tasks",
+    "title": "A Survey on Generative Recommendation: Data, Model, and Tasks",
+    "url": "https://arxiv.org/abs/2510.27157",
+    "code": null,
+    "venue": "arXiv'25",
+    "year": 2025,
+    "category": "surveys",
+    "sourceLine": 270,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "gen-recsys-fa3b5088",
+    "method": "Gen-RecSys",
+    "title": "A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)",
+    "url": "https://doi.org/10.1145/3637528.3671474",
+    "code": null,
+    "venue": "KDD'24",
+    "year": 2024,
+    "category": "surveys",
+    "sourceLine": 271,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "gen-search-rec-survey-a0305b93",
+    "method": "Gen Search & Rec Survey",
+    "title": "A Survey of Generative Search and Recommendation in the Era of Large Language Models",
+    "url": "https://arxiv.org/abs/2404.16924",
+    "code": null,
+    "venue": "arXiv'24",
+    "year": 2024,
+    "category": "surveys",
+    "sourceLine": 272,
+    "assetKind": null,
+    "assetLabel": null
+  },
+  {
+    "id": "llm4rec-survey-76ba2c68",
+    "method": "LLM4Rec Survey",
+    "title": "A Survey on Large Language Models for Recommendation",
+    "url": "https://arxiv.org/abs/2305.19860",
+    "code": "https://github.com/WLiK/LLM4Rec-Awesome-Papers",
+    "venue": "arXiv'23",
+    "year": 2023,
+    "category": "surveys",
+    "sourceLine": 273,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "llm4rec-tois-survey-002ca70f",
+    "method": "LLM4Rec TOIS Survey",
+    "title": "How Can Recommender Systems Benefit from Large Language Models: A Survey",
+    "url": "https://doi.org/10.1145/3678004",
+    "code": "https://github.com/CHIANGEL/Awesome-LLM-for-RecSys",
+    "venue": "TOIS'25",
+    "year": 2025,
+    "category": "surveys",
+    "sourceLine": 274,
+    "assetKind": "code",
+    "assetLabel": "GitHub"
+  },
+  {
+    "id": "tutorial-a2297bdf",
+    "method": "Tutorial",
+    "title": "Tutorial on Large Language Models for Recommendation",
+    "url": "https://doi.org/10.1145/3604915.3609494",
+    "code": "https://llmrecsys.github.io/",
+    "venue": "RecSys'23",
+    "year": 2023,
+    "category": "tutorials",
+    "sourceLine": 280,
+    "assetKind": "website",
+    "assetLabel": "Website"
+  },
+  {
+    "id": "tutorial-24dd08ab",
+    "method": "Tutorial",
+    "title": "Large Language Models for Recommendation: Progresses and Future Directions",
+    "url": "https://doi.org/10.1145/3589335.3641247",
+    "code": "https://generative-rec.github.io/tutorial/",
+    "venue": "WWW'24 (Companion)",
+    "year": 2024,
+    "category": "tutorials",
+    "sourceLine": 281,
+    "assetKind": "website",
+    "assetLabel": "Website"
+  },
+  {
+    "id": "tutorial-42d368df",
+    "method": "Tutorial",
+    "title": "Recommendation with Generative Models (Gen-RecSys)",
+    "url": "https://doi.org/10.1145/3701551.3703485",
+    "code": "https://www.wsdm-conference.org/2025/tutorials/",
+    "venue": "WSDM'25",
+    "year": 2025,
+    "category": "tutorials",
+    "sourceLine": 282,
+    "assetKind": "website",
+    "assetLabel": "Website"
+  },
+  {
+    "id": "tutorial-5d29d6bc",
+    "method": "Tutorial",
+    "title": "Navigating Large Language Models for Recommendation: From Architecture to Learning Paradigms and Deployment",
+    "url": "https://doi.org/10.1145/3726302.3731696",
+    "code": "https://generative-rec.github.io/tutorial/",
+    "venue": "SIGIR'25",
+    "year": 2025,
+    "category": "tutorials",
+    "sourceLine": 283,
+    "assetKind": "website",
+    "assetLabel": "Website"
+  },
+  {
+    "id": "tutorial-90a42284",
+    "method": "Tutorial",
+    "title": "A Tutorial on Recent Advances in Generative Conversational Recommender Systems",
+    "url": "https://doi.org/10.1145/3705328.3748010",
+    "code": "https://recsys-lab.at/gen-conv-recsys-tutorial/",
+    "venue": "RecSys'25",
+    "year": 2025,
+    "category": "tutorials",
+    "sourceLine": 284,
+    "assetKind": "website",
+    "assetLabel": "Website"
+  },
+  {
+    "id": "tutorial-0c9e3873",
+    "method": "Tutorial",
+    "title": "Towards Large Generative Recommendation: A Tokenization Perspective",
+    "url": "https://doi.org/10.1145/3746252.3761451",
+    "code": "https://large-genrec.github.io/cikm2025.html",
+    "venue": "CIKM'25",
+    "year": 2025,
+    "category": "tutorials",
+    "sourceLine": 285,
+    "assetKind": "website",
+    "assetLabel": "Website"
+  },
+  {
+    "id": "tutorial-8601388a",
+    "method": "Tutorial",
+    "title": "Generative Recommendation Models: Progress and Directions",
+    "url": "https://doi.org/10.1145/3701716.3715856",
+    "code": "https://large-genrec.github.io/www2025.html",
+    "venue": "WWW'25 (Companion)",
+    "year": 2025,
+    "category": "tutorials",
+    "sourceLine": 286,
+    "assetKind": "website",
+    "assetLabel": "Website"
+  },
+  {
+    "id": "tutorial-86b08a7f",
+    "method": "Tutorial",
+    "title": "Tutorial on Generative Recommendation: Foundations and Frontiers",
+    "url": "https://doi.org/10.1145/3770855.3816450",
+    "code": "https://applied-machine-learning-lab.github.io/KDD2026_GenRec_Tutorial/",
+    "venue": "KDD'26",
+    "year": 2026,
+    "category": "tutorials",
+    "sourceLine": 287,
+    "assetKind": "website",
+    "assetLabel": "Website"
+  }
+];
+
+const useCases = [
+  {
+    "id": "new-items",
+    "label": {
+      "en": "Recommend new items",
+      "ko": "새 상품과 콘텐츠 추천"
+    },
+    "description": {
+      "en": "A new item has content but little interaction history. Explore how shared semantic structure can transfer knowledge to it, and when a generator can actually reach it.",
+      "ko": "새 상품에는 설명이나 이미지가 있지만 사용자 행동 기록은 부족합니다. 의미 구조를 공유해 지식을 전달하는 방법과 생성 모델이 새 상품에 실제로 도달할 수 있는지를 함께 살펴봅니다."
+    },
+    "needs": {
+      "en": "Generalize beyond memorized item IDs; evaluate genuinely new items with a temporal split.",
+      "ko": "개별 ID의 암기를 넘어 일반화하고, 시간 순서에 따라 분리한 새 상품으로 효과를 검증해야 합니다."
+    },
+    "categoryIds": [
+      "cold-start",
+      "construction",
+      "discriminative"
+    ],
+    "paperMethods": [
+      "MoToRec",
+      "ColdGenRec",
+      "GR Cold-Item Reachability",
+      "IDProxy",
+      "YouTube Semantic IDs"
+    ]
+  },
+  {
+    "id": "generate-candidates",
+    "label": {
+      "en": "Generate recommendation candidates",
+      "ko": "추천 후보를 직접 생성"
+    },
+    "description": {
+      "en": "Represent an item as a short code sequence and predict candidates from user history. Compare sequential, parallel, and alternative decoding approaches.",
+      "ko": "상품을 짧은 코드 시퀀스로 표현하고 사용자 이력으로부터 추천 후보를 예측합니다. 순차 생성, 병렬 생성과 대안적인 디코딩 방식을 비교합니다."
+    },
+    "needs": {
+      "en": "Useful candidate recall and ranking under latency, valid-ID, and catalog-update constraints.",
+      "ko": "응답 시간, 유효한 ID 생성, 상품 목록 갱신이라는 제약 안에서 후보 재현율과 순위 품질을 확보해야 합니다."
+    },
+    "categoryIds": [
+      "generative",
+      "construction"
+    ],
+    "paperMethods": [
+      "TIGER",
+      "RPG",
+      "LLaDA-Rec",
+      "AtSpeed",
+      "OneRec"
+    ]
+  },
+  {
+    "id": "content-and-behavior",
+    "label": {
+      "en": "Make IDs recommendation-aware",
+      "ko": "내용과 사용자 선호를 함께 반영"
+    },
+    "description": {
+      "en": "Items that look alike need not serve the same audience. Learn identities that preserve content while reflecting observed interaction patterns.",
+      "ko": "내용이 비슷한 상품이라도 선호하는 사용자는 다를 수 있습니다. 상품 정보를 보존하면서 관찰된 행동 관계도 반영하는 식별자를 학습합니다."
+    },
+    "needs": {
+      "en": "Align ID construction with the downstream objective without losing content signal or collapsing code use.",
+      "ko": "상품 내용의 신호와 다양한 코드 사용을 유지하며 ID 학습 목표를 실제 추천 목표와 연결해야 합니다."
+    },
+    "categoryIds": [
+      "collaborative",
+      "construction"
+    ],
+    "paperMethods": [
+      "LETTER",
+      "DIGER",
+      "ETEGRec",
+      "QARM",
+      "Bi-Level Tokenization"
+    ]
+  },
+  {
+    "id": "multimedia-catalog",
+    "label": {
+      "en": "Use rich multimedia content",
+      "ko": "다양한 멀티미디어 콘텐츠 활용"
+    },
+    "description": {
+      "en": "A catalog includes text, images, audio, or video. Study which information should be shared, separated, or fused before quantization.",
+      "ko": "텍스트·이미지·오디오·영상이 있는 상품 목록에서 어떤 정보를 공유하고 분리하며 양자화 전에 결합할지 살펴봅니다."
+    },
+    "needs": {
+      "en": "Retain complementary information and adapt pretrained multimodal features to user behavior.",
+      "ko": "모달리티마다 다른 정보를 보존하고 사전학습 표현을 사용자 행동에 맞게 활용해야 합니다."
+    },
+    "categoryIds": [
+      "multimodal",
+      "collaborative"
+    ],
+    "paperMethods": [
+      "MMQ",
+      "QARM",
+      "FusID",
+      "Multimodal Semantics",
+      "MME-SID"
+    ]
+  },
+  {
+    "id": "production-ranking",
+    "label": {
+      "en": "Integrate with ranking systems",
+      "ko": "기존 검색·랭킹 시스템에 연결"
+    },
+    "description": {
+      "en": "Keep a discriminative retrieval or ranking pipeline and use shared semantic codes as item features. Examine generalization, efficiency, and representation stability.",
+      "ko": "판별형 검색·랭킹 파이프라인에서 공유된 의미 코드를 상품 특징으로 활용합니다. 일반화, 효율과 표현 안정성을 함께 살펴봅니다."
+    },
+    "needs": {
+      "en": "Fit operational ranking and retrieval constraints; measure memory, computation, and quality rather than assuming compression yields gains.",
+      "ko": "운영 중인 검색·랭킹의 제약에 맞춰 메모리·연산·품질을 측정하고, 압축만으로 개선을 가정하지 않아야 합니다."
+    },
+    "categoryIds": [
+      "discriminative"
+    ],
+    "paperMethods": [
+      "UIST",
+      "YouTube Semantic IDs",
+      "Meta SID Stability",
+      "STORE",
+      "Snapchat SIDs"
+    ]
+  },
+  {
+    "id": "shared-representations",
+    "label": {
+      "en": "Share representations across tasks",
+      "ko": "도메인과 작업 사이에서 표현 공유"
+    },
+    "description": {
+      "en": "Search and recommendation, or multiple recommendation domains, may benefit from shared item representations. Study transfer alongside task-specific differences.",
+      "ko": "검색과 추천 또는 여러 추천 도메인에서 상품 표현을 공유합니다. 지식 전이의 이점과 작업별 차이를 함께 검토합니다."
+    },
+    "needs": {
+      "en": "Share useful information while checking negative transfer and the balance between task objectives.",
+      "ko": "유용한 정보를 공유하면서 한 작업의 성능 저하와 작업별 목표 사이의 균형을 확인해야 합니다."
+    },
+    "categoryIds": [
+      "cross-domain",
+      "cross-task"
+    ],
+    "paperMethods": [
+      "Joint Search & Recommendation",
+      "GenSAR",
+      "RecGPT",
+      "GenCDSR",
+      "GenCDR"
+    ]
+  }
+];
+
+const highlights = {
+  "TIGER": {
+    "summary": {
+      "en": "A foundational generative retrieval approach that represents an item with a sequence of Semantic ID tokens.",
+      "ko": "상품을 Semantic ID 토큰 시퀀스로 표현하고 다음 상품을 생성하는 대표적인 생성형 검색 접근입니다."
+    },
+    "changes": {
+      "en": "Replaces arbitrary item identifiers with content-derived residual-quantization codes for generative retrieval.",
+      "ko": "임의의 상품 식별자 대신 내용 벡터를 잔차 양자화한 코드를 생성형 검색에 사용합니다."
+    },
+    "inputs": {
+      "en": "Item content embeddings for ID construction; a user's interaction sequence for next-item prediction.",
+      "ko": "ID 구성에는 상품 내용 벡터를, 다음 상품 예측에는 사용자의 상호작용 이력을 사용합니다."
+    },
+    "training": {
+      "en": "First learns an RQ-VAE tokenizer; then trains a sequence model to predict the next item's code sequence.",
+      "ko": "RQ-VAE 토크나이저를 먼저 학습하고, 다음 상품의 코드 시퀀스를 예측하는 시퀀스 모델을 학습합니다."
+    },
+    "sourceUrls": [
+      "https://arxiv.org/abs/2305.05065"
+    ]
+  },
+  "LETTER": {
+    "summary": {
+      "en": "Learns item tokenization using content semantics, collaborative signals, and code-assignment diversity.",
+      "ko": "내용의 의미, 사용자 행동의 협업 신호, 코드 배정의 다양성을 함께 고려해 상품을 토큰화합니다."
+    },
+    "changes": {
+      "en": "Adds collaborative alignment and diversity regularization to an RQ-VAE-based tokenizer, alongside a ranking-guided generation objective.",
+      "ko": "RQ-VAE 기반 토크나이저에 협업 정렬과 다양성 정규화를 더하고, 추천 모델에는 순위를 고려한 생성 목표를 제안합니다."
+    },
+    "inputs": {
+      "en": "Item content representations and collaborative-filtering embeddings learned from user interactions.",
+      "ko": "상품 내용 표현과 사용자 행동에서 학습한 협업 필터링 임베딩을 사용합니다."
+    },
+    "training": {
+      "en": "Tokenizer objectives preserve semantics, align quantized and collaborative embeddings, and reduce code-assignment bias.",
+      "ko": "의미를 보존하고 양자화 표현과 협업 임베딩을 정렬하며 코드 배정 편향을 줄이도록 학습합니다."
+    },
+    "sourceUrls": [
+      "https://arxiv.org/abs/2405.07314"
+    ]
+  },
+  "DIGER": {
+    "summary": {
+      "en": "Lets recommendation gradients influence Semantic ID learning through differentiable code assignment.",
+      "ko": "추천 목표의 gradient가 미분 가능한 코드 선택을 통해 Semantic ID 학습에 영향을 주도록 합니다."
+    },
+    "changes": {
+      "en": "Uses Gumbel-noise exploration and uncertainty-decay strategies to reduce early codebook collapse during joint optimization.",
+      "ko": "공동 학습 초기에 일부 코드에 선택이 몰리는 문제를 줄이기 위해 Gumbel noise 탐색과 불확실성 감소 전략을 사용합니다."
+    },
+    "inputs": {
+      "en": "Item content for semantic indexing and interaction histories for generative recommendation.",
+      "ko": "의미 인덱싱을 위한 상품 내용과 생성형 추천을 위한 사용자 상호작용 이력을 사용합니다."
+    },
+    "training": {
+      "en": "Connects tokenizer and recommender optimization; assignment noise encourages exploration early and is reduced over training. This uncertainty concerns code assignment.",
+      "ko": "토크나이저와 추천 모델의 학습을 연결합니다. 초기에 코드 탐색을 유도하고 점차 노이즈를 줄이며, 여기서 불확실성은 코드 배정에 관한 개념입니다."
+    },
+    "sourceUrls": [
+      "https://arxiv.org/abs/2601.19711"
+    ]
+  },
+  "GRAM": {
+    "summary": {
+      "en": "Combines semantic-aware, multi-granular item information for generative recommendation through late fusion.",
+      "ko": "여러 수준의 상품 정보를 의미에 맞게 표현하고 late fusion으로 결합하는 생성형 추천 연구입니다."
+    },
+    "changes": {
+      "en": "Translates hierarchical and collaborative relations into a lexical space and delays fusion of separately encoded prompts until decoding.",
+      "ko": "계층·협업 관계를 어휘 공간으로 옮기고 여러 프롬프트를 따로 인코딩한 뒤 디코딩 단계에서 결합합니다."
+    },
+    "inputs": {
+      "en": "User interaction history and item information represented through prompts at multiple granularities.",
+      "ko": "사용자 상호작용 이력과 여러 세분성의 프롬프트로 표현한 상품 정보를 사용합니다."
+    },
+    "training": {
+      "en": "A semantic-to-lexical representation and multi-granular late-fusion architecture support target-item generation.",
+      "ko": "의미를 어휘로 옮기는 표현과 다중 세분성 late-fusion 구조로 목표 상품 생성을 학습합니다."
+    },
+    "sourceUrls": [
+      "https://aclanthology.org/2025.acl-long.1596/"
+    ]
+  },
+  "ActionPiece": {
+    "summary": {
+      "en": "Tokenizes action sequences contextually instead of treating every item as an isolated tokenization unit.",
+      "ko": "각 상품을 독립적으로만 토큰화하지 않고 행동 시퀀스의 맥락을 반영해 토큰화합니다."
+    },
+    "changes": {
+      "en": "Builds tokens from co-occurring feature patterns in action sequences and handles the unordered nature of features with set-permutation regularization.",
+      "ko": "행동 시퀀스에서 함께 나타나는 특징 패턴으로 토큰을 만들고, 특징 집합의 순서가 고정되지 않도록 set-permutation 정규화를 사용합니다."
+    },
+    "inputs": {
+      "en": "A sequence of user actions, each represented by a set of item features.",
+      "ko": "각 행동을 상품 특징의 집합으로 표현한 사용자 행동 시퀀스를 사용합니다."
+    },
+    "training": {
+      "en": "Learns a feature-pattern vocabulary for sequence tokenization and uses the resulting tokens for generative recommendation.",
+      "ko": "시퀀스 토큰화를 위한 특징 패턴 어휘를 구성하고 생성된 토큰을 생성형 추천에 사용합니다."
+    },
+    "sourceUrls": [
+      "https://proceedings.mlr.press/v267/hou25f.html"
+    ]
+  },
+  "QARM": {
+    "summary": {
+      "en": "Aligns pretrained multimodal information with the needs of downstream recommendation at Kuaishou.",
+      "ko": "Kuaishou에서 사전학습 멀티모달 정보를 실제 추천 작업에 맞춰 활용하는 연구입니다."
+    },
+    "changes": {
+      "en": "Addresses the objective mismatch between multimodal pretraining and user-interaction learning, and the limits of cached, fixed content representations.",
+      "ko": "멀티모달 사전학습과 사용자 행동 학습의 목표 차이, 캐시에 고정된 내용 표현의 한계를 다룹니다."
+    },
+    "inputs": {
+      "en": "Multimodal content representations together with user-item interaction signals.",
+      "ko": "멀티모달 내용 표현과 사용자–상품 상호작용 신호를 함께 사용합니다."
+    },
+    "training": {
+      "en": "A quantitative multimodal framework provides specialized, trainable information for downstream recommendation models.",
+      "ko": "정량적 멀티모달 프레임워크를 통해 다운스트림 추천 모델에 특화된 학습 가능한 정보를 제공합니다."
+    },
+    "sourceUrls": [
+      "https://arxiv.org/abs/2411.11739"
+    ]
+  },
+  "MMQ": {
+    "summary": {
+      "en": "Uses shared and modality-specific quantization experts to construct multimodal Semantic IDs.",
+      "ko": "모달리티 공통 전문가와 전용 양자화 전문가를 사용해 멀티모달 Semantic ID를 구성합니다."
+    },
+    "changes": {
+      "en": "Separates shared and specific information, then adapts IDs to user behavior while retaining multimodal information.",
+      "ko": "공통 정보와 고유 정보를 분리하고, 멀티모달 정보를 유지하면서 ID를 사용자 행동에 맞게 조정합니다."
+    },
+    "inputs": {
+      "en": "Multiple content modalities and behavioral signals for downstream adaptation.",
+      "ko": "여러 종류의 콘텐츠 정보와 후속 적응을 위한 사용자 행동 신호를 사용합니다."
+    },
+    "training": {
+      "en": "A shared-specific tokenizer uses expert regularization; behavior-aware fine-tuning includes a multimodal reconstruction objective.",
+      "ko": "공통·전용 토크나이저에 전문가 정규화를 적용하고, 행동 기반 후속 학습에서 멀티모달 복원 목표를 함께 사용합니다."
+    },
+    "sourceUrls": [
+      "https://arxiv.org/abs/2508.15281"
+    ]
+  },
+  "Joint Search & Recommendation": {
+    "summary": {
+      "en": "Studies Semantic IDs as a shared item representation for joint generative search and recommendation.",
+      "ko": "검색과 추천을 함께 수행하는 생성 모델에서 Semantic ID를 공통 상품 표현으로 사용하는 방법을 연구합니다."
+    },
+    "changes": {
+      "en": "Compares task-specific and cross-task embeddings, as well as shared versus separate ID vocabularies.",
+      "ko": "작업별 임베딩과 공동 임베딩, 공유 ID 어휘와 분리 ID 어휘를 비교합니다."
+    },
+    "inputs": {
+      "en": "Search query-item pairs, recommendation interactions, and embeddings used to construct item identifiers.",
+      "ko": "검색 쿼리–상품 관계, 추천 상호작용과 상품 식별자 구성을 위한 임베딩을 사용합니다."
+    },
+    "training": {
+      "en": "Evaluates how embedding training and identifier sharing affect both tasks in a unified generative model.",
+      "ko": "통합 생성 모델에서 임베딩 학습과 식별자 공유 방식이 두 작업의 성능에 미치는 영향을 평가합니다."
+    },
+    "sourceUrls": [
+      "https://arxiv.org/abs/2508.10478"
+    ]
+  },
+  "GenSAR": {
+    "summary": {
+      "en": "Unifies generative search and recommendation while examining the balance between their objectives.",
+      "ko": "검색과 추천의 목표 사이에서 균형을 고려하는 통합 생성형 검색·추천 연구입니다."
+    },
+    "changes": {
+      "en": "Uses dual-purpose identifiers and tailored training strategies to incorporate semantic relevance and collaborative signals.",
+      "ko": "의미적 관련성과 협업 신호를 함께 반영하기 위해 이중 목적 식별자와 맞춤형 학습 전략을 사용합니다."
+    },
+    "inputs": {
+      "en": "Search and recommendation supervision, including query relevance and interaction behavior.",
+      "ko": "쿼리 관련성과 사용자 행동을 포함한 검색·추천 감독 신호를 사용합니다."
+    },
+    "training": {
+      "en": "Joint generative training aims to exploit complementary information while balancing search and recommendation performance.",
+      "ko": "공동 생성 학습에서 상호 보완적인 정보를 활용하며 검색과 추천 성능의 균형을 고려합니다."
+    },
+    "sourceUrls": [
+      "https://arxiv.org/abs/2504.05730"
+    ]
+  }
+};
+
+const resources = [
+  {
+    "label": "HKBU-LAGAS/Awesome-Item-ID-Gen-RecSys",
+    "url": "https://github.com/HKBU-LAGAS/Awesome-Item-ID-Gen-RecSys"
+  },
+  {
+    "label": "hyp1231/awesome-generative-recommendation",
+    "url": "https://github.com/hyp1231/awesome-generative-recommendation"
+  },
+  {
+    "label": "Kuaishou-RecModel/Tri-Decoupled-GenRec",
+    "url": "https://github.com/Kuaishou-RecModel/Tri-Decoupled-GenRec"
+  },
+  {
+    "label": "Jyonn/VQ4Rec",
+    "url": "https://github.com/Jyonn/VQ4Rec"
+  },
+  {
+    "label": "jihoo-kim/Awesome-Generative-RecSys",
+    "url": "https://github.com/jihoo-kim/Awesome-Generative-RecSys"
+  },
+  {
+    "label": "WLiK/LLM4Rec-Awesome-Papers",
+    "url": "https://github.com/WLiK/LLM4Rec-Awesome-Papers"
+  },
+  {
+    "label": "CHIANGEL/Awesome-LLM-for-RecSys",
+    "url": "https://github.com/CHIANGEL/Awesome-LLM-for-RecSys"
+  },
+  {
+    "label": "Chriskuei/awesome-generative-retrieval-models",
+    "url": "https://github.com/Chriskuei/awesome-generative-retrieval-models"
+  },
+  {
+    "label": "HaFred/awesome-generative-recsys",
+    "url": "https://github.com/HaFred/awesome-generative-recsys"
+  }
+];
+
+const citation = "@inproceedings{li2026ids,\n  title     = {IDs That Mean Something: A Hands-On Tutorial on Semantic IDs for Recommender Systems},\n  author    = {Li, Roger Zhe and Salah, Aghiles and Sertkan, Mete and Jin, Changhong and Niu, Yingjie and Dong, Ruihai and Smyth, Barry},\n  booktitle = {Proceedings of the 35th ACM International Conference on Information and Knowledge Management (CIKM '26)},\n  year      = {2026},\n  publisher = {ACM},\n  address   = {New York, NY, USA},\n  doi       = {10.1145/3799682.3839274}\n}";
+
+return {meta,categories,papers,useCases,highlights,resources,citation};
+})();
+const graphModule=(()=>{
+const SVG_NS = 'http://www.w3.org/2000/svg';
+let graphSerial = 0;
+
+const COPY = {
+  en: {
+    label: 'Interactive paper relationship map', zoomIn: 'Zoom in', zoomOut: 'Zoom out', fit: 'Reset view',
+    repository: 'Repository classification', editorial: 'Editorial association',
+    note: 'Dashed links are editorial associations—not citations, shared datasets, or claims of influence.',
+    domains: 'REPOSITORY CATEGORIES', uses: 'APPLICATION CONTEXTS', papers: 'PAPERS IN THE SELECTED CATEGORY',
+    hint: 'Drag to explore · Scroll to zoom · Tab + Enter to select',
+    more: 'Show 20 more', all: 'Show all', list: 'Browse these papers as a list', empty: 'No papers in this category.', collapsed: 'Select this category again to expand its papers.',
+    noCategories: 'No categories to display.', search: 'Search matches', selected: 'Selected category',
+    count: (shown, total) => `${shown} of ${total} papers shown`,
+    category: (name, count, expanded) => `${name}, ${count} papers. ${expanded ? 'Collapse' : 'Expand'} category.`,
+    use: name => `${name}. Highlight associated categories.`,
+    selectedUse: name => `Exploring: ${name}`, clear: 'Clear highlight',
+  },
+  ko: {
+    label: '논문 관계 탐색 지도', zoomIn: '확대', zoomOut: '축소', fit: '보기 초기화',
+    repository: '저장소의 분류', editorial: '편집상 연관 분야',
+    note: '점선은 편집상 연관 분야를 나타냅니다. 인용·공통 데이터셋·연구 영향 관계를 뜻하지 않습니다.',
+    domains: '저장소 분류', uses: '활용 분야', papers: '선택한 분류의 논문',
+    hint: '드래그로 이동 · 스크롤로 확대 · Tab + Enter로 선택',
+    more: '20편 더 보기', all: '모두 보기', list: '논문을 목록으로 보기', empty: '이 분류에 논문이 없습니다.', collapsed: '선택한 분류를 다시 누르면 논문을 펼칩니다.',
+    noCategories: '표시할 분류가 없습니다.', search: '검색 일치', selected: '선택한 분류',
+    count: (shown, total) => `전체 ${total}편 중 ${shown}편 표시`,
+    category: (name, count, expanded) => `${name}, 논문 ${count}편. 분류 ${expanded ? '접기' : '펼치기'}.`,
+    use: name => `${name}. 관련 분류 강조하기.`,
+    selectedUse: name => `살펴보는 분야: ${name}`, clear: '강조 해제',
+  },
+};
+
+function html(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text != null) element.textContent = text;
+  return element;
+}
+
+function svgElement(tag, attributes = {}) {
+  const element = document.createElementNS(SVG_NS, tag);
+  Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, String(value)));
+  return element;
+}
+
+function local(value, lang, fallback = '') {
+  if (typeof value === 'string') return value;
+  return value?.[lang] || value?.en || value?.ko || fallback;
+}
+
+function wrapLabel(value, maxLength, maxLines) {
+  const words = String(value || '').split(/\s+/);
+  const lines = [];
+  let current = '';
+  words.forEach(word => {
+    if (current && `${current} ${word}`.length > maxLength) {
+      lines.push(current);
+      current = word;
+    } else current += `${current ? ' ' : ''}${word}`;
+  });
+  if (current) lines.push(current);
+  if (lines.length > maxLines) {
+    lines.length = maxLines;
+    lines[maxLines - 1] = `${lines[maxLines - 1].slice(0, maxLength - 1).trimEnd()}…`;
+  }
+  return lines;
+}
+
+function textLines(parent, text, x, y, { maxLength = 30, maxLines = 2, lineHeight = 17, className = '', anchor = 'start' } = {}) {
+  const element = svgElement('text', { x, y, 'text-anchor': anchor, class: className });
+  wrapLabel(text, maxLength, maxLines).forEach((line, index) => {
+    const span = svgElement('tspan', { x, dy: index ? lineHeight : 0 });
+    span.textContent = line;
+    element.append(span);
+  });
+  parent.append(element);
+  return element;
+}
+
+/**
+ * An intentionally two-layer relationship map: category membership comes from
+ * repository data; application links are editorial and never imply citations.
+ * All paper details are delegated to the host via onSelectPaper(paper).
+ */
+function mountGraph(container, options = {}) {
+  const {
+    categories = [], papers = [], useCases = [], lang: language = 'en',
+    onSelectPaper, onSelectCategory, filterCategory, query = '',
+  } = options;
+  const lang = language === 'ko' ? 'ko' : 'en';
+  const copy = COPY[lang];
+  const serial = ++graphSerial;
+  const lifetime = new AbortController();
+  let renderedEvents = new AbortController();
+  let destroyed = false;
+  let frame = 0;
+  let selectedCategory = categories.find(category => category.id === filterCategory)?.id || categories[0]?.id;
+  let selectedUse = null;
+  let selectedPaper = null;
+  let isExpanded = true;
+  let shownLimit = 6;
+  let world = { width: 1200, height: 800 };
+  let viewport = { width: 1000, height: 640 };
+  let transform = { x: 0, y: 0, scale: 1 };
+  let pan = null;
+  const search = String(query).trim().toLocaleLowerCase();
+  const categoryName = category => local(category?.[lang] || category?.en || category?.label, lang, category?.id || '');
+  const paperCategories = paper => Array.isArray(paper.category) ? paper.category : [paper.category ?? paper.categoryId];
+  const papersIn = id => papers.filter(paper => paperCategories(paper).includes(id));
+  const matches = paper => {
+    const category = categories.find(item => paperCategories(paper).includes(item.id));
+    return !search || [paper.method, paper.title, paper.venue, paper.year, category?.en, category?.ko,
+      local(category?.description, lang)].join(' ').toLocaleLowerCase().includes(search);
+  };
+  const categoryColor = category => /^#[\da-f]{3,8}$/i.test(category?.color || '') ? category.color : '#79b8ff';
+
+  const root = html('section', 'graph-root');
+  root.lang = lang;
+  root.setAttribute('aria-label', copy.label);
+  const toolbar = html('div', 'graph-toolbar');
+  const legend = html('div', 'graph-legend');
+  for (const [type, label] of [['solid', copy.repository], ['dashed', copy.editorial]]) {
+    const item = html('span', 'graph-legend-item');
+    item.append(html('i', `graph-legend-line graph-legend-line--${type}`), html('span', '', label));
+    legend.append(item);
+  }
+  const controls = html('div', 'graph-controls');
+  controls.setAttribute('role', 'group');
+  controls.setAttribute('aria-label', copy.label);
+  const button = (label, content, handler) => {
+    const element = html('button', 'graph-control', content);
+    element.type = 'button';
+    element.title = label;
+    element.setAttribute('aria-label', label);
+    element.addEventListener('click', handler, { signal: lifetime.signal });
+    controls.append(element);
+    return element;
+  };
+  button(copy.zoomOut, '−', () => zoomAt(1 / 1.25, viewport.width / 2, viewport.height / 2));
+  button(copy.zoomIn, '+', () => zoomAt(1.25, viewport.width / 2, viewport.height / 2));
+  const fitButton = button(copy.fit, '⤢', () => fit());
+  fitButton.classList.add('graph-control--fit');
+  toolbar.append(legend, controls);
+
+  const stage = html('div', 'graph-stage');
+  const svg = svgElement('svg', { class: 'graph-svg', role: 'group', 'aria-label': copy.label });
+  const description = svgElement('desc', { id: `graph-description-${serial}` });
+  description.textContent = `${copy.hint}. ${copy.note}`;
+  svg.setAttribute('aria-describedby', description.id);
+  const defs = svgElement('defs');
+  const grid = svgElement('pattern', { id: `graph-grid-${serial}`, width: 25, height: 25, patternUnits: 'userSpaceOnUse' });
+  grid.append(svgElement('circle', { cx: 1, cy: 1, r: 0.8, fill: '#28344c' }));
+  defs.append(grid);
+  const background = svgElement('rect', { width: '100%', height: '100%', fill: `url(#graph-grid-${serial})`, class: 'graph-background' });
+  const scene = svgElement('g', { class: 'graph-scene' });
+  svg.append(description, defs, background, scene);
+  stage.append(svg);
+  const status = html('div', 'graph-status');
+  status.setAttribute('aria-live', 'polite');
+  const footer = html('div', 'graph-footer');
+  const footerActions = html('div', 'graph-footer-actions');
+  const hint = html('p', 'graph-hint', copy.hint);
+  footer.append(status, footerActions);
+  const note = html('p', 'graph-note', copy.note);
+  const fallback = html('details', 'graph-list');
+  fallback.open = window.matchMedia?.('(max-width: 700px)').matches || false;
+  fallback.append(html('summary', '', copy.list));
+  const list = html('ul', 'graph-paper-list');
+  fallback.append(list);
+  root.append(toolbar, stage, footer, hint, note, fallback);
+  container.append(root);
+
+  function applyTransform() {
+    scene.setAttribute('transform', `translate(${transform.x} ${transform.y}) scale(${transform.scale})`);
+  }
+
+  function measure() {
+    const rect = stage.getBoundingClientRect();
+    viewport = { width: rect.width || 1000, height: rect.height || 640 };
+    svg.setAttribute('viewBox', `0 0 ${viewport.width} ${viewport.height}`);
+  }
+
+  function fit() {
+    if (destroyed) return;
+    measure();
+    // Keep node labels readable. Fitting a tall category's entire paper set into
+    // one viewport made every label microscopic; lower rows remain pannable.
+    const scale = Math.min((viewport.width - 28) / world.width, 1.12);
+    transform = { scale, x: (viewport.width - world.width * scale) / 2, y: 24 };
+    applyTransform();
+  }
+
+  function zoomAt(factor, x, y) {
+    const next = Math.max(0.16, Math.min(3.5, transform.scale * factor));
+    const actual = next / transform.scale;
+    transform = { scale: next, x: x - (x - transform.x) * actual, y: y - (y - transform.y) * actual };
+    applyTransform();
+  }
+
+  function activateNode(element, action) {
+    element.setAttribute('tabindex', '0');
+    element.setAttribute('role', 'button');
+    element.addEventListener('click', event => { event.stopPropagation(); action(); }, { signal: renderedEvents.signal });
+    element.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        event.stopPropagation();
+        action();
+      }
+    }, { signal: renderedEvents.signal });
+  }
+
+  function makePath(source, target, type, color, active = false) {
+    const mid = (source.y + target.y) / 2;
+    const path = svgElement('path', {
+      d: `M ${source.x} ${source.y} C ${source.x} ${mid}, ${target.x} ${mid}, ${target.x} ${target.y}`,
+      class: `graph-edge graph-edge--${type}${active ? ' is-active' : ''}`,
+      stroke: color,
+    });
+    return path;
+  }
+
+  function draw() {
+    if (destroyed) return;
+    measure();
+    renderedEvents.abort();
+    renderedEvents = new AbortController();
+    scene.replaceChildren();
+    list.replaceChildren();
+    footerActions.replaceChildren();
+    const chosen = categories.find(category => category.id === selectedCategory);
+    if (!chosen) {
+      status.textContent = copy.noCategories;
+      fit();
+      return;
+    }
+    const categoryPapers = papersIn(selectedCategory);
+    // Search highlights matches and brings them into the visible page without
+    // silently removing other papers from the selected repository category.
+    const ordered = search ? categoryPapers.filter(matches).concat(categoryPapers.filter(paper => !matches(paper))) : categoryPapers;
+    const visiblePapers = isExpanded ? ordered.slice(0, shownLimit) : [];
+    const responsiveColumns = Math.max(2, Math.min(6, Math.floor((viewport.width - 36) / 214)));
+    const categoryColumns = Math.min(responsiveColumns, Math.max(1, categories.length));
+    const useColumns = Math.min(responsiveColumns, Math.max(1, useCases.length));
+    world.width = Math.max(420, Math.max(categoryColumns, useColumns) * 214 + 36);
+    const paperColumns = Math.min(4, Math.max(1, visiblePapers.length), Math.max(1, Math.floor((world.width - 36) / 280)));
+    const useRows = Math.ceil(useCases.length / useColumns);
+    const categoryRows = Math.ceil(categories.length / categoryColumns);
+    const useY = 52;
+    const categoryY = useCases.length ? useY + useRows * 56 + 52 : 66;
+    const paperY = categoryY + categoryRows * 74 + 72;
+    const paperRows = Math.ceil(visiblePapers.length / paperColumns);
+    world.height = paperY + Math.max(1, paperRows) * 96 + 24;
+    const readableScale = Math.min((viewport.width - 28) / world.width, 1.12);
+    stage.style.height = `${Math.min(920, Math.max(520, Math.ceil(world.height * readableScale + 48)))}px`;
+    const layers = { edges: svgElement('g', { 'aria-hidden': 'true' }), labels: svgElement('g', { 'aria-hidden': 'true' }), nodes: svgElement('g') };
+    scene.append(layers.edges, layers.labels, layers.nodes);
+    const layout = (items, columns, gapX, gapY, y) => items.map((item, index) => {
+      const row = Math.floor(index / columns);
+      const rowCount = Math.min(columns, items.length - row * columns);
+      return { item, x: world.width / 2 + (index % columns - (rowCount - 1) / 2) * gapX, y: y + row * gapY };
+    });
+    const categoryPositions = layout(categories, categoryColumns, 214, 74, categoryY);
+    const usePositions = layout(useCases, useColumns, 214, 56, useY);
+    const paperPositions = layout(visiblePapers, paperColumns, 280, 96, paperY);
+    const byCategory = new Map(categoryPositions.map(position => [position.item.id, position]));
+    const selectedPosition = byCategory.get(selectedCategory);
+    const activeUse = useCases.find(use => use.id === selectedUse);
+    const relatedIds = activeUse?.categoryIds || [];
+    textLines(layers.labels, copy.domains, 28, categoryY - 48, { className: 'graph-band-label', maxLength: 90, maxLines: 1 });
+    if (useCases.length) textLines(layers.labels, copy.uses, 28, 17, { className: 'graph-band-label', maxLength: 90, maxLines: 1 });
+    textLines(layers.labels, copy.papers, 28, paperY - 63, { className: 'graph-band-label', maxLength: 90, maxLines: 1 });
+
+    for (const { item, x, y } of usePositions) {
+      for (const categoryId of item.categoryIds || []) {
+        const target = byCategory.get(categoryId);
+        if (target) layers.edges.append(makePath({ x, y: y + 22 }, { x: target.x, y: target.y - 30 }, 'editorial', '#72809b', selectedUse === item.id));
+      }
+    }
+    for (const position of paperPositions) {
+      layers.edges.append(makePath({ x: selectedPosition.x, y: selectedPosition.y + 30 }, { x: position.x, y: position.y - 40 }, 'repository', categoryColor(chosen), selectedPaper === position.item.id));
+    }
+
+    for (const { item, x, y } of usePositions) {
+      const name = local(item.label, lang, item.id);
+      const node = svgElement('g', { transform: `translate(${x} ${y})`, class: `graph-node graph-use-node${selectedUse === item.id ? ' is-selected' : ''}`, 'data-node-type': 'use', 'aria-label': copy.use(name), 'aria-pressed': selectedUse === item.id });
+      const title = svgElement('title');
+      title.textContent = [name, local(item.description, lang)].filter(Boolean).join(' — ');
+      node.append(title, svgElement('rect', { x: -100, y: -23, width: 200, height: 46, rx: 23, class: 'graph-use-shape' }));
+      textLines(node, name, 0, -1, { anchor: 'middle', maxLength: 25, maxLines: 2, lineHeight: 15, className: 'graph-use-label' });
+      activateNode(node, () => {
+        selectedUse = selectedUse === item.id ? null : item.id;
+        draw();
+        scene.querySelector(`[data-use-id="${CSS.escape(String(item.id))}"]`)?.focus({ preventScroll: true });
+      });
+      node.dataset.useId = item.id;
+      layers.nodes.append(node);
+    }
+
+    for (const { item, x, y } of categoryPositions) {
+      const active = item.id === selectedCategory;
+      const related = relatedIds.includes(item.id);
+      const name = categoryName(item);
+      const color = categoryColor(item);
+      const count = papersIn(item.id).length;
+      const node = svgElement('g', { transform: `translate(${x} ${y})`, class: `graph-node graph-category-node${active ? ' is-selected' : ''}${related ? ' is-related' : ''}`, 'data-node-type': 'category', 'aria-label': copy.category(name, count, active && isExpanded), 'aria-pressed': active, 'aria-expanded': active && isExpanded });
+      node.style.setProperty('--graph-node-color', color);
+      const title = svgElement('title');
+      title.textContent = [name, local(item.description, lang)].filter(Boolean).join(' — ');
+      node.append(title);
+      node.append(svgElement('rect', { x: -100, y: -31, width: 200, height: 62, rx: 14, class: 'graph-category-shape' }));
+      node.append(svgElement('circle', { cx: -80, cy: -11, r: 3.5, fill: color }));
+      textLines(node, name, -67, -7, { maxLength: 24, maxLines: 1, className: 'graph-category-label' });
+      textLines(node, lang === 'ko' ? `${count}편${active ? (isExpanded ? ' · 펼침' : ' · 접힘') : ''}` : `${count} papers${active ? (isExpanded ? ' · expanded' : ' · collapsed') : ''}`, -80, 15, { maxLines: 1, className: 'graph-category-count' });
+      activateNode(node, () => {
+        const changed = selectedCategory !== item.id;
+        isExpanded = changed ? true : !isExpanded;
+        selectedCategory = item.id;
+        selectedPaper = null;
+        shownLimit = 6;
+        draw();
+        fit();
+        scene.querySelector(`[data-category-id="${CSS.escape(String(item.id))}"]`)?.focus({ preventScroll: true });
+        if (changed) onSelectCategory?.(item.id);
+      });
+      node.dataset.categoryId = item.id;
+      layers.nodes.append(node);
+    }
+
+    for (const { item, x, y } of paperPositions) {
+      const match = Boolean(search && matches(item));
+      const node = svgElement('g', { transform: `translate(${x} ${y})`, class: `graph-node graph-paper-node${match ? ' is-match' : ''}${search && !match ? ' is-muted' : ''}${selectedPaper === item.id ? ' is-selected' : ''}`, 'data-node-type': 'paper', 'aria-label': `${item.method || ''}: ${item.title || ''}${item.venue ? `. ${item.venue}` : ''}` });
+      node.style.setProperty('--graph-node-color', categoryColor(chosen));
+      const title = svgElement('title');
+      title.textContent = [item.method, item.title, item.venue].filter(Boolean).join(' — ');
+      node.append(title, svgElement('rect', { x: -128, y: -40, width: 256, height: 82, rx: 12, class: 'graph-paper-shape' }));
+      node.append(svgElement('rect', { x: -128, y: -25, width: 3, height: 33, rx: 1.5, fill: categoryColor(chosen) }));
+      textLines(node, item.method || String(item.year || ''), -112, -17, { maxLength: 29, maxLines: 1, className: 'graph-paper-method' });
+      textLines(node, item.title || item.method, -112, 3, { maxLength: 35, maxLines: 2, lineHeight: 15, className: 'graph-paper-title' });
+      if (match) node.append(svgElement('circle', { cx: 114, cy: -25, r: 3.5, class: 'graph-search-dot' }));
+      activateNode(node, () => {
+        selectedPaper = item.id;
+        draw();
+        scene.querySelector(`[data-paper-id="${CSS.escape(String(item.id))}"]`)?.focus({ preventScroll: true });
+        onSelectPaper?.(item);
+      });
+      node.dataset.paperId = item.id;
+      layers.nodes.append(node);
+    }
+
+    if (!visiblePapers.length) textLines(layers.labels, isExpanded ? copy.empty : copy.collapsed, world.width / 2, paperY, { anchor: 'middle', maxLength: 80, className: 'graph-empty' });
+    status.replaceChildren(html('strong', '', categoryName(chosen)), html('span', '', copy.count(visiblePapers.length, categoryPapers.length)));
+    if (search) status.append(html('span', 'graph-search-count', `${copy.search}: ${categoryPapers.filter(matches).length}`));
+    if (activeUse) {
+      const clear = html('button', 'graph-clear', `${copy.selectedUse(local(activeUse.label, lang, activeUse.id))} ×`);
+      clear.type = 'button';
+      clear.title = copy.clear;
+      clear.addEventListener('click', () => { selectedUse = null; draw(); }, { signal: renderedEvents.signal });
+      footerActions.append(clear);
+    }
+    if (isExpanded && visiblePapers.length < categoryPapers.length) {
+      for (const [label, limit] of [[copy.more, shownLimit + 20], [copy.all, categoryPapers.length]]) {
+        const more = html('button', 'graph-more', label);
+        more.type = 'button';
+        more.addEventListener('click', () => { shownLimit = limit; draw(); fit(); }, { signal: renderedEvents.signal });
+        footerActions.append(more);
+      }
+    }
+    // The list contains every paper in this category, even while the canvas is
+    // paginated. It is usable without precise pointing or spatial navigation.
+    for (const paper of ordered) {
+      const item = html('li', matches(paper) && search ? 'is-match' : '');
+      const control = html('button', '', `${paper.method ? `${paper.method} — ` : ''}${paper.title || ''}`);
+      control.type = 'button';
+      control.addEventListener('click', () => onSelectPaper?.(paper), { signal: renderedEvents.signal });
+      item.append(control);
+      list.append(item);
+    }
+    applyTransform();
+  }
+
+  svg.addEventListener('wheel', event => {
+    event.preventDefault();
+    const rect = svg.getBoundingClientRect();
+    zoomAt(Math.exp(-Math.max(-100, Math.min(100, event.deltaY)) * 0.006), event.clientX - rect.left, event.clientY - rect.top);
+  }, { passive: false, signal: lifetime.signal });
+  svg.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || event.target.closest('[data-node-type]')) return;
+    pan = { id: event.pointerId, x: event.clientX, y: event.clientY, originX: transform.x, originY: transform.y };
+    svg.setPointerCapture(event.pointerId);
+    stage.classList.add('is-panning');
+  }, { signal: lifetime.signal });
+  svg.addEventListener('pointermove', event => {
+    if (!pan || pan.id !== event.pointerId) return;
+    transform.x = pan.originX + event.clientX - pan.x;
+    transform.y = pan.originY + event.clientY - pan.y;
+    applyTransform();
+  }, { signal: lifetime.signal });
+  const endPan = event => {
+    if (!pan || pan.id !== event.pointerId) return;
+    pan = null;
+    stage.classList.remove('is-panning');
+    if (svg.hasPointerCapture(event.pointerId)) svg.releasePointerCapture(event.pointerId);
+  };
+  svg.addEventListener('pointerup', endPan, { signal: lifetime.signal });
+  svg.addEventListener('pointercancel', endPan, { signal: lifetime.signal });
+  svg.addEventListener('lostpointercapture', () => { pan = null; stage.classList.remove('is-panning'); }, { signal: lifetime.signal });
+  draw();
+  frame = requestAnimationFrame(fit);
+  const resizeObserver = new ResizeObserver(() => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      const active = document.activeElement;
+      const focusedId = scene.contains(active) && (active.dataset.categoryId || active.dataset.useId || active.dataset.paperId);
+      const focusedType = focusedId && active.getAttribute('data-node-type');
+      draw();
+      fit();
+      if (focusedType && focusedId) {
+        scene.querySelector(`[data-${focusedType}-id="${CSS.escape(focusedId)}"]`)?.focus({ preventScroll: true });
+      }
+    });
+  });
+  resizeObserver.observe(stage);
+
+  return {
+    destroy() {
+      destroyed = true;
+      cancelAnimationFrame(frame);
+      lifetime.abort();
+      renderedEvents.abort();
+      resizeObserver.disconnect();
+      root.remove();
+    },
+  };
+}
+
+return {mountGraph};
+})();
+const {meta,categories,papers,useCases,highlights}=catalogModule;
+const {mountGraph}=graphModule;
+const defaultCategory=categories.some(c=>c.id==='generative')?'generative':categories[0]?.id;
+let state=readHash(),graph=null,dialogPaper=null,lastFocus=null,toastTimer;
+function readHash(){const p=new URLSearchParams(location.hash.replace(/^#\??/,''));return {lang:'en',category:categories.some(c=>c.id===p.get('category'))?p.get('category'):defaultCategory,query:p.get('q')||'',code:p.get('code')==='1',saved:new Set()};}
+function writeHash(){const p=new URLSearchParams();if(state.category)p.set('category',state.category);if(state.query.trim())p.set('q',state.query.trim());if(state.code)p.set('code','1');history.replaceState(null,'',location.pathname+location.search+(p.size?'#'+p.toString():''));}
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const url=v=>{try{const u=new URL(v);return ['https:','http:'].includes(u.protocol)?u.href:'#';}catch{return '#';}};
+const t=en=>en;
+const local=o=>typeof o==='string'?o:(o?.[state.lang]??o?.en??'');
+const cat=c=>c?.[state.lang]??c?.en??'';
+function icon(name,size=20){const d={search:'M16 16l5 5M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0',arrow:'M5 12h14M13 6l6 6-6 6',external:'M14 4h6v6M20 4l-9 9M10 4H4v16h16v-6',grid:'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',graph:'M6 12l12-7v14L6 12M9 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0M21 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M21 19a3 3 0 1 1-6 0 3 3 0 0 1 6 0',bookmark:'M6 4h12v17l-6-4-6 4z',close:'m6 6 12 12M18 6 6 18',menu:'M4 6h16M4 12h16M4 18h16',code:'m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16',copy:'M8 8h12v12H8zM15 8V4H4v11h4'};return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d[name]??d.grid}"/></svg>`;}
+function toast(s){const e=$('#toast');e.textContent=s;e.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>e.classList.remove('visible'),2500);}
+function link(href,label,className=''){const safe=url(href);return safe==='#'?'':`<a class="${className}" href="${esc(safe)}" target="_blank" rel="noopener noreferrer">${label}</a>`;}
+function assetLabel(p){return p.assetKind==='code'?t('Code','코드'):t('Website','웹사이트');}
+function categoryPill(c){return c?`<span class="category-pill" style="--category-color:${esc(c.color)}">${esc(cat(c))}</span>`:'';}
+function openPaper(id,remember=true){const p=papers.find(p=>p.id===id);if(!p)return;const alreadyOpen=Boolean(dialogPaper);if(remember&&!alreadyOpen)lastFocus=document.activeElement;dialogPaper=p;const c=categories.find(c=>c.id===p.category),h=highlights[p.method],saved=state.saved.has(p.id),related=papers.filter(other=>other.category===p.category&&other.id!==p.id).slice(0,4);const guide=h?`<div class="guide-panel"><h3>${t('A QUICK READING GUIDE','논문 읽기 가이드')}</h3><p class="guide-summary">${esc(local(h.summary))}</p><dl>${[['changes',t('What changes?','무엇을 바꾸나요?')],['inputs',t('What goes in?','어떤 정보를 사용하나요?')],['training',t('How is it learned?','어떻게 학습하나요?')]].map(([key,label])=>`<dt>${label}</dt><dd>${esc(local(h[key]))}</dd>`).join('')}</dl><p class="guide-note">${t('Editorial overview. Read the original paper for exact methods, assumptions, and results.','이해를 돕기 위한 편집 요약입니다. 정확한 방법·가정·결과는 원문을 확인하세요.')}</p></div>`:`<div class="guide-panel"><h3>${t('ABOUT THIS RESEARCH AREA','이 연구 분야에 관하여')}</h3><p class="guide-summary">${esc(local(c?.description))}</p><p class="guide-note">${t('This is category-level context, not a paper-specific summary. A detailed reading guide has not been added for this paper.','위 내용은 분류에 대한 설명이며, 이 논문 자체의 요약이 아닙니다. 이 논문의 상세 읽기 가이드는 아직 추가되지 않았습니다.')}</p></div>`;$('#dialog-root').innerHTML=`<div class="dialog-backdrop" data-close-backdrop><section class="paper-dialog" role="dialog" aria-modal="true" aria-labelledby="paper-dialog-title" tabindex="-1"><div class="dialog-top"><div><div class="dialog-method">${esc(p.method)}</div><div class="dialog-venue">${esc(p.venue)}</div></div><button class="icon-button" data-action="close-dialog" aria-label="${t('Close paper details','논문 상세 닫기')}">${icon('close')}</button></div><h2 id="paper-dialog-title">${esc(p.title)}</h2>${categoryPill(c)}<div class="dialog-actions">${link(p.url,`${t('Read original paper','원문 읽기')} ${icon('external',14)}`,'primary-button')}${p.code?link(p.code,`${icon(p.assetKind==='code'?'code':'external',14)}${assetLabel(p)}`,'secondary-button'):''}</div>${guide}<section class="related"><h3>${t('More in this repository category','같은 저장소 분류의 논문')}</h3>${related.length?related.map(other=>`<button data-paper="${esc(other.id)}"><span class="method">${esc(other.method)}</span>${esc(other.title)}</button>`).join(''):`<p class="catalog-caption">${t('No other papers in this category.','이 분류에 다른 논문이 없습니다.')}</p>`}</section><div class="dialog-provenance"><p>${t('Repository entry','저장소 항목')}: ${link(meta.sourceUrl,t('Repository README','저장소 README'))}</p><p>${t('Paper link','논문 링크')}: ${link(p.url,esc(p.url))}</p>${p.code?`<p>${assetLabel(p)}: ${link(p.code,esc(p.code))}</p>`:''}${h?.sourceUrls?.length?`<p>${t('Guide sources','가이드 출처')}: ${h.sourceUrls.map((u,i)=>link(u,`${t('Source','원문')} ${i+1}`)).join(' · ')}</p>`:''}<p>${t('Related papers above share a repository category; no citation relationship is implied.','위 관련 논문들은 저장소의 같은 분류에 속하며, 인용 관계를 의미하지 않습니다.')}</p></div></section></div>`;$('#app').inert=true;document.body.style.overflow='hidden';requestAnimationFrame(()=>{const target=remember?$('.paper-dialog [data-action="close-dialog"]'):$(`.paper-dialog [data-save="${CSS.escape(p.id)}"]`);target?.focus();});}
+function closePaper(){if(!dialogPaper)return;dialogPaper=null;$('#dialog-root').replaceChildren();$('#app').inert=false;document.body.style.overflow='';if(lastFocus?.isConnected)lastFocus.focus();else $('#main')?.focus();lastFocus=null;}
+function eligible(){return papers.filter(p=>!state.code||(p.code&&p.assetKind==='code'));}
+function matching(p){const q=state.query.trim().toLocaleLowerCase();return !q||[p.method,p.title,p.venue,p.year].join(' ').toLocaleLowerCase().includes(q);}
+function render(){graph?.destroy();graph=null;document.documentElement.lang=state.lang;document.title=t('Semantic ID Atlas — Relation Map','Semantic ID Atlas — 관계 지도');$('#app').innerHTML=`<header class="map-header"><a class="map-brand" href="${esc(location.pathname)}"><span class="map-mark">${icon('graph',23)}</span><span>Semantic ID <strong>Atlas</strong><small>${t('RESEARCH RELATION MAP','연구 관계 지도')}</small></span></a><div class="map-header-actions">${link(meta.repoUrl,`GitHub ${icon('external',14)}`,'map-source')}<button class="secondary-button map-share" data-action="share" aria-label="Copy a link to this map">${icon('copy',14)}<span>${t('Share map','지도 공유')}</span></button></div></header><main id="main" class="map-only" tabindex="-1"><section class="map-intro"><div><p class="map-eyebrow">${t('FOLLOW THE IDEAS','아이디어의 연결을 따라가다')}</p><h1>${t('A map of Semantic ID research.','Semantic ID 연구를 한눈에.')}</h1><p>${t('Choose a research category. Follow an application context. Open a paper to go deeper.','연구 분류를 선택하고, 활용 분야를 따라가세요. 논문을 열어 아이디어를 더 깊이 살펴보세요.')}</p></div><div class="map-stats"><span><strong>${papers.length}</strong> ${t('papers','논문')}</span><span><strong>${categories.length}</strong> ${t('categories','분류')}</span><small>${t('Snapshot','스냅샷')} ${esc(meta.snapshotDate)}</small></div></section><section class="map-filterbar" aria-label="${t('Map controls','지도 탐색 도구')}"><label class="search-wrap">${icon('search',16)}<input id="map-search" type="search" value="${esc(state.query)}" placeholder="${t('Find a paper, method, or keyword…','논문, 방법, 키워드 검색…')}" aria-label="${t('Search papers','논문 검색')}" autocomplete="off"><span class="search-key" aria-hidden="true">/</span></label><label class="map-select"><span>${t('Category','분류')}</span><select id="map-category" aria-label="${t('Expand a research category','연구 분류 펼치기')}">${categories.map(c=>`<option value="${esc(c.id)}" ${state.category===c.id?'selected':''}>${esc(cat(c))}</option>`).join('')}</select></label><label class="filter-check"><input id="map-code" type="checkbox" ${state.code?'checked':''}>${t('With code','코드 공개')}</label><button class="map-reset" data-action="reset">${t('Reset','초기화')}</button></section><div id="map-feedback" class="map-feedback" role="status" aria-live="polite"></div><div id="map-canvas"></div><footer class="map-foot"><p>${t('Paper titles, links, and category membership come from','논문 제목·링크·분류 출처:')} ${link(meta.repoUrl,'awesome-semantic-id')}. ${t('Application connections and reading notes are editorial.','활용 분야 연결과 이중 언어 읽기 가이드는 편집 내용입니다.')}</p><div><a href="https://github.com/semantic-id-tutorial/awesome-semantic-id/blob/main/README.md" target="_blank" rel="noopener noreferrer">${t('Source README','원본 README')}</a><a href="https://github.com/semantic-id-tutorial/awesome-semantic-id/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">${t('License','라이선스')}</a><span>${esc(meta.snapshotDate)} · ${esc(String(meta.commit||'').slice(0,7))}${meta.dirty?t(' + local updates',' + 로컬 업데이트'):''}</span></div></footer></main>`;mount();}
+function mount(choose=false){const available=eligible(),matches=available.filter(matching);if(choose&&matches.length&&!matches.some(p=>p.category===state.category))state.category=matches[0].category;$('#map-category').value=state.category;$('#map-feedback').innerHTML=state.query.trim()?`<span><strong>${matches.length}</strong> ${t('matching papers across','검색 일치 논문 ·')} <strong>${new Set(matches.map(p=>p.category)).size}</strong> ${t('categories','분류')}</span><span>${t('Matching nodes are highlighted; select a category to inspect them.','일치하는 논문을 강조합니다. 분류를 선택해 살펴보세요.')}</span>`:`<span><strong>${available.length}</strong> ${t('papers available','편의 논문')}${state.code?' · '+t('code links only','코드 링크가 있는 논문'):''}</span><span>${t('Select a paper for a reading guide and original links.','논문을 선택하면 읽기 가이드와 원본 링크를 볼 수 있습니다.')}</span>`;graph?.destroy();graph=mountGraph($('#map-canvas'),{categories,papers:available,useCases,lang:state.lang,query:state.query,filterCategory:state.category,onSelectPaper:p=>openPaper(p.id),onSelectCategory:id=>{state.category=id;$('#map-category').value=id;writeHash();}});writeHash();}
+async function share(){writeHash();try{await navigator.clipboard.writeText(location.href);toast(t('Link copied — it opens this topic and search.','현재 언어·분류·검색을 여는 링크를 복사했습니다.'));}catch{const e=document.createElement('textarea');e.value=location.href;e.style.cssText='position:fixed;left:-10000px';document.body.append(e);e.select();const ok=document.execCommand('copy');e.remove();toast(ok?t('Map link copied.','지도 링크를 복사했습니다.'):t('Copy the browser address to share this view.','브라우저 주소를 복사하면 현재 지도를 공유할 수 있습니다.'));}}
+document.addEventListener('click',event=>{if(event.target.matches('[data-close-backdrop]')){closePaper();return;}const e=event.target.closest('button');if(!e)return;if(e.dataset.paper){openPaper(e.dataset.paper);return;}if(e.dataset.lang){state.lang=e.dataset.lang;writeHash();render();$(`[data-lang="${state.lang}"]`)?.focus();return;}if(e.dataset.action==='close-dialog')closePaper();if(e.dataset.action==='share')share();if(e.dataset.action==='reset'){Object.assign(state,{category:defaultCategory,query:'',code:false});render();$('#map-search')?.focus();}});
+document.addEventListener('input',event=>{if(event.target.id==='map-search'){state.query=event.target.value;mount(true);}});
+document.addEventListener('change',event=>{if(event.target.id==='map-category'){state.category=event.target.value;mount();}if(event.target.id==='map-code'){state.code=event.target.checked;mount(true);}});
+document.addEventListener('keydown',event=>{if(dialogPaper){if(event.key==='Escape'){event.preventDefault();closePaper();return;}if(event.key==='Tab'){const d=$('.paper-dialog'),nodes=[...d.querySelectorAll('a[href],button:not([disabled]),[tabindex="0"]')].filter(e=>e.getClientRects().length),first=nodes[0],last=nodes.at(-1);if(event.shiftKey&&(document.activeElement===first||document.activeElement===d)){event.preventDefault();last?.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}}return;}if(event.key==='/'&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.target.matches('input,textarea,select,[contenteditable="true"]')){event.preventDefault();$('#map-search')?.focus();}});
+window.addEventListener('hashchange',()=>{closePaper();state=readHash();render();});
+render();
+</script></body></html>

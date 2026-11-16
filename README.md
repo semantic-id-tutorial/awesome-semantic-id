@@ -3,7 +3,7 @@
 [![Paper](https://img.shields.io/badge/CIKM'26-10.1145%2F3799682.3839274-red)](https://doi.org/10.1145/3799682.3839274)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-**[Explore the interactive relation map](https://semantic-id-atlas-euro.eruobin.chatgpt.site/)** — browse papers by research area and application context (English / 한국어).
+**[Explore the interactive relation map](https://semantic-id-atlas-euro.eruobin.chatgpt.site/)** — browse papers by research area and application context (English).
 
 A curated reading list on **Semantic IDs for Recommender Systems** — item identity encoded as discrete, content-aware token sequences (typically via RQ-VAE / RQ-KMeans style vector quantization) rather than arbitrary integer IDs. This list accompanies the CIKM '26 tutorial *["IDs That Mean Something: A Hands-On Tutorial on Semantic IDs for Recommender Systems"](https://doi.org/10.1145/3799682.3839274)*.
 
