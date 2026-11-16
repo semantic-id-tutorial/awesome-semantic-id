@@ -3,6 +3,8 @@
 [![Paper](https://img.shields.io/badge/CIKM'26-10.1145%2F3799682.3839274-red)](https://doi.org/10.1145/3799682.3839274)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
+**[Explore the interactive relation map](https://semantic-id-atlas-euro.eruobin.chatgpt.site/)** — browse papers by research area and application context (English / 한국어).
+
 A curated reading list on **Semantic IDs for Recommender Systems** — item identity encoded as discrete, content-aware token sequences (typically via RQ-VAE / RQ-KMeans style vector quantization) rather than arbitrary integer IDs. This list accompanies the CIKM '26 tutorial *["IDs That Mean Something: A Hands-On Tutorial on Semantic IDs for Recommender Systems"](https://doi.org/10.1145/3799682.3839274)*.
 
 We trace the field from raw IDs to semantic IDs. The list starts with background on raw IDs and auxiliary content, and the vector quantization methods that semantic IDs are built on. It then covers semantic IDs in recommendation: construction, generative and discriminative use, multimodal and collaborative fusion, cold-start, cross-domain transfer, and cross-task unification. [TIGER](https://proceedings.neurips.cc/paper_files/paper/2023/hash/20dcab0f14046a5c6b02b61da9f13229-Abstract-Conference.html) (NeurIPS '23), which established generating semantic IDs as a recommendation paradigm, anchors the generative recommendation section. Where a paper has both an official venue version and an arXiv preprint, we link the official version.
